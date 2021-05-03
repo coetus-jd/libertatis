@@ -227,8 +227,8 @@ MonoBehaviour:
   message: {fileID: 1185665793}
   success: {fileID: 21300000, guid: 63a5c72c7d29b2f459017a850f93ebdc, type: 3}
   error: {fileID: 21300000, guid: a174486fd73a2b245adfb739a9a34355, type: 3}
-  nick: {fileID: 1170873088}
-  name: {fileID: 894841250}
+  inputNick: {fileID: 1170873088}
+  inputName: {fileID: 894841250}
 --- !u!4 &13032034
 Transform:
   m_ObjectHideFlags: 0
@@ -1745,7 +1745,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 13032033}
-        m_MethodName: call
+        m_MethodName: register
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

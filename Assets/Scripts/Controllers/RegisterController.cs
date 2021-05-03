@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Text;
+using PirateCave.Base;
 using PirateCave.Enums;
 using PirateCave.Models;
 using PirateCave.Utilities;
@@ -10,63 +11,65 @@ using UnityEngine.UI;
 
 public class RegisterController : MonoBehaviour
 {
+    /// <summary>
+    /// Objeto no qual será exibido a mensagem do servidor
+    /// </summary>
     [SerializeField]
     private GameObject message;
 
+    /// <summary>
+    /// Imagem a ser utilizada ao receber uma resposta de sucesso
+    /// </summary>
     [SerializeField]
     private Sprite success;
 
+    /// <summary>
+    /// Imagem a ser utilizada ao receber uma resposta de erro
+    /// </summary>
     [SerializeField]
     private Sprite error;
 
+    /// <summary>
+    /// Input do usuário com o valor do nick
+    /// </summary>
     [SerializeField]
-    private GameObject nick;
+    private GameObject inputNick;
 
+    /// <summary>
+    /// Input do usuário com o valor do nome
+    /// </summary>
     [SerializeField]
-    private GameObject name;
+    private GameObject inputName;
 
-    void Start()
+    /// <summary>
+    /// Registra um novo jogador
+    /// </summary>
+    public void register()
     {
-        // StartCoroutine(register());
-    }
-
-    public void call()
-    {
-        StartCoroutine(register());
-    }
-
-    public IEnumerator register()
-    {
-        UnityWebRequest request = new UnityWebRequest($"{Helpers.apiUrl}/players", HttpMethods.POST);
-
         Player player = new Player()
         {
-            nick = nick.GetComponent<TMP_InputField>().text,
-            name = name.GetComponent<TMP_InputField>().text
+            nick = inputNick.GetComponent<TMP_InputField>().text,
+            name = inputName.GetComponent<TMP_InputField>().text
         };
 
-        string jsonFields = JsonUtility.ToJson(player);
+        StartCoroutine(Request.post("/players", player, handleResponse));
+    }
 
-        request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(jsonFields));
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
-        request.SetRequestHeader("Accept", "application/json");
-
-        yield return request.SendWebRequest();
-        
+    /// <summary>
+    /// Trata a resposta vinda do servidor
+    /// </summary>
+    private void handleResponse(Response response)
+    {
         message.SetActive(true);
 
-        Response apiReponse = JsonUtility.FromJson<Response>(request.downloadHandler?.text);
-
-        if (request.isNetworkError || request.isHttpError)
+        if (response == null || !string.IsNullOrEmpty(response.data.error))
         {
             message.GetComponentInChildren<Image>().sprite = error;
-            message.GetComponent<TMP_InputField>().text = apiReponse.data.error;
+            message.GetComponent<TMP_InputField>().text = response?.data.error ?? "Não foi possível se comunicar com o servidor";
+            return;
         }
-        else
-        {
-            message.GetComponentInChildren<Image>().sprite = success;
-            message.GetComponent<TMP_InputField>().text = apiReponse.data.message;
-        }
+
+        message.GetComponentInChildren<Image>().sprite = success;
+        message.GetComponent<TMP_InputField>().text = response.data.message;
     }
 }
