@@ -1,5 +1,8 @@
 namespace PirateCave.Enums
 {
+    /// <summary>
+    /// Enum com verbos HTTP
+    /// </summary>
     public static class HttpMethods
     {
         public static string POST = "POST";

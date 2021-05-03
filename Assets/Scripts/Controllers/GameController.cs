@@ -32,10 +32,7 @@ namespace PirateCave.Controllers
         /// <summary>
         /// Fecha a aplicação do jogo
         /// </summary>
-        public void quitGame()
-        {
-            Application.Quit();
-        }
+        public void quitGame() => Application.Quit();
     }
 }
 
