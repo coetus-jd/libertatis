@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using PirateCave.Models;
 
 namespace PirateCave.Base
 {
@@ -19,5 +21,7 @@ namespace PirateCave.Base
     {
         public string error;
         public string message;
+        public Player player;
+        public List<Player> players;
     }
 }

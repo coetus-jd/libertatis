@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Text;
-using PirateCave.Base;
-using PirateCave.Enums;
+﻿using PirateCave.Base;
 using PirateCave.Models;
-using PirateCave.Utilities;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 
 namespace PirateCave.Controllers
 {
-    public class RegisterController : MonoBehaviour
+    public class LoginController : MonoBehaviour
     {
+        [SerializeField]
+        private GameController gameController;
+
         /// <summary>
         /// Objeto no qual será exibido a mensagem do servidor
         /// </summary>
@@ -38,33 +36,26 @@ namespace PirateCave.Controllers
         private GameObject inputNick;
 
         /// <summary>
-        /// Input do usuário com o valor do nome
-        /// </summary>
-        [SerializeField]
-        private GameObject inputName;
-
-        /// <summary>
         /// Botão de cadastrar
         /// </summary>
         [SerializeField]
-        private Button buttonRegister;
+        private Button buttonLogin;
 
         /// <summary>
-        /// Registra um novo jogador
+        /// Loga um jogador
         /// </summary>
-        public void register()
+        public void login()
         {
-            buttonRegister.interactable = false;
+            buttonLogin.interactable = false;
 
             Player player = new Player()
             {
-                nick = inputNick.GetComponent<TMP_InputField>().text,
-                name = inputName.GetComponent<TMP_InputField>().text
+                nick = inputNick.GetComponent<TMP_InputField>().text
             };
 
-            StartCoroutine(Request.post("/players", player, handleResponse));
+            StartCoroutine(Request.get($"/players/{player.nick}", handleResponse));
 
-            buttonRegister.interactable = true;
+            buttonLogin.interactable = true;
         }
 
         /// <summary>
@@ -82,7 +73,16 @@ namespace PirateCave.Controllers
             }
 
             message.GetComponentInChildren<Image>().sprite = success;
-            message.GetComponent<TMP_InputField>().text = response.data.message;
+            message.GetComponent<TMP_InputField>().text = "Logado com sucesso";
+
+            redirectToHome((Player)response.data.player);
+        }
+
+        private void redirectToHome(Player player)
+        {
+            PlayerPrefs.SetString("nick", player.nick);
+
+            gameController.playScene("Scenes/Home");
         }
     }
 }

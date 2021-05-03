@@ -229,6 +229,7 @@ MonoBehaviour:
   error: {fileID: 21300000, guid: a174486fd73a2b245adfb739a9a34355, type: 3}
   inputNick: {fileID: 1170873088}
   inputName: {fileID: 894841250}
+  buttonRegister: {fileID: 1313211157}
 --- !u!4 &13032034
 Transform:
   m_ObjectHideFlags: 0
