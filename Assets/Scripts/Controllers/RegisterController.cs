@@ -42,10 +42,18 @@ public class RegisterController : MonoBehaviour
     private GameObject inputName;
 
     /// <summary>
+    /// Botão de cadastrar
+    /// </summary>
+    [SerializeField]
+    private Button buttonRegister;
+
+    /// <summary>
     /// Registra um novo jogador
     /// </summary>
     public void register()
     {
+        buttonRegister.interactable = false;
+
         Player player = new Player()
         {
             nick = inputNick.GetComponent<TMP_InputField>().text,
@@ -53,6 +61,8 @@ public class RegisterController : MonoBehaviour
         };
 
         StartCoroutine(Request.post("/players", player, handleResponse));
+
+        buttonRegister.interactable = true;
     }
 
     /// <summary>
