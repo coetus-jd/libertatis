@@ -3,19 +3,19 @@ using UnityEngine.SceneManagement;
 
 namespace PirateCave.Controllers
 {
-    public class GameController : MonoBehaviour
+    public static class GameController
     {
         /// <summary>
         /// O som que irá tocar de background durante o jogo
         /// </summary>
         [SerializeField]
-        private AudioSource backgroundSound;
+        private static AudioSource backgroundSound;
 
         /// <summary>
         /// Carrega uma Scene por seu caminho
         /// </summary>
         /// <param name="sceneName"></param>
-        public void playScene(string sceneName, LoadSceneMode sceneMode = LoadSceneMode.Single)
+        public static void playScene(string sceneName, LoadSceneMode sceneMode = LoadSceneMode.Single)
         {
             SceneManager.LoadScene(sceneName, sceneMode);
         }
@@ -24,7 +24,7 @@ namespace PirateCave.Controllers
         /// Carrega uma Scene por seu index
         /// </summary>
         /// <param name="sceneIndex"></param>
-        public void playScene(int sceneIndex, LoadSceneMode sceneMode = LoadSceneMode.Single)
+        public static void playScene(int sceneIndex, LoadSceneMode sceneMode = LoadSceneMode.Single)
         {
             SceneManager.LoadScene(sceneIndex, sceneMode);
         }
@@ -32,12 +32,12 @@ namespace PirateCave.Controllers
         /// <summary>
         /// Fecha a aplicação do jogo
         /// </summary>
-        public void quitGame() => Application.Quit();
+        public static void quitGame() => Application.Quit();
 
         /// <summary>
         /// Desloga o usuário atual
         /// </summary>
-        public void logout() => PlayerPrefs.DeleteKey("player");
+        public static void logout() => PlayerPrefs.DeleteKey("player");
     }
 }
 

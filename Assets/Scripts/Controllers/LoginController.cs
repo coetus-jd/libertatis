@@ -8,9 +8,6 @@ namespace PirateCave.Controllers
 {
     public class LoginController : MonoBehaviour
     {
-        [SerializeField]
-        private GameController gameController;
-
         /// <summary>
         /// Objeto no qual será exibido a mensagem do servidor
         /// </summary>
@@ -46,12 +43,15 @@ namespace PirateCave.Controllers
         /// </summary>
         public void login()
         {
-            buttonLogin.interactable = false;
-
             Player player = new Player()
             {
                 nick = inputNick.GetComponent<TMP_InputField>().text
             };
+
+            if (string.IsNullOrEmpty(player.nick))
+                return;
+
+            buttonLogin.interactable = false;
 
             StartCoroutine(Request.get($"/players/{player.nick}", handleResponse));
 
@@ -82,7 +82,7 @@ namespace PirateCave.Controllers
         {
             PlayerPrefs.SetString("player", JsonUtility.ToJson(player));
 
-            gameController.playScene("Scenes/Home");
+            GameController.playScene("Scenes/Home");
         }
     }
 }
