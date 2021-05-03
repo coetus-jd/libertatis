@@ -80,7 +80,7 @@ namespace PirateCave.Controllers
 
         private void redirectToHome(Player player)
         {
-            PlayerPrefs.SetString("nick", player.nick);
+            PlayerPrefs.SetString("player", JsonUtility.ToJson(player));
 
             gameController.playScene("Scenes/Home");
         }

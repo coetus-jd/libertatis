@@ -33,6 +33,11 @@ namespace PirateCave.Controllers
         /// Fecha a aplicação do jogo
         /// </summary>
         public void quitGame() => Application.Quit();
+
+        /// <summary>
+        /// Desloga o usuário atual
+        /// </summary>
+        public void logout() => PlayerPrefs.DeleteKey("player");
     }
 }
 
