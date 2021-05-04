@@ -3,19 +3,28 @@ using UnityEngine.SceneManagement;
 
 namespace PirateCave.Controllers
 {
-    public static class GameController
+    public class GameController : MonoBehaviour
     {
         /// <summary>
         /// O som que irá tocar de background durante o jogo
         /// </summary>
         [SerializeField]
-        private static AudioSource backgroundSound;
+        private AudioSource backgroundSound;
 
         /// <summary>
         /// Carrega uma Scene por seu caminho
         /// </summary>
         /// <param name="sceneName"></param>
-        public static void playScene(string sceneName, LoadSceneMode sceneMode = LoadSceneMode.Single)
+        public void playScene(string sceneName)
+        {
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        }
+
+        /// <summary>
+        /// Carrega uma Scene por seu caminho
+        /// </summary>
+        /// <param name="sceneName"></param>
+        public void playScene(string sceneName, LoadSceneMode sceneMode = LoadSceneMode.Single)
         {
             SceneManager.LoadScene(sceneName, sceneMode);
         }
@@ -24,7 +33,7 @@ namespace PirateCave.Controllers
         /// Carrega uma Scene por seu index
         /// </summary>
         /// <param name="sceneIndex"></param>
-        public static void playScene(int sceneIndex, LoadSceneMode sceneMode = LoadSceneMode.Single)
+        public void playScene(int sceneIndex, LoadSceneMode sceneMode = LoadSceneMode.Single)
         {
             SceneManager.LoadScene(sceneIndex, sceneMode);
         }
@@ -32,12 +41,12 @@ namespace PirateCave.Controllers
         /// <summary>
         /// Fecha a aplicação do jogo
         /// </summary>
-        public static void quitGame() => Application.Quit();
+        public void quitGame() => Application.Quit();
 
         /// <summary>
         /// Desloga o usuário atual
         /// </summary>
-        public static void logout() => PlayerPrefs.DeleteKey("player");
+        public void logout() => PlayerPrefs.DeleteKey("player");
     }
 }
 

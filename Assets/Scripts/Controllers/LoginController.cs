@@ -82,7 +82,7 @@ namespace PirateCave.Controllers
         {
             PlayerPrefs.SetString("player", JsonUtility.ToJson(player));
 
-            GameController.playScene("Scenes/Home");
+            new GameController().playScene("Scenes/Home");
         }
     }
 }
