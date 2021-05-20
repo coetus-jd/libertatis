@@ -57,6 +57,7 @@ namespace PirateCave.Controllers
         private void handleAnimation(float verticalValue, float horizontalValue)
         {
             animator.SetBool("walking", (horizontalValue != 0.0f));
+            animator.SetBool("jump", Input.GetKeyDown(KeyCode.Space));
         }
 
         private void restrictUserMovement()
