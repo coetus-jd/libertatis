@@ -54,9 +54,20 @@ namespace PirateCave.Controllers
             restrictUserMovement();
         }
 
-        private void handleAnimation(float verticalValue, float horizontalValue)
+        private void handleAnimation(float verticalMovement, float horizontalMovement)
         {
-            animator.SetBool("walking", (horizontalValue != 0.0f));
+            if (horizontalMovement != 0.0f)
+            {
+                bool isRunning = Input.GetKey(KeyCode.LeftShift);
+                animator.SetBool(isRunning ? "running" : "walking", true);
+                animator.SetBool(isRunning ? "walking" : "running", false);
+            }
+            else
+            {
+                animator.SetBool("running", false);
+                animator.SetBool("walking", false);
+            }
+                
             animator.SetBool("jump", Input.GetKeyDown(KeyCode.Space));
         }
 
