@@ -30,35 +30,55 @@ namespace PirateCave.Controllers
         /// A velocidade com que o player irá se mover
         /// </summary>
         [SerializeField]
-        private float velocity = 8.0f;
+        private float velocity = 0.9f;
 
+        /// <summary>
+        /// O sprite do personagem
+        /// </summary>
+        private SpriteRenderer spriteRenderer;
+
+        /// <summary>
+        /// Animator com todas as animações do player
+        /// </summary>
         private Animator animator;
+
+        /// <summary>
+        /// Indica se o jogador está correndo ou não
+        /// </summary>
+        private bool isRunning = false;
 
         void Start()
         {
             animator = GetComponent<Animator>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        void Update() => move();
+        void Update() => movePlayer();
 
-        private void move()
+        private void movePlayer()
         {
-            float verticalInput = Input.GetAxis("Vertical");
-            float horizontalInput = Input.GetAxis("Horizontal");
+            float horizontalMovement = Input.GetAxis("Horizontal");
 
-            handleAnimation(verticalInput, horizontalInput);
+            isRunning = Input.GetKey(KeyCode.LeftShift);
 
-            transform.Translate(((Vector3.right * velocity) * horizontalInput) * Time.deltaTime);
-            transform.Translate(((Vector3.up * velocity) * verticalInput) * Time.deltaTime);
-
+            handleMovement(horizontalMovement);
+            handleAnimation(horizontalMovement);
             restrictUserMovement();
         }
 
-        private void handleAnimation(float verticalMovement, float horizontalMovement)
+        private void handleMovement(float horizontalMovement)
+        {
+            float localVelocity = isRunning ? velocity * 1.4f : velocity;
+
+            transform.Translate(((Vector3.right * localVelocity) * horizontalMovement) * Time.deltaTime);
+        }
+
+        private void handleAnimation(float horizontalMovement)
         {
             if (horizontalMovement != 0.0f)
             {
-                bool isRunning = Input.GetKey(KeyCode.LeftShift);
+                spriteRenderer.flipX = (horizontalMovement < 0);
+
                 animator.SetBool(isRunning ? "running" : "walking", true);
                 animator.SetBool(isRunning ? "walking" : "running", false);
             }
@@ -67,7 +87,7 @@ namespace PirateCave.Controllers
                 animator.SetBool("running", false);
                 animator.SetBool("walking", false);
             }
-                
+
             animator.SetBool("jump", Input.GetKeyDown(KeyCode.Space));
         }
 
@@ -79,11 +99,11 @@ namespace PirateCave.Controllers
 
             if (transform.position.y < minYPosition)
                 transform.position = new Vector3(transform.position.x, minYPosition, 0);
-            
+
             // Horizontal 
             if (transform.position.x > maxXPosition)
                 transform.position = new Vector3(maxXPosition, transform.position.y, 0);
-            
+
             if (transform.position.x < minXPosition)
                 transform.position = new Vector3(minXPosition, transform.position.y, 0);
         }
