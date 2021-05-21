@@ -1,10 +1,28 @@
-﻿using UnityEngine;
+﻿using PirateCave.Models;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace PirateCave.Controllers
 {
     public class GameController : MonoBehaviour
     {
+        /// <summary>
+        /// Retorna os dados do usuário que está logado atualmente
+        /// </summary>
+        /// <value></value>
+        public static Player loggedPlayer
+        {
+            get 
+            {
+                string playerJson = PlayerPrefs.GetString("player");
+
+                if (string.IsNullOrEmpty(playerJson))
+                    return null;
+
+                return JsonUtility.FromJson<Player>(playerJson);
+            }
+        }
+
         /// <summary>
         /// O som que irá tocar de background durante o jogo
         /// </summary>
