@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c6a093126ae7e748879fdac58ff6ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 10
+  points: 0
   historyController: {fileID: 2058925149}
 --- !u!4 &2098676576 stripped
 Transform:

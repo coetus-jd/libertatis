@@ -23,7 +23,7 @@ namespace PirateCave.Account.Controllers
         /// </summary>
         public void saveScore(int points)
         {
-            if (string.IsNullOrEmpty(GameController.loggedPlayer.nick)) 
+            if (string.IsNullOrEmpty(GameController.loggedPlayer?.nick)) 
                 return;
 
             PlayerHistory playerHistory = new PlayerHistory()
@@ -32,7 +32,7 @@ namespace PirateCave.Account.Controllers
                 points = points,
             };
 
-            PlayerPrefs.SetInt("playerHistory", points);
+            PlayerPrefs.SetInt(PlayerPrefsKeys.PlayerPoints, points);
             StartCoroutine(Request.put("/history", playerHistory, handleResponse));
             
             // Por garantia já colocamos os pontos para salvar depois

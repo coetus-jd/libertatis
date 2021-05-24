@@ -9,21 +9,21 @@ namespace PirateCave.Controllers
 {
     public class PhaseController : MonoBehaviour
     {
-        [SerializeField]
         /// <summary>
         /// Guarda o número de pontos feitos pelo jogador
         /// </summary>
+        [SerializeField]
         private int points;
 
-        [SerializeField]
         /// <summary>
         /// Objeto usado para atualizar os pontos do usuário
         /// </summary>
+        [SerializeField]
         private PlayerHistoryController historyController;
         
         void Start()
         {
-            points = PlayerPrefs.GetInt("playerHistory");
+            points = PlayerPrefs.GetInt(PlayerPrefsKeys.PlayerPoints);
         }
 
         void OnDisable()

@@ -22,6 +22,7 @@ namespace PirateCave.Base
         public string error;
         public string message;
         public Player player;
+        public int todayPoints;
         public List<Player> players;
     }
 }

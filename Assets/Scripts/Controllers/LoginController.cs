@@ -76,12 +76,13 @@ namespace PirateCave.Controllers
             message.GetComponentInChildren<Image>().sprite = success;
             message.GetComponent<TMP_InputField>().text = "Logado com sucesso";
 
-            redirectToHome((Player)response.data.player);
+            redirectToHome(response.data);
         }
 
-        private void redirectToHome(Player player)
+        private void redirectToHome(Data data)
         {
-            PlayerPrefs.SetString(PlayerPrefsKeys.Player, JsonUtility.ToJson(player));
+            PlayerPrefs.SetString(PlayerPrefsKeys.Player, JsonUtility.ToJson(data.player));
+            PlayerPrefs.SetInt(PlayerPrefsKeys.PlayerPoints, data.todayPoints);
 
             new GameController().playScene("Scenes/Home");
         }
