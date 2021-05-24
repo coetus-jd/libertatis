@@ -70,7 +70,7 @@ namespace PirateCave.Base
         /// <param name="data"></param>
         /// <param name="handleResponse"></param>
         /// <returns></returns>
-        public static IEnumerator put(string routeName, dynamic data, Action<Response> handleResponse)
+        public static IEnumerator put(string routeName, dynamic data, Action<Response> handleResponse = null)
         {
             using (UnityWebRequest request = new UnityWebRequest($"{Helpers.apiUrl}/{handleRouteName(routeName)}", HttpMethods.PUT))
             {
@@ -84,8 +84,9 @@ namespace PirateCave.Base
                 yield return request.SendWebRequest();
 
                 Response apiReponse = JsonUtility.FromJson<Response>(request.downloadHandler?.text);
-
-                handleResponse(apiReponse);
+                
+                if (handleResponse != null)
+                    handleResponse(apiReponse);
             }
         }
 

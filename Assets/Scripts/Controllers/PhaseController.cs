@@ -1,4 +1,5 @@
 using System;
+using PirateCave.Account.Controllers;
 using PirateCave.Base;
 using PirateCave.Models;
 using UnityEngine;
@@ -13,31 +14,25 @@ namespace PirateCave.Controllers
         /// </summary>
         private int points;
 
+        [SerializeField]
+        /// <summary>
+        /// Objeto usado para atualizar os pontos do usuário
+        /// </summary>
+        private PlayerHistoryController historyController;
+        
         void Start()
         {
             points = PlayerPrefs.GetInt("playerHistory");
         }
 
-        void OnDestroy()
+        void OnDisable()
         {
-            saveScore();
+            PlayerPrefs.SetInt("pointsToSave", points);
         }
 
-        private void saveScore()
+        void OnApplicationQuit()
         {
-            PlayerHistory playerHistory = new PlayerHistory()
-            {
-                nick = GameController.loggedPlayer.nick,
-                points = points,
-            };
-
-            PlayerPrefs.SetInt("playerHistory", points);
-            StartCoroutine(Request.put("/history", playerHistory, handleSaveScoreResponse));
-        }
-
-        private void handleSaveScoreResponse(Response response)
-        {
-
+            historyController.saveScore(points);
         }
     }
 }
