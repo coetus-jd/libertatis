@@ -30,7 +30,7 @@ namespace PirateCave.Controllers
         /// Input do usuário com o valor do nick
         /// </summary>
         [SerializeField]
-        private GameObject inputNick;
+        private TMP_InputField inputNick;
 
         /// <summary>
         /// Botão de cadastrar
@@ -46,7 +46,7 @@ namespace PirateCave.Controllers
         {
             Player player = new Player()
             {
-                nick = nick ?? inputNick.GetComponent<TMP_InputField>()?.text
+                nick = !string.IsNullOrEmpty(nick) ? nick : inputNick?.text
             };
 
             if (string.IsNullOrEmpty(player.nick))
@@ -55,8 +55,6 @@ namespace PirateCave.Controllers
             buttonLogin.interactable = false;
 
             StartCoroutine(Request.get($"/players/{player.nick}", handleResponse));
-
-            buttonLogin.interactable = true;
         }
 
         /// <summary>
@@ -64,6 +62,7 @@ namespace PirateCave.Controllers
         /// </summary>
         private void handleResponse(Response response)
         {
+            buttonLogin.interactable = true;
             message.SetActive(true);
 
             if (response == null || !string.IsNullOrEmpty(response.data.error))
