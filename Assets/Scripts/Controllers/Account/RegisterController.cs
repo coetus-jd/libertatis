@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Text;
 using PirateCave.Base;
+using PirateCave.Controllers;
 using PirateCave.Enums;
 using PirateCave.Models;
 using PirateCave.Utilities;
@@ -9,7 +10,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-namespace PirateCave.Controllers
+namespace PirateCave.Account.Controllers
 {
     public class RegisterController : MonoBehaviour
     {

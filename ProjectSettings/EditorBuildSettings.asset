@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Login.unity
     guid: 44171a63c4c1f4b46915541efe6bc5a3
   - enabled: 1
-    path: Assets/Scenes/Register.unity
+    path: Assets/Scenes/Account/Register.unity
     guid: 3eb6ec80a91799c4a9bf03b6837ab883
+  - enabled: 1
+    path: Assets/Scenes/Account/Update.unity
+    guid: 6d0a6687b3ccf4340959904e3a5bed81
   - enabled: 1
     path: Assets/Scenes/Phase.unity
     guid: 0a02a21c2fd36ba4a8c09f69448f4f3b
