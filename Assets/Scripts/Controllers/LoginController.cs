@@ -81,6 +81,7 @@ namespace PirateCave.Controllers
 
         private void redirectToHome(Player player)
         {
+            PlayerPrefs.DeleteKey("player");
             PlayerPrefs.SetString("player", JsonUtility.ToJson(player));
 
             new GameController().playScene("Scenes/Home");
