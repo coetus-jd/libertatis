@@ -62,7 +62,7 @@ namespace PirateCave.Controllers
                 name = inputName.GetComponent<TMP_InputField>().text
             };
 
-            StartCoroutine(Request.post("/players", player, handleResponse));
+            StartCoroutine(Request.post("/players", player, handleRegisterResponse));
 
             buttonRegister.interactable = true;
         }
@@ -70,7 +70,7 @@ namespace PirateCave.Controllers
         /// <summary>
         /// Trata a resposta vinda do servidor
         /// </summary>
-        private void handleResponse(Response response)
+        private void handleRegisterResponse(Response response)
         {
             message.SetActive(true);
 
@@ -83,6 +83,9 @@ namespace PirateCave.Controllers
 
             message.GetComponentInChildren<Image>().sprite = success;
             message.GetComponent<TMP_InputField>().text = response.data.message;
+            
+            // Loga automaticamente o jogador após o cadastro
+            new LoginController().login(response.data.player.nick);
         }
     }
 }

@@ -41,11 +41,12 @@ namespace PirateCave.Controllers
         /// <summary>
         /// Loga um jogador
         /// </summary>
-        public void login()
+        /// <param name="nick"></param>
+        public void login(string nick = null)
         {
             Player player = new Player()
             {
-                nick = inputNick.GetComponent<TMP_InputField>().text
+                nick = nick ?? inputNick.GetComponent<TMP_InputField>()?.text
             };
 
             if (string.IsNullOrEmpty(player.nick))
