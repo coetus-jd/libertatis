@@ -64,7 +64,11 @@ namespace PirateCave.Controllers
         /// <summary>
         /// Desloga o usuário atual
         /// </summary>
-        public void logout() => PlayerPrefs.DeleteKey("player");
+        public void logout()
+        {
+            PlayerPrefs.DeleteKey("player");
+            playScene("Scenes/Home");
+        }
     }
 }
 
