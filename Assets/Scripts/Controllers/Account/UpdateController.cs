@@ -99,7 +99,7 @@ namespace PirateCave.Account.Controllers
             message.GetComponent<TMP_InputField>().text = response.data.message;
 
             // Atualiza os dados locais do usuário
-            PlayerPrefs.SetString("player", JsonUtility.ToJson(
+            PlayerPrefs.SetString(PlayerPrefsKeys.Player, JsonUtility.ToJson(
                 new Player()
                 {
                     nick = inputNick.GetComponent<TMP_InputField>().text,

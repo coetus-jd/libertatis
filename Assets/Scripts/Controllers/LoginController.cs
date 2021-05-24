@@ -1,4 +1,5 @@
 ﻿using PirateCave.Base;
+using PirateCave.Enums;
 using PirateCave.Models;
 using TMPro;
 using UnityEngine;
@@ -80,8 +81,7 @@ namespace PirateCave.Controllers
 
         private void redirectToHome(Player player)
         {
-            PlayerPrefs.DeleteKey("player");
-            PlayerPrefs.SetString("player", JsonUtility.ToJson(player));
+            PlayerPrefs.SetString(PlayerPrefsKeys.Player, JsonUtility.ToJson(player));
 
             new GameController().playScene("Scenes/Home");
         }

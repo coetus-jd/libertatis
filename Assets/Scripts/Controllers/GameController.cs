@@ -1,4 +1,5 @@
-﻿using PirateCave.Models;
+﻿using PirateCave.Enums;
+using PirateCave.Models;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +15,7 @@ namespace PirateCave.Controllers
         {
             get 
             {
-                string playerJson = PlayerPrefs.GetString("player");
+                string playerJson = PlayerPrefs.GetString(PlayerPrefsKeys.Player);
 
                 if (string.IsNullOrEmpty(playerJson))
                     return null;

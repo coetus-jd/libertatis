@@ -1,6 +1,7 @@
 using System;
 using PirateCave.Account.Controllers;
 using PirateCave.Base;
+using PirateCave.Enums;
 using PirateCave.Models;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ namespace PirateCave.Controllers
 
         void OnDisable()
         {
-            PlayerPrefs.SetInt("pointsToSave", points);
+            PlayerPrefs.SetInt(PlayerPrefsKeys.PointsToSave, points);
         }
 
         void OnApplicationQuit()

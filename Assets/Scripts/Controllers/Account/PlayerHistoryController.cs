@@ -1,5 +1,6 @@
 using PirateCave.Base;
 using PirateCave.Controllers;
+using PirateCave.Enums;
 using PirateCave.Models;
 using UnityEngine;
 
@@ -9,7 +10,8 @@ namespace PirateCave.Account.Controllers
     {
         public void verifyIfHavePointsToSave()
         {
-            int pointsToSave = PlayerPrefs.GetInt("pointsToSave");
+            int pointsToSave = PlayerPrefs.GetInt(PlayerPrefsKeys.PointsToSave);
+
             if (pointsToSave == 0)
                 return;
             
@@ -35,7 +37,7 @@ namespace PirateCave.Account.Controllers
             
             // Por garantia já colocamos os pontos para salvar depois
             // caso de algum erro ao se comunicar com o servidor
-            PlayerPrefs.SetInt("pointsToSave", points);
+            PlayerPrefs.SetInt(PlayerPrefsKeys.PointsToSave, points);
         }
 
         private void handleResponse(Response response)
@@ -43,7 +45,7 @@ namespace PirateCave.Account.Controllers
             if (response != null && !string.IsNullOrEmpty(response.data?.message))
             {
                 // Se deu tudo certo, não será necessário salvar os pontos depois
-                PlayerPrefs.DeleteKey("pointsToSave");
+                PlayerPrefs.DeleteKey(PlayerPrefsKeys.PointsToSave);
                 return;
             }
         }
