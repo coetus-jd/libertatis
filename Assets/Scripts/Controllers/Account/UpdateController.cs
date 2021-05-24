@@ -78,8 +78,6 @@ namespace PirateCave.Account.Controllers
             };
 
             StartCoroutine(Request.put("/players", player, handleRegisterResponse));
-
-            buttonUpdate.interactable = true;
         }
 
         /// <summary>
@@ -87,6 +85,7 @@ namespace PirateCave.Account.Controllers
         /// </summary>
         private void handleRegisterResponse(Response response)
         {
+            buttonUpdate.interactable = true;
             message.SetActive(true);
 
             if (response == null || !string.IsNullOrEmpty(response.data.error))
@@ -98,6 +97,15 @@ namespace PirateCave.Account.Controllers
 
             message.GetComponentInChildren<Image>().sprite = success;
             message.GetComponent<TMP_InputField>().text = response.data.message;
+
+            // Atualiza os dados locais do usuário
+            PlayerPrefs.SetString("player", JsonUtility.ToJson(
+                new Player()
+                {
+                    nick = inputNick.GetComponent<TMP_InputField>().text,
+                    name = inputName.GetComponent<TMP_InputField>().text
+                })
+            );
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text;
 using System.Threading.Tasks;
 using PirateCave.Enums;
+using PirateCave.Models;
 using PirateCave.Utilities;
 using UnityEngine;
 using UnityEngine.Networking;
