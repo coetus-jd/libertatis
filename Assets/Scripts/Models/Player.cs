@@ -1,4 +1,5 @@
 using System;
+using PirateCave.Base;
 
 namespace PirateCave.Models
 {

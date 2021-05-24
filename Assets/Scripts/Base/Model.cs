@@ -1,6 +1,6 @@
 using System;
 
-namespace PirateCave.Models
+namespace PirateCave.Base
 {
     /// <summary>
     /// Atributos padrões de todos as models
