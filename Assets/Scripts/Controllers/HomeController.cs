@@ -1,4 +1,4 @@
-using PirateCave.Account.Controllers;
+using PirateCave.Controllers.Account;
 using UnityEngine;
 
 namespace PirateCave.Controllers

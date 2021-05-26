@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-namespace PirateCave.Account.Controllers
+namespace PirateCave.Controllers.Account
 {
     public class RegisterController : MonoBehaviour
     {

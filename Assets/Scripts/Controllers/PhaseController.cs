@@ -1,8 +1,6 @@
 using System;
-using PirateCave.Account.Controllers;
-using PirateCave.Base;
+using PirateCave.Controllers.Account;
 using PirateCave.Enums;
-using PirateCave.Models;
 using UnityEngine;
 
 namespace PirateCave.Controllers

@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-namespace PirateCave.Account.Controllers
+namespace PirateCave.Controllers.Account
 {
     public class UpdateController : MonoBehaviour
     {
@@ -52,8 +52,6 @@ namespace PirateCave.Account.Controllers
 
         void Start()
         {
-            Debug.Log(GameController.loggedPlayer);
-
             if (GameController.loggedPlayer == null)
             {
                 new GameController().playScene("Scenes/Account/Register");

@@ -4,7 +4,7 @@ using PirateCave.Enums;
 using PirateCave.Models;
 using UnityEngine;
 
-namespace PirateCave.Account.Controllers
+namespace PirateCave.Controllers.Account
 {
     public class PlayerHistoryController : MonoBehaviour
     {
