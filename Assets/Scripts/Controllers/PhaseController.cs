@@ -33,5 +33,10 @@ namespace PirateCave.Controllers
         {
             historyController.saveScore(points);
         }
+
+        public void addPoints(int points)
+        {
+            points += points;
+        }
     }
 }

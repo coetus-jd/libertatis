@@ -7,6 +7,11 @@ namespace PirateCave.Controllers
     public class PlayerController : MonoBehaviour
     {
         /// <summary>
+        /// Quantidade de vida do jogador
+        /// </summary>
+        private float life = 100;
+
+        /// <summary>
         /// A altura máxima da tela
         /// </summary>
         private const float maxYPosition = 1.35f;
@@ -54,6 +59,11 @@ namespace PirateCave.Controllers
         }
 
         void Update() => movePlayer();
+
+        public void receiveDamage(float damage)
+        {
+            life -= damage;
+        }
 
         private void movePlayer()
         {

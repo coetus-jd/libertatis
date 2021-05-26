@@ -17,6 +17,9 @@ namespace PirateCave.Controllers.Colliders
         {
             if (!col.gameObject.CompareTag(Tags.Player))
                 return;
+
+            phaseController?.addPoints(20);
+            Destroy(gameObject);
         }
     }
 }

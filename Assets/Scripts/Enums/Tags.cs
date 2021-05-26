@@ -14,5 +14,7 @@ namespace PirateCave.Enums
         /// Tag utilizado no objeto de phase controller
         /// </summary>
         public static string PhaseController = "phaseController";
+
+        public static string PlayerWeapon = "playerWeapon";
     }
 }
