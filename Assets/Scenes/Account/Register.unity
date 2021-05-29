@@ -221,9 +221,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 13032032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c7742394da979a4895fb8dfbebba4c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 674db5a224a58e9488d8c378ca3d08fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  message: {fileID: 1185665793}
+  success: {fileID: 21300000, guid: 63a5c72c7d29b2f459017a850f93ebdc, type: 3}
+  error: {fileID: 21300000, guid: a174486fd73a2b245adfb739a9a34355, type: 3}
+  inputNick: {fileID: 1170873088}
+  inputName: {fileID: 894841250}
+  buttonRegister: {fileID: 1313211157}
 --- !u!4 &13032034
 Transform:
   m_ObjectHideFlags: 0
@@ -1865,7 +1871,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 13032033}
+      - m_Target: {fileID: 0}
         m_MethodName: register
         m_Mode: 1
         m_Arguments:

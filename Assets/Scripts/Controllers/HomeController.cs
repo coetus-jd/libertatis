@@ -6,6 +6,12 @@ namespace PirateCave.Controllers
     public class HomeController : MonoBehaviour
     {
         /// <summary>
+        /// Botão que redireciona para a tela de histórico do jogador
+        /// </summary>
+        [SerializeField]
+        private GameObject trophyButton;
+
+        /// <summary>
         /// UI para ser exibida quando o usuário estiver logado
         /// </summary>
         [SerializeField]
@@ -30,7 +36,10 @@ namespace PirateCave.Controllers
             if (GameController.loggedPlayer == null)
                 loggedOut.SetActive(true);
             else
+            {
                 loggedUi.SetActive(true);
+                trophyButton.SetActive(true);
+            }   
         }
     }
 }

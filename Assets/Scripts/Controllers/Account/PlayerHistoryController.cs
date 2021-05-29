@@ -24,7 +24,8 @@ namespace PirateCave.Controllers.Account
 
         void Start()
         {
-            getLastPoints();
+            if (gameObject.scene.name == "History")
+                getLastPoints();
         }
 
         public void getLastPoints()
@@ -70,8 +71,23 @@ namespace PirateCave.Controllers.Account
 
         private void handleGetPointsResponse(Response response)
         {
-            if (response.data.history.Count == 0)
+            if (!string.IsNullOrEmpty(response.data.error))
+            {
+                GameObject row = Instantiate(rowPrefab, tableBody.transform);
+
+                var rowDatas = row.GetComponentsInChildren<TextMeshProUGUI>();
+                rowDatas[0].text = response.data?.error ?? "Não foi possível se comunicar com o servidor";
                 return;
+            }
+
+            if (response.data.history.Count == 0)
+            {
+                GameObject row = Instantiate(rowPrefab, tableBody.transform);
+
+                var rowDatas = row.GetComponentsInChildren<TextMeshProUGUI>();
+                rowDatas[0].text = "Sem pontos salvos";
+                return;
+            }
             
             response.data.history.ForEach((history) =>
             {

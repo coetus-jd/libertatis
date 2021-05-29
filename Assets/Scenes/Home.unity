@@ -691,6 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ccea6cff8047df479a1cb29126f15ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trophyButton: {fileID: 368036950}
   loggedUi: {fileID: 1223683885}
   loggedOut: {fileID: 1437641308}
   playerHistoryController: {fileID: 2036421892}
@@ -726,7 +727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &368036951
 RectTransform:
   m_ObjectHideFlags: 0
@@ -791,14 +792,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1861461970}
-        m_MethodName: quitGame
-        m_Mode: 1
+        m_MethodName: playScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Scenes/History
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &368036953
@@ -3066,6 +3067,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 647f514537e545847a354edf6b19cf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tableBody: {fileID: 0}
+  rowPrefab: {fileID: 0}
 --- !u!4 &2036421893
 Transform:
   m_ObjectHideFlags: 0
