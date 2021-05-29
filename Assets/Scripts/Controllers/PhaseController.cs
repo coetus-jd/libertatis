@@ -7,6 +7,8 @@ namespace PirateCave.Controllers
 {
     public class PhaseController : MonoBehaviour
     {
+        public GameObject youLosePanel;
+
         /// <summary>
         /// Guarda o número de pontos feitos pelo jogador
         /// </summary>

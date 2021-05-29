@@ -39,6 +39,12 @@ namespace PirateCave.Controllers
         [SerializeField]
         private Button buttonLogin;
 
+        void Awake()
+        {
+            if (GameController.loggedPlayer != null)
+                new GameController().playScene("Scenes/Home");
+        }
+
         /// <summary>
         /// Loga um jogador
         /// </summary>

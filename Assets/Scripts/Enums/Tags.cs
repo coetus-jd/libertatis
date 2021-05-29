@@ -8,13 +8,13 @@ namespace PirateCave.Enums
         /// <summary>
         /// Tag utilizado no player
         /// </summary>
-        public static string Player = "player";
+        public static string Player = "Player";
 
         /// <summary>
         /// Tag utilizado no objeto de phase controller
         /// </summary>
-        public static string PhaseController = "phaseController";
+        public static string PhaseController = "PhaseController";
 
-        public static string PlayerWeapon = "playerWeapon";
+        public static string PlayerWeapon = "PlayerWeapon";
     }
 }

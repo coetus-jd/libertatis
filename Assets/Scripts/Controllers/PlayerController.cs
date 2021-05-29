@@ -1,35 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using PirateCave.Enums;
 using UnityEngine;
 
 namespace PirateCave.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
+        private PhaseController phaseController;
+
         /// <summary>
         /// Quantidade de vida do jogador
         /// </summary>
+        [SerializeField]
         private float life = 100;
-
-        /// <summary>
-        /// A altura máxima da tela
-        /// </summary>
-        private const float maxYPosition = 1.35f;
-
-        /// <summary>
-        /// A altura mínima da tela
-        /// </summary>
-        private const float minYPosition = -1.16f;
-
-        /// <summary>
-        /// A largura máxima da tela
-        /// </summary>
-        private const float maxXPosition = 2.61f;
-
-        /// <summary>
-        /// A largura mínima da tela
-        /// </summary>
-        private const float minXPosition = -2.64f;
 
         /// <summary>
         /// A velocidade com que o player irá se mover
@@ -54,11 +38,23 @@ namespace PirateCave.Controllers
 
         void Start()
         {
+            phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
+                .GetComponent<PhaseController>();
+
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        void Update() => movePlayer();
+        void Update()
+        {
+            if (life <= 0) 
+            {
+                die();
+                return;
+            }
+
+            movePlayer();
+        }
 
         public void receiveDamage(float damage)
         {
@@ -73,7 +69,6 @@ namespace PirateCave.Controllers
 
             handleMovement(horizontalMovement);
             handleAnimation(horizontalMovement);
-            restrictUserMovement();
         }
 
         private void handleMovement(float horizontalMovement)
@@ -101,21 +96,11 @@ namespace PirateCave.Controllers
             animator.SetBool("jump", Input.GetKeyDown(KeyCode.Space));
         }
 
-        private void restrictUserMovement()
+        private void die()
         {
-            // Vertical
-            if (transform.position.y > maxYPosition)
-                transform.position = new Vector3(transform.position.x, maxYPosition, 0);
-
-            if (transform.position.y < minYPosition)
-                transform.position = new Vector3(transform.position.x, minYPosition, 0);
-
-            // Horizontal 
-            if (transform.position.x > maxXPosition)
-                transform.position = new Vector3(maxXPosition, transform.position.y, 0);
-
-            if (transform.position.x < minXPosition)
-                transform.position = new Vector3(minXPosition, transform.position.y, 0);
+            animator.SetBool("die", true);
+            phaseController.youLosePanel.SetActive(true);
+            Destroy(gameObject.GetComponent<PlayerController>());
         }
     }
 }
