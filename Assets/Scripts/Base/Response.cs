@@ -23,6 +23,6 @@ namespace PirateCave.Base
         public string message;
         public Player player;
         public int todayPoints;
-        public List<Player> players;
+        public List<PlayerHistory> history;
     }
 }

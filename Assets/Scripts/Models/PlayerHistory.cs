@@ -9,9 +9,9 @@ namespace PirateCave.Models
     [Serializable]
     public class PlayerHistory : Model
     {
-        public UInt32 id;
+        public int id;
         public string nick;
-        public DateTime date;
+        public string date;
         public int points;
     }
 }
