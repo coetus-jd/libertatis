@@ -1,12 +1,21 @@
 using System;
 using PirateCave.Controllers.Account;
 using PirateCave.Enums;
+using PirateCave.UI;
 using UnityEngine;
 
 namespace PirateCave.Controllers
 {
     public class PhaseController : MonoBehaviour
     {
+        /// <summary>
+        /// Painel aonde será exibido os manuscritos
+        /// </summary>
+        public ManuscriptPanel manuscriptPanel;
+
+        /// <summary>
+        /// Painel aonde será exibido a mensagem de que o jogador perdeu
+        /// </summary>
         public GameObject youLosePanel;
 
         /// <summary>

@@ -2,6 +2,7 @@ using UnityEngine;
 using PirateCave.Enums;
 using TMPro;
 using PirateCave.Resources;
+using PirateCave.UI;
 
 namespace PirateCave.Controllers.Colliders
 {
@@ -25,12 +26,6 @@ namespace PirateCave.Controllers.Colliders
         /// Boolean que verifica se o jogador está dentro do collider do manuscrito
         /// </summary>
         private bool playerIsIn;
-
-        /// <summary>
-        /// Elemento da UI que irá exibir o texto do manuscrito
-        /// </summary>
-        [SerializeField]
-        private GameObject manuscriptPanel;
 
         void Awake()
         {
@@ -69,11 +64,7 @@ namespace PirateCave.Controllers.Colliders
             if (Input.GetKeyDown(KeyCode.X))
             {
                 AudioSource.PlayClipAtPoint(openAudio, gameObject.transform.position);
-
-                manuscriptPanel.SetActive(true);
-                manuscriptPanel.GetComponentInChildren<TextMeshProUGUI>()
-                    .text = Resource.Language["pt-BR"].Manuscript.texts[0];
-
+                phaseController.manuscriptPanel.showManuscript();
                 Destroy(gameObject);
             }
         }
