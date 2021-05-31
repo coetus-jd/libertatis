@@ -9,33 +9,49 @@ namespace PirateCave.Resources
     /// <summary>
     /// Todos os textos que são necessários na interface do jogo
     /// </summary>
-    public static class Resources
+    public static class Resource
     {
-        public static Dictionary<string, Manuscript> Manuscripts
+        public static Dictionary<string, AllResources> Language
         {
             get
             {
-                if (_Manuscripts != null && Manuscripts.Count > 0)
-                    return _Manuscripts;
+                if (_Language != null && _Language.Count > 0)
+                    return _Language;
 
                 string path = Path.Combine(Application.dataPath, "Scripts/Resources");
 
-                _Manuscripts = new Dictionary<string, Manuscript>()
+                _Language = new Dictionary<string, AllResources>()
                 {
-                    ["pt-BR"] = JsonUtility.FromJson<Manuscript>(File.ReadAllText($"{path}/pt-BR.json")),
-                    ["en-US"] = JsonUtility.FromJson<Manuscript>(File.ReadAllText($"{path}/en-US.json")),
+                    ["pt-BR"] = JsonUtility.FromJson<AllResources>(File.ReadAllText($"{path}/pt-BR.json")),
+                    ["en-US"] = JsonUtility.FromJson<AllResources>(File.ReadAllText($"{path}/en-US.json")),
                 };
 
-                return _Manuscripts;
+                return _Language;
             }
         }
 
-        private static Dictionary<string, Manuscript> _Manuscripts;
+        /// <summary>
+        /// Váriavel auxiliar, para guardar a referência dos textos
+        /// </summary>
+        private static Dictionary<string, AllResources> _Language;
     }
 
     [Serializable]
-    public class Manuscript
+    public class AllResources
+    {
+        public Manuscript Manuscript;
+        public Corsair Corsair;
+    }
+
+    [Serializable]
+    public class ResourceBase
     {
         public List<string> texts;
     }
+
+    [Serializable]
+    public class Manuscript : ResourceBase {}
+
+    [Serializable]
+    public class Corsair : ResourceBase {}
 }

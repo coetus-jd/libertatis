@@ -1,6 +1,7 @@
 using UnityEngine;
 using PirateCave.Enums;
 using TMPro;
+using PirateCave.Resources;
 
 namespace PirateCave.Controllers.Colliders
 {
@@ -71,7 +72,7 @@ namespace PirateCave.Controllers.Colliders
 
                 manuscriptPanel.SetActive(true);
                 manuscriptPanel.GetComponentInChildren<TextMeshProUGUI>()
-                    .text = Resources.Resources.Manuscripts["pt-BR"].texts[0];
+                    .text = Resource.Language["pt-BR"].Manuscript.texts[0];
 
                 Destroy(gameObject);
             }

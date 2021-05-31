@@ -1,13 +1,18 @@
 {
-    "texts": [
-        "I remember our captain obsessed with treasure, that wouldn't be a problem, but we constantly faced death because of this obsession.",
-        "We came to Brazil because there was evidence that the captain's treasure was here, i expected to find Roque Brasiliano, a brazilian pirate, but i didn't find it.",
-        "Your idiot Roque Brasiliano is Dutch, he just spent a lot of time here in Brazil ... and apparently we will also pass",
-        "Our captain said that the treasure will be divided precisely  between us, not least because the pirate code says it, but it  is fair to lose half the crew as a result.",
-        "Bloody English corsair drinker of tea, we've lost a lot of our  own, we've lost a lot of things, and we're nowhere near the treasure.",
-        "We fell but they fell too but the corsair continues, how is that possible?",
-        "It's cold, it's dark, but it looks calm, am I alive?",
-        "There are many slaves in Brazil, I even saw a ship full of men, women, children and the elderly, some of whom seem to have been thrown overboard.",
-        "We want the treasure, but is it all worth it, if you offered a slave the treasure in exchange for your life or offer him his freedom, but he would be poor having enough to survive, just, what would he choose."
-    ]
+    "Manuscripts": {
+        "texts": [
+            "I remember our captain obsessed with treasure, that wouldn't be a problem, but we constantly faced death because of this obsession.",
+            "We came to Brazil because there was evidence that the captain's treasure was here, i expected to find Roque Brasiliano, a brazilian pirate, but i didn't find it.",
+            "Your idiot Roque Brasiliano is Dutch, he just spent a lot of time here in Brazil ... and apparently we will also pass",
+            "Our captain said that the treasure will be divided precisely  between us, not least because the pirate code says it, but it  is fair to lose half the crew as a result.",
+            "Bloody English corsair drinker of tea, we've lost a lot of our  own, we've lost a lot of things, and we're nowhere near the treasure.",
+            "We fell but they fell too but the corsair continues, how is that possible?",
+            "It's cold, it's dark, but it looks calm, am I alive?",
+            "There are many slaves in Brazil, I even saw a ship full of men, women, children and the elderly, some of whom seem to have been thrown overboard.",
+            "We want the treasure, but is it all worth it, if you offered a slave the treasure in exchange for your life or offer him his freedom, but he would be poor having enough to survive, just, what would he choose."
+        ]
+    },
+    "Corsair": {
+        "texts": [] 
+    }
 }
