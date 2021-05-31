@@ -29,10 +29,14 @@ namespace PirateCave.Controllers
         /// </summary>
         [SerializeField]
         private PlayerHistoryController historyController;
+
+        [SerializeField]
+        private AudioSource backgroundAudio;
         
         void Start()
         {
             points = PlayerPrefs.GetInt(PlayerPrefsKeys.PlayerPoints);
+            backgroundAudio.Play();
         }
 
         void OnDisable()
