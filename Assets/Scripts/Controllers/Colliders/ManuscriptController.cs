@@ -1,5 +1,6 @@
 using UnityEngine;
 using PirateCave.Enums;
+using TMPro;
 
 namespace PirateCave.Controllers.Colliders
 {
@@ -24,6 +25,12 @@ namespace PirateCave.Controllers.Colliders
         /// </summary>
         private bool playerIsIn;
 
+        /// <summary>
+        /// Elemento da UI que irá exibir o texto do manuscrito
+        /// </summary>
+        [SerializeField]
+        private GameObject manuscriptPanel;
+
         void Awake()
         {
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
@@ -33,7 +40,7 @@ namespace PirateCave.Controllers.Colliders
         void Start()
         {
             minimumY = gameObject.transform.position.y;
-            maximumY = gameObject.transform.position.y + 0.150f;
+            maximumY = gameObject.transform.position.y + 0.200f;
         }
 
         void Update()
@@ -61,6 +68,11 @@ namespace PirateCave.Controllers.Colliders
             if (Input.GetKeyDown(KeyCode.X))
             {
                 AudioSource.PlayClipAtPoint(openAudio, gameObject.transform.position);
+
+                manuscriptPanel.SetActive(true);
+                manuscriptPanel.GetComponentInChildren<TextMeshProUGUI>()
+                    .text = Resources.Resources.Manuscripts["pt-BR"].texts[0];
+
                 Destroy(gameObject);
             }
         }
@@ -73,7 +85,7 @@ namespace PirateCave.Controllers.Colliders
                 gameObject.transform.position.z
             );
 
-            interpolation += 0.6f * Time.deltaTime;
+            interpolation += 1.7f * Time.deltaTime;
 
             if (interpolation > 1.0f)
             {

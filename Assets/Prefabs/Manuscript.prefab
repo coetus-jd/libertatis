@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4623934265291437533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.13444051, y: 0.13444051, z: 0.13444051}
+  m_LocalScale: {x: 0.29155388, y: 0.29155388, z: 0.29155388}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -122,3 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openAudio: {fileID: 8300000, guid: 5f9ac855ea2dd96458ae91add548cc55, type: 3}
+  manuscriptPanel: {fileID: 3967964959939279863, guid: 539a6d44cf0be6543b614a10db00a873,
+    type: 3}
