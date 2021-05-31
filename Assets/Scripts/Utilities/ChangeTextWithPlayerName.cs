@@ -7,6 +7,12 @@ namespace PirateCave.Utilities
     public class ChangeTextWithPlayerName : MonoBehaviour
     {
         /// <summary>
+        /// Define se irá mostrar somente o primeiro nome
+        /// </summary>
+        [SerializeField]
+        private bool showFirstName;
+
+        /// <summary>
         /// Componente de texto que irá mostrar o nome do jogador
         /// </summary>
         private TextMeshProUGUI uiPlayerName;
@@ -16,7 +22,10 @@ namespace PirateCave.Utilities
             uiPlayerName = gameObject.GetComponent<TextMeshProUGUI>();
 
             if (uiPlayerName)
-                uiPlayerName.text = GameController.loggedPlayer?.name;
+            {
+                string nameToShow = showFirstName ? GameController.loggedPlayer?.name.Split(' ')[0] : GameController.loggedPlayer?.name;
+                uiPlayerName.text = nameToShow ?? "Escravo";
+            }
         }
     }
 }

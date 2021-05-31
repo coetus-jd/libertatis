@@ -2,6 +2,7 @@ using System;
 using PirateCave.Controllers.Account;
 using PirateCave.Enums;
 using PirateCave.UI;
+using TMPro;
 using UnityEngine;
 
 namespace PirateCave.Controllers
@@ -21,8 +22,13 @@ namespace PirateCave.Controllers
         /// <summary>
         /// Guarda o número de pontos feitos pelo jogador
         /// </summary>
-        [SerializeField]
         private int points;
+
+        /// <summary>
+        /// Texto da UI aonde será exibido os pontos
+        /// </summary>
+        [SerializeField]
+        private TextMeshProUGUI pointsText;
 
         /// <summary>
         /// Objeto usado para atualizar os pontos do usuário
@@ -37,6 +43,11 @@ namespace PirateCave.Controllers
         {
             points = PlayerPrefs.GetInt(PlayerPrefsKeys.PlayerPoints);
             backgroundAudio.Play();
+        }
+
+        void FixedUpdate()
+        {
+            pointsText.text = points.ToString();
         }
 
         void OnDisable()
