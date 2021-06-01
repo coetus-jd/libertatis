@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using PirateCave.Enums;
 using UnityEngine;
@@ -12,14 +12,28 @@ namespace PirateCave.Controllers
         /// <summary>
         /// Quantidade de vida do jogador
         /// </summary>
+        [Header ("Life")]
         [SerializeField]
         private float life = 100;
 
         /// <summary>
         /// A velocidade com que o player irá se mover
         /// </summary>
+        [Header ("Move")]
         [SerializeField]
         private float velocity = 0.9f;
+        private float horizontalMovement;
+
+        /// <summary>
+        /// Configurações
+        /// </summary>
+        [Header ("Jump")]
+        [SerializeField]
+        private float jumpForce = 6.5f;
+        private bool jumpMove;
+
+
+        private Rigidbody2D rBody;
 
         /// <summary>
         /// O sprite do personagem
@@ -41,6 +55,7 @@ namespace PirateCave.Controllers
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
                 .GetComponent<PhaseController>();
 
+            rBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
@@ -63,19 +78,27 @@ namespace PirateCave.Controllers
 
         private void movePlayer()
         {
-            float horizontalMovement = Input.GetAxis("Horizontal");
-
+            horizontalMovement = Input.GetAxis("Horizontal");
             isRunning = Input.GetKey(KeyCode.LeftShift);
 
             handleMovement(horizontalMovement);
-            handleAnimation(horizontalMovement);
+            handleAnimation(horizontalMovement);  
+            if(Input.GetButtonDown("Jump"))
+            {
+                float currentForce = Mathf.Lerp(jumpForce, 0.0f, velocity);
+
+                rBody.AddForce(Vector3.up * currentForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
+            }
         }
 
         private void handleMovement(float horizontalMovement)
         {
-            float localVelocity = isRunning ? velocity * 1.4f : velocity;
+            float localVelocity = isRunning ? velocity * 2f : velocity;
 
             transform.Translate(((Vector3.right * localVelocity) * horizontalMovement) * Time.deltaTime);
+
+          
+        
         }
 
         private void handleAnimation(float horizontalMovement)
