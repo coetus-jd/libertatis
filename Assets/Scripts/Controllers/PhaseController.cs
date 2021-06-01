@@ -15,20 +15,9 @@ namespace PirateCave.Controllers
         public ManuscriptPanel manuscriptPanel;
 
         /// <summary>
-        /// Painel aonde será exibido a mensagem de que o jogador perdeu
-        /// </summary>
-        public GameObject youLosePanel;
-
-        /// <summary>
         /// Guarda o número de pontos feitos pelo jogador
         /// </summary>
         private int points;
-
-        /// <summary>
-        /// Texto da UI aonde será exibido os pontos
-        /// </summary>
-        [SerializeField]
-        private TextMeshProUGUI pointsText;
 
         /// <summary>
         /// Objeto usado para atualizar os pontos do usuário
@@ -39,10 +28,34 @@ namespace PirateCave.Controllers
         [SerializeField]
         private AudioSource backgroundAudio;
         
+        [Header("UI")]
+        /// <summary>
+        /// Texto da UI aonde será exibido os pontos
+        /// </summary>
+        [SerializeField]
+        private TextMeshProUGUI pointsText;
+
+        /// <summary>
+        /// Painel aonde será exibido a mensagem de que o jogador perdeu
+        /// </summary>
+        public GameObject youLosePanel;
+
+        /// <summary>
+        /// Menu que será exibido quando o jogador pausar o game
+        /// </summary>
+        [SerializeField]
+        private GameObject pauseMenu;
+        
         void Start()
         {
             points = PlayerPrefs.GetInt(PlayerPrefsKeys.PlayerPoints);
             backgroundAudio.Play();
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                togglePauseGame();
         }
 
         void FixedUpdate()
@@ -63,6 +76,12 @@ namespace PirateCave.Controllers
         public void addPoints(int points)
         {
             points += points;
+        }
+
+        public void togglePauseGame()
+        {
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
+            Time.timeScale = pauseMenu.activeSelf ? 0f : 1f;
         }
     }
 }
