@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using PirateCave.Enums;
 using UnityEngine;
@@ -12,19 +12,31 @@ namespace PirateCave.Controllers
         /// <summary>
         /// Quantidade de vida do jogador
         /// </summary>
+        [Header("Life")]
         [SerializeField]
         private float life = 100;
 
         /// <summary>
         /// A velocidade com que o player irá se mover
         /// </summary>
+        [Header("Move")]
         [SerializeField]
         private float velocity = 0.9f;
+        private float horizontalMovement;
+
+        /// <summary>
+        /// Configurações
+        /// </summary>
+        [Header("Jump")]
+        [SerializeField]
+        private float jumpForce = 6.5f;
+        private bool jumpMove;
 
         /// <summary>
         /// O sprite do personagem
         /// </summary>
         private SpriteRenderer spriteRenderer;
+
 
         /// <summary>
         /// Animator com todas as animações do player
@@ -36,11 +48,14 @@ namespace PirateCave.Controllers
         /// </summary>
         private bool isRunning = false;
 
+        private Rigidbody2D rBody;
+
         void Start()
         {
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
-                .GetComponent<PhaseController>();
+                              .GetComponent<PhaseController>();
 
+            rBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
@@ -63,22 +78,28 @@ namespace PirateCave.Controllers
 
         private void movePlayer()
         {
-            float horizontalMovement = Input.GetAxis("Horizontal");
+            horizontalMovement = Input.GetAxis("Horizontal");
 
             isRunning = Input.GetKey(KeyCode.LeftShift);
 
-            handleMovement(horizontalMovement);
-            handleAnimation(horizontalMovement);
+            handleMovement();
+            handleAnimation();
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                rBody.AddForce(Vector3.up * jumpForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
+
+            }
         }
 
-        private void handleMovement(float horizontalMovement)
+        private void handleMovement()
         {
-            float localVelocity = isRunning ? velocity * 1.4f : velocity;
+            float localVelocity = isRunning ? velocity * 2f : velocity;
 
             transform.Translate(((Vector3.right * localVelocity) * horizontalMovement) * Time.deltaTime);
         }
 
-        private void handleAnimation(float horizontalMovement)
+        private void handleAnimation()
         {
             if (horizontalMovement != 0.0f)
             {
@@ -87,6 +108,7 @@ namespace PirateCave.Controllers
                 animator.SetBool(isRunning ? "running" : "walking", true);
                 animator.SetBool(isRunning ? "walking" : "running", false);
             }
+            
             else
             {
                 animator.SetBool("running", false);
