@@ -13,6 +13,9 @@ namespace PirateCave.Controllers.Colliders
         [SerializeField]
         private AudioClip catchAudio;
 
+        [SerializeField]
+        private Animator animator;
+
         /// <summary>
         /// Boolean que verifica se o jogador está dentro do collider do manuscrito
         /// </summary>
@@ -27,7 +30,12 @@ namespace PirateCave.Controllers.Colliders
         void Update()
         {
             if (playerIsIn)
-                openTrunk();
+            {
+                // openTrunk();
+                if (Input.GetKeyDown(KeyCode.X))
+                    animator.SetBool("open", true);
+                
+            }
         }
 
         void OnTriggerEnter2D(Collider2D col)
@@ -42,15 +50,14 @@ namespace PirateCave.Controllers.Colliders
                 playerIsIn = false;
         }
 
+        /// <summary>
+        /// Esse método vai ser chamado automaticamente ao terminar a animação de abrir do baú
+        /// </summary>
         private void openTrunk()
         {
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                AudioSource.PlayClipAtPoint(catchAudio, gameObject.transform.position);
-
-                phaseController?.addPoints(20);
-                Destroy(gameObject);
-            }
+            AudioSource.PlayClipAtPoint(catchAudio, gameObject.transform.position);
+            phaseController?.addPoints(20);
+            Destroy(gameObject);
         }
     }
 }
