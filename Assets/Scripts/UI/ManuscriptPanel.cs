@@ -32,7 +32,7 @@ namespace PirateCave.UI
             gameObject.SetActive(true);
             manuscritText.text = Resource.Language["pt-BR"].Manuscript.texts[nextManuscriptIndex];
 
-            if (nextManuscriptIndex != Resource.Language["pt-BR"].Manuscript.texts.Count)
+            if (nextManuscriptIndex != Resource.Language["pt-BR"].Manuscript.texts.Count - 1)
                 nextManuscriptIndex++;
         }
     }
