@@ -6,6 +6,6 @@ namespace PirateCave.Utilities
         /// URL da API
         /// </summary>
         /// <value></value>
-        public static string apiUrl { get; private set; } = "http://127.0.0.1:8000";
+        public static string apiUrl { get; private set; } = "https://piratecave.000webhostapp.com";
     }
 }

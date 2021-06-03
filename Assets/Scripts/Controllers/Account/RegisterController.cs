@@ -64,8 +64,6 @@ namespace PirateCave.Controllers.Account
             };
 
             StartCoroutine(Request.post("/players", player, handleRegisterResponse));
-
-            buttonRegister.interactable = true;
         }
 
         /// <summary>
@@ -73,6 +71,7 @@ namespace PirateCave.Controllers.Account
         /// </summary>
         private void handleRegisterResponse(Response response)
         {
+            buttonRegister.interactable = true;
             message.SetActive(true);
 
             if (response == null || !string.IsNullOrEmpty(response.data.error))
@@ -84,9 +83,6 @@ namespace PirateCave.Controllers.Account
 
             message.GetComponentInChildren<Image>().sprite = success;
             message.GetComponent<TMP_InputField>().text = response.data.message;
-            
-            // Loga automaticamente o jogador após o cadastro
-            new LoginController().login(response.data.player.nick);
         }
     }
 }
