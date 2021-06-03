@@ -7,6 +7,9 @@ namespace PirateCave.Controllers
 {
     public class PlayerController : MonoBehaviour
     {
+        /// <summary>
+        /// Localiza o PhaseController
+        /// </summary>
         private PhaseController phaseController;
 
         /// <summary>
@@ -33,6 +36,16 @@ namespace PirateCave.Controllers
         private bool jumpMove;
 
         /// <summary>
+        /// Localizar o chão
+        /// </summary>
+        [Header ("Ground")]
+        [SerializeField]
+        private LayerMask groundLayer;
+        [SerializeField]
+        private Transform Feet;
+        private bool feetGround;
+
+        /// <summary>
         /// O sprite do personagem
         /// </summary>
         private SpriteRenderer spriteRenderer;
@@ -54,6 +67,7 @@ namespace PirateCave.Controllers
         {
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
                               .GetComponent<PhaseController>();
+            
 
             rBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
@@ -68,7 +82,12 @@ namespace PirateCave.Controllers
                 return;
             }
 
+            feetGround = Physics2D.OverlapCircle(Feet.position, 0.1f, groundLayer);
+
+            
+            jumpPlayer();
             movePlayer();
+            
         }
 
         public void receiveDamage(float damage)
@@ -85,11 +104,21 @@ namespace PirateCave.Controllers
             handleMovement();
             handleAnimation();
 
-            if (Input.GetButtonDown("Jump"))
-            {
-                rBody.AddForce(Vector3.up * jumpForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
+            
+        }
 
+        private void jumpPlayer()
+        {
+            if (feetGround && Input.GetKeyDown(KeyCode.Space))
+            {
+                rBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+                jumpMove = true;
             }
+            else
+            {
+                jumpMove = false;
+            }
+
         }
 
         private void handleMovement()
@@ -101,7 +130,7 @@ namespace PirateCave.Controllers
 
         private void handleAnimation()
         {
-            if (horizontalMovement != 0.0f)
+            if (horizontalMovement != 0.0f && feetGround)
             {
                 spriteRenderer.flipX = (horizontalMovement < 0);
 
@@ -114,8 +143,16 @@ namespace PirateCave.Controllers
                 animator.SetBool("running", false);
                 animator.SetBool("walking", false);
             }
+            if(jumpMove == true)
+            {
+                animator.SetBool("jump", true);
+            }
+            else
+            {
+                animator.SetBool("jump", false);
+            }
+            
 
-            animator.SetBool("jump", Input.GetKeyDown(KeyCode.Space));
         }
 
         private void die()
