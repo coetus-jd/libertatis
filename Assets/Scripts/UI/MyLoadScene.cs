@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MyLoadScene : MonoBehaviour
 {
     public string SceneName;
     public bool m_UseTouch;
+    public float m_TimeDelay = 0;
 
     public AudioSource m_Clip;
 
