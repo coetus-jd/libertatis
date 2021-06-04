@@ -61,7 +61,7 @@ namespace PirateCave.Controllers.Account
             };
 
             PlayerPrefs.SetInt(PlayerPrefsKeys.PlayerPoints, points);
-            StartCoroutine(Request.put("/history", playerHistory, handleSaveScoreResponse));
+            StartCoroutine(Request.post("/history", playerHistory, handleSaveScoreResponse));
 
             // Por garantia já colocamos os pontos para salvar depois
             // caso de algum erro ao se comunicar com o servidor

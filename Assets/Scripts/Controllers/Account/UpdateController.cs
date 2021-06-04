@@ -75,7 +75,7 @@ namespace PirateCave.Controllers.Account
                 name = inputName.GetComponent<TMP_InputField>().text
             };
 
-            StartCoroutine(Request.put("/players", player, handleRegisterResponse));
+            StartCoroutine(Request.post("/players", player, handleRegisterResponse));
         }
 
         /// <summary>
