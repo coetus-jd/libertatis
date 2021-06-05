@@ -158,7 +158,7 @@ namespace PirateCave.Controllers
             animator.SetBool("walking", false);
             animator.SetBool("die", true);
             phaseController.youLosePanel.SetActive(true);
-            Destroy(gameObject.GetComponent<PlayerController>());
+            Destroy(gameObject, 1);
         }
     }
 }
