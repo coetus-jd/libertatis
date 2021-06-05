@@ -21,12 +21,6 @@ namespace PirateCave.UI
             manuscritText = GetComponentInChildren<TextMeshProUGUI>();
         }
 
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-                gameObject.SetActive(false);
-        }
-
         public void showManuscript()
         {
             gameObject.SetActive(true);
@@ -34,6 +28,11 @@ namespace PirateCave.UI
 
             if (nextManuscriptIndex != Resource.Language["pt-BR"].Manuscript.texts.Count - 1)
                 nextManuscriptIndex++;
+        }
+
+        public void hideManuscript()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

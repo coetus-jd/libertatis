@@ -25,6 +25,7 @@ namespace PirateCave.Controllers
         [Header("Move")]
         [SerializeField]
         private float velocity = 0.9f;
+
         private float horizontalMovement;
 
         /// <summary>
@@ -33,23 +34,25 @@ namespace PirateCave.Controllers
         [Header("Jump")]
         [SerializeField]
         private float jumpForce = 6.5f;
+
         private bool jumpMove;
 
         /// <summary>
         /// Localizar o chão
         /// </summary>
-        [Header ("Ground")]
+        [Header("Ground")]
         [SerializeField]
         private LayerMask groundLayer;
+
         [SerializeField]
         private Transform Feet;
+
         private bool feetGround;
 
         /// <summary>
         /// O sprite do personagem
         /// </summary>
         private SpriteRenderer spriteRenderer;
-
 
         /// <summary>
         /// Animator com todas as animações do player
@@ -66,8 +69,7 @@ namespace PirateCave.Controllers
         void Start()
         {
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
-                              .GetComponent<PhaseController>();
-            
+                .GetComponent<PhaseController>();
 
             rBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
@@ -76,7 +78,7 @@ namespace PirateCave.Controllers
 
         void Update()
         {
-            if (life <= 0) 
+            if (life <= 0)
             {
                 die();
                 return;
@@ -84,10 +86,8 @@ namespace PirateCave.Controllers
 
             feetGround = Physics2D.OverlapCircle(Feet.position, 0.1f, groundLayer);
 
-            
             jumpPlayer();
             movePlayer();
-            
         }
 
         public void receiveDamage(float damage)
@@ -104,7 +104,7 @@ namespace PirateCave.Controllers
             handleMovement();
             handleAnimation();
 
-            
+
         }
 
         private void jumpPlayer()
@@ -118,7 +118,6 @@ namespace PirateCave.Controllers
             {
                 jumpMove = false;
             }
-
         }
 
         private void handleMovement()
@@ -137,13 +136,13 @@ namespace PirateCave.Controllers
                 animator.SetBool(isRunning ? "running" : "walking", true);
                 animator.SetBool(isRunning ? "walking" : "running", false);
             }
-            
             else
             {
                 animator.SetBool("running", false);
                 animator.SetBool("walking", false);
             }
-            if(jumpMove == true)
+
+            if (jumpMove == true)
             {
                 animator.SetBool("jump", true);
             }
@@ -151,12 +150,12 @@ namespace PirateCave.Controllers
             {
                 animator.SetBool("jump", false);
             }
-            
-
         }
 
-        private void die()
+        public void die()
         {
+            animator.SetBool("running", false);
+            animator.SetBool("walking", false);
             animator.SetBool("die", true);
             phaseController.youLosePanel.SetActive(true);
             Destroy(gameObject.GetComponent<PlayerController>());
