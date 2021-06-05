@@ -35,7 +35,10 @@ namespace PirateCave.Controllers
         [SerializeField]
         private float jumpForce = 6.5f;
 
-        private bool jumpMove;
+        /// <summary>
+        /// Indica se o jogador está pulando
+        /// </summary>
+        private bool isJumping;
 
         /// <summary>
         /// Localizar o chão
@@ -44,9 +47,15 @@ namespace PirateCave.Controllers
         [SerializeField]
         private LayerMask groundLayer;
 
+        /// <summary>
+        /// Guarda a referência para o objeto que representa o pé do player
+        /// </summary>
         [SerializeField]
         private Transform Feet;
 
+        /// <summary>
+        /// Indica se o jogador está com os pés no chão
+        /// </summary>
         private bool feetGround;
 
         /// <summary>
@@ -64,14 +73,14 @@ namespace PirateCave.Controllers
         /// </summary>
         private bool isRunning = false;
 
-        private Rigidbody2D rBody;
+        private Rigidbody2D rigidBody;
 
         void Start()
         {
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
                 .GetComponent<PhaseController>();
 
-            rBody = GetComponent<Rigidbody2D>();
+            rigidBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
@@ -86,8 +95,12 @@ namespace PirateCave.Controllers
 
             feetGround = Physics2D.OverlapCircle(Feet.position, 0.1f, groundLayer);
 
-            jumpPlayer();
             movePlayer();
+        }
+
+        void OnBecameInvisible()
+        {
+            die();
         }
 
         public void receiveDamage(float damage)
@@ -103,20 +116,24 @@ namespace PirateCave.Controllers
 
             handleMovement();
             handleAnimation();
-
-
+            handlePlayerJump();
         }
 
-        private void jumpPlayer()
+        public void die()
+        {
+            animator.SetFloat("walking", 0f);
+            animator.SetBool("running", false);
+            animator.SetBool("die", true);
+            phaseController?.youLosePanel?.SetActive(true);
+            Destroy(gameObject, 1);
+        }
+
+        private void handlePlayerJump()
         {
             if (feetGround && Input.GetKeyDown(KeyCode.Space))
             {
-                rBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-                jumpMove = true;
-            }
-            else
-            {
-                jumpMove = false;
+                rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+                isJumping = true;
             }
         }
 
@@ -129,36 +146,25 @@ namespace PirateCave.Controllers
 
         private void handleAnimation()
         {
-            if (horizontalMovement != 0.0f && feetGround)
+            if (feetGround)
             {
-                spriteRenderer.flipX = (horizontalMovement < 0);
+                spriteRenderer.flipX = (horizontalMovement < 0f);
 
-                animator.SetBool(isRunning ? "running" : "walking", true);
-                animator.SetBool(isRunning ? "walking" : "running", false);
+                animator.SetFloat("walking", Mathf.Abs(horizontalMovement));
+                animator.SetBool("running", isRunning);
             }
             else
             {
+                animator.SetFloat("walking", 0f);
                 animator.SetBool("running", false);
-                animator.SetBool("walking", false);
             }
-
-            if (jumpMove == true)
-            {
-                animator.SetBool("jump", true);
-            }
-            else
-            {
-                animator.SetBool("jump", false);
-            }
+            
+            animator.SetBool("jump", isJumping);
         }
 
-        public void die()
-        {
-            animator.SetBool("running", false);
-            animator.SetBool("walking", false);
-            animator.SetBool("die", true);
-            phaseController.youLosePanel.SetActive(true);
-            Destroy(gameObject, 1);
-        }
+        /// <summary>
+        /// Essa função será chamada ao terminar a animação de pulo
+        /// </summary>
+        private void stopJump() => isJumping = false;
     }
 }
