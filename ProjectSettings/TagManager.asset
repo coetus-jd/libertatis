@@ -7,6 +7,7 @@ TagManager:
   - PhaseController
   - ManuscriptPanel
   - Bullet
+  - PlayerWeapon
   layers:
   - Default
   - TransparentFX

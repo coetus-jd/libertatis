@@ -75,6 +75,12 @@ namespace PirateCave.Controllers
 
         private Rigidbody2D rigidBody;
 
+        /// <summary>
+        /// Collider usado para dar danos nos personagens com a corrente
+        /// </summary>
+        [SerializeField]
+        private BoxCollider2D slashCollider;
+
         void Start()
         {
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
@@ -96,6 +102,8 @@ namespace PirateCave.Controllers
             feetGround = Physics2D.OverlapCircle(Feet.position, 0.1f, groundLayer);
 
             movePlayer();
+
+            lash();
         }
 
         void OnBecameInvisible()
@@ -117,6 +125,22 @@ namespace PirateCave.Controllers
             life -= damage;
         }
 
+        public void die()
+        {
+            phaseController?.youLosePanel?.SetActive(true);
+            animator.SetFloat("walking", 0f);
+            animator.SetBool("running", false);
+            animator.SetBool("die", true);
+            Destroy(gameObject, 1);
+        }
+
+        private void lash()
+        {
+            bool isLashing = Input.GetKey(KeyCode.K);
+            slashCollider.enabled = isLashing;
+            animator.SetBool("lash", isLashing);
+        }
+
         private void movePlayer()
         {
             horizontalMovement = Input.GetAxis("Horizontal");
@@ -126,15 +150,6 @@ namespace PirateCave.Controllers
             handleMovement();
             handleAnimation();
             handlePlayerJump();
-        }
-
-        public void die()
-        {
-            phaseController?.youLosePanel?.SetActive(true);
-            animator.SetFloat("walking", 0f);
-            animator.SetBool("running", false);
-            animator.SetBool("die", true);
-            Destroy(gameObject, 1);
         }
 
         private void handlePlayerJump()
