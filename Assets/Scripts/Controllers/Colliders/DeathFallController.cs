@@ -13,8 +13,6 @@ namespace PirateCave.Controllers.Colliders
 
         void OnTriggerEnter2D(Collider2D col)
         {
-            Debug.Log(col);
-
             if (!col.gameObject.CompareTag(Tags.Player))
                 return;
             

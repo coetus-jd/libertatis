@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PhaseController
   - ManuscriptPanel
+  - Bullet
   layers:
   - Default
   - TransparentFX

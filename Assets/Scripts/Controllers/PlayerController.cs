@@ -103,6 +103,15 @@ namespace PirateCave.Controllers
             die();
         }
 
+        void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.CompareTag(Tags.CorsairBullet))
+            {
+                Destroy(col.gameObject);
+                receiveDamage(10f);
+            }
+        }
+
         public void receiveDamage(float damage)
         {
             life -= damage;
@@ -121,10 +130,10 @@ namespace PirateCave.Controllers
 
         public void die()
         {
+            phaseController?.youLosePanel?.SetActive(true);
             animator.SetFloat("walking", 0f);
             animator.SetBool("running", false);
             animator.SetBool("die", true);
-            phaseController?.youLosePanel?.SetActive(true);
             Destroy(gameObject, 1);
         }
 
