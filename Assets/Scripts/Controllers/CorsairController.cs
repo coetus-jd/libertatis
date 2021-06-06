@@ -4,6 +4,9 @@ namespace PirateCave.Controllers
 {
     public class CorsairController : MonoBehaviour
     {
+        [SerializeField]
+        private float life = 300f;
+
         /// <summary>
         /// Animator com todas as animações do corsário
         /// </summary>
@@ -19,6 +22,10 @@ namespace PirateCave.Controllers
         [SerializeField]
         private GameObject bulletPrefab;
 
+        [Header("UI")]
+        [SerializeField]
+        private GameObject youWinPanel;
+
         void Start()
         {
             animator = GetComponent<Animator>();
@@ -28,6 +35,9 @@ namespace PirateCave.Controllers
         {
             if (Input.GetKeyDown(KeyCode.W))
                 animator.SetBool("shooting", true);
+
+            if (life <= 0)
+                defeated();
         }
         
         /// <summary>
@@ -46,10 +56,13 @@ namespace PirateCave.Controllers
             Instantiate(skeletonPrefab, transform.position, Quaternion.identity);
         }
 
-        #region Stop animations
+        private void defeated()
+        {
+            animator.SetBool("defeat", true);
+            youWinPanel.SetActive(true);
+            Destroy(gameObject.GetComponent<CorsairController>());
+        }
 
         private void stopTriggerAnimation(string animationName) => animator.SetBool(animationName, false);
-
-        #endregion
     }
 }
