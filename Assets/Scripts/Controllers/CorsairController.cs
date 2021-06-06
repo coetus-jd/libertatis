@@ -50,8 +50,35 @@ namespace PirateCave.Controllers
         /// </summary>
         private SpriteRenderer spriteRenderer;
 
+        [Header("Life Bar")]
+        /// <summary>
+        /// GameObject que tem tanto a barra de vida verde quanto vermelha
+        /// </summary>
+        [SerializeField]
+        private GameObject lifeBarsFather;
+
+        /// <summary>
+        /// Barra de vida com a cor verde
+        /// </summary>
+        [SerializeField]
+        private Transform greenLifeBar;
+
+        /// <summary>
+        /// Tamanho da barra de vida
+        /// </summary>
+        private Vector3 lifeBarScale;
+
+        /// <summary>
+        /// Guarda o valor de 1% referente a vida cheia do personagem
+        /// </summary>
+        private float lifePercentUnit;
+
         void Start()
         {
+            lifeBarScale = greenLifeBar.localScale;
+            lifePercentUnit = lifeBarScale.x / life;
+            lifeBarsFather.SetActive(false);
+
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
@@ -84,6 +111,15 @@ namespace PirateCave.Controllers
             receiveDamage(1f);
         }
 
+        /// <summary>
+        /// Atualiza a barra de vida do corsário
+        /// </summary>
+        private void updateLifeBar()
+        {
+            lifeBarScale.x = lifePercentUnit * life;
+            greenLifeBar.localScale = lifeBarScale;
+        }
+
         private void handleMovement(bool runFromSlave = false)
         {
             spriteRenderer.flipX = runFromSlave;
@@ -112,6 +148,8 @@ namespace PirateCave.Controllers
         private void receiveDamage(float damage)
         {
             life -= damage;
+            lifeBarsFather.SetActive(true);
+            updateLifeBar();
             animator.SetBool("hit", true);
         }
 

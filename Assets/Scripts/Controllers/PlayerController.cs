@@ -140,13 +140,6 @@ namespace PirateCave.Controllers
             Destroy(gameObject, 1);
         }
 
-        private void lash()
-        {
-            bool isLashing = Input.GetKey(KeyCode.K);
-            slashCollider.enabled = isLashing;
-            animator.SetBool("lash", isLashing);
-        }
-
         private void movePlayer()
         {
             horizontalMovement = Input.GetAxis("Horizontal");
@@ -196,5 +189,33 @@ namespace PirateCave.Controllers
         /// Essa função será chamada ao terminar a animação de pulo
         /// </summary>
         private void stopJump() => isJumping = false;
+
+        #region Lash attack
+
+        private void lash()
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+                animator.SetBool("lash", true);
+        }
+
+        /// <summary>
+        /// Essa função será chamada automaticamente pela animação quando
+        /// a corrente estiver totalmente esticada
+        /// </summary>
+        private void enableLashCollider() => slashCollider.enabled = true;
+
+        /// <summary>
+        /// Essa função será chamada automaticamente ao final da animação de lash
+        /// </summary>
+        private void disableLashCollider() => slashCollider.enabled = false;
+
+        #endregion
+
+
+        // <summary>
+        /// Função auxiliar chamada por eventos nos finais das animações
+        /// </summary>
+        /// <param name="parameterName"></param>
+        private void stopTriggerAnimation(string parameterName) => animator.SetBool(parameterName, false);
     }
 }
