@@ -20,9 +20,20 @@ namespace PirateCave.Controllers
         private bool shouldWalk = true;
 
         /// <summary>
+        /// Indica se o corsário deve atacar ou não
+        /// </summary>
+        private bool shouldAttack;
+
+        /// <summary>
         /// Animator com todas as animações do corsário
         /// </summary>
         private Animator animator;
+
+        /// <summary>
+        /// A posição do jogador
+        /// </summary>
+        [SerializeField]
+        private GameObject player;
 
         [SerializeField]
         private GameObject skeletonPrefab;
@@ -99,6 +110,9 @@ namespace PirateCave.Controllers
             // somente pra teste
             if (life == 300 && shouldWalk)
                 handleMovement(true);
+
+            if (shouldAttack)
+                attackPlayer();
         }
 
         void OnTriggerStay2D(Collider2D col)
@@ -151,6 +165,20 @@ namespace PirateCave.Controllers
             lifeBarsFather.SetActive(true);
             updateLifeBar();
             animator.SetBool("hit", true);
+        }
+
+
+        private void attackPlayer()
+        {
+            if (player == null || !player.activeSelf)
+                return;
+
+            float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+
+            if (distanceToPlayer <= 2.9f)
+                slash();
+            else
+                animator.SetBool("shooting", true);
         }
 
         /// <summary>

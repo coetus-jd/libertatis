@@ -10476,6 +10476,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27450c76bf0eb3b459bc8bfdf8051590, type: 3}
+--- !u!1 &6637404423758143920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6637404424377639664, guid: 27450c76bf0eb3b459bc8bfdf8051590,
+    type: 3}
+  m_PrefabInstance: {fileID: 6637404423758143919}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7590395139887064407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10503,6 +10509,14 @@ PrefabInstance:
       propertyPath: lifeBarsFather
       value: 
       objectReference: {fileID: 1599056941}
+    - target: {fileID: 541330142, guid: fb674be2bc4a2794d97bd6b01316a101, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 2098676576}
+    - target: {fileID: 541330142, guid: fb674be2bc4a2794d97bd6b01316a101, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6637404423758143920}
     - target: {fileID: 1052323085, guid: fb674be2bc4a2794d97bd6b01316a101, type: 3}
       propertyPath: m_Enabled
       value: 0
