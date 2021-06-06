@@ -104,6 +104,10 @@ namespace PirateCave.Controllers
             if (Input.GetKeyDown(KeyCode.T))
                 animator.SetBool("shooting", true);
 
+            // somente pra teste
+            if (Input.GetKeyDown(KeyCode.J))
+                invokeSkeletons();
+
             if (life <= 0)
                 defeated();
 
