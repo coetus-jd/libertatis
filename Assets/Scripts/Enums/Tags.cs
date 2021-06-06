@@ -14,5 +14,7 @@ namespace PirateCave.Enums
         public static string ManuscriptPanel = "ManuscriptPanel";
 
         public static string CorsairBullet = "Bullet";
+
+        public static string CorsairSlash = "CorsairSlash";
     }
 }

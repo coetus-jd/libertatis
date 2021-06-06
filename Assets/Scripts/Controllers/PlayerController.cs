@@ -106,9 +106,15 @@ namespace PirateCave.Controllers
             lash();
         }
 
-        void OnBecameInvisible()
+        // void OnBecameInvisible()
+        // {
+        //     die();
+        // }
+        
+        void OnTriggerEnter2D(Collider2D col)
         {
-            die();
+            if (col.gameObject.CompareTag(Tags.CorsairSlash))
+                receiveDamage(10f);
         }
 
         void OnCollisionEnter2D(Collision2D col)

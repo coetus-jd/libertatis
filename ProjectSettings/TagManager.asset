@@ -8,6 +8,8 @@ TagManager:
   - ManuscriptPanel
   - Bullet
   - PlayerWeapon
+  - Corsair
+  - CorsairSlash
   layers:
   - Default
   - TransparentFX

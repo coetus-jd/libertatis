@@ -34,6 +34,13 @@ namespace PirateCave.Controllers
         [SerializeField]
         private GameObject bulletPrefab;
 
+        [Header("Slash")]
+        /// <summary>
+        /// Collider usado para dar danos no player com a espada
+        /// </summary>
+        [SerializeField]
+        private BoxCollider2D slashCollider;
+
         [Header("UI")]
         [SerializeField]
         private GameObject youWinPanel;
@@ -53,14 +60,18 @@ namespace PirateCave.Controllers
         {
             // somente pra teste
             if (Input.GetKeyDown(KeyCode.W))
+                slash();
+            
+            // somente pra teste
+            if (Input.GetKeyDown(KeyCode.T))
                 animator.SetBool("shooting", true);
 
             if (life <= 0)
                 defeated();
-            
+
             // somente pra teste
-            if (life == 100 && shouldWalk)
-                handleMovement();
+            if (life == 300 && shouldWalk)
+                handleMovement(true);
         }
 
         void OnTriggerStay2D(Collider2D col)
@@ -69,7 +80,7 @@ namespace PirateCave.Controllers
 
             if (!col.gameObject.CompareTag(Tags.PlayerWeapon))
                 return;
-            
+
             receiveDamage(1f);
         }
 
@@ -103,14 +114,19 @@ namespace PirateCave.Controllers
             life -= damage;
             animator.SetBool("hit", true);
         }
-        
+
         /// <summary>
         /// Essa função será chamada no final da animação de atirar
         /// </summary>
         private void shoot()
         {
             Instantiate(bulletPrefab, bulletInitialPosition.position, Quaternion.identity);
-            stopTriggerAnimation("shooting");
+        }
+
+        private void slash()
+        {
+            animator.SetBool("slash", true);
+            slashCollider.enabled = true;
         }
 
         private void invokeSkeletons()
@@ -127,6 +143,23 @@ namespace PirateCave.Controllers
             Destroy(gameObject.GetComponent<CorsairController>());
         }
 
+        #region Animations
+
+        /// <summary>
+        /// Função auxiliar chamada por eventos nos finais das animações
+        /// </summary>
+        /// <param name="parameterName"></param>
         private void stopTriggerAnimation(string parameterName) => animator.SetBool(parameterName, false);
+
+        /// <summary>
+        /// Essa função será chamada no final da animação de ataque com a espada
+        /// </summary>
+        private void stopSlash()
+        {
+            animator.SetBool("slash", false);
+            slashCollider.enabled = false;
+        }
+
+        #endregion
     }
 }
