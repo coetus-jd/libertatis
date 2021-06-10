@@ -67,6 +67,12 @@ namespace PirateCave.Controllers.Prefab
         [SerializeField]
         private Rigidbody2D rigidBody;
 
+        /// <summary>
+        /// Animator com todas as animações do esqueleto
+        /// </summary>
+        [SerializeField]
+        private Animator animator;
+
         [Header("Movement")]
         [SerializeField]
         private float speed;
@@ -75,6 +81,8 @@ namespace PirateCave.Controllers.Prefab
         {
             if (!isArcher)
                 checkWhereIsPlayer();
+            
+            animator.SetBool("walking", direction != 0);
         }
 
         void FixedUpdate()
