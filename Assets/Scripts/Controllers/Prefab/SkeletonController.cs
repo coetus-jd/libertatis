@@ -11,6 +11,27 @@ namespace PirateCave.Controllers.Prefab
         [SerializeField]
         private int direction;
 
+        [SerializeField]
+        private float life = 10f;
+
+
+        [Header("Archer")]
+        /// <summary>
+        /// Diz se o esqueleto do tipo arqueiro ou não
+        /// </summary>
+        [SerializeField]
+        private bool isArcher;
+
+        /// <summary>
+        /// A posição da qual a flecha irá sair
+        /// </summary>
+        private Transform arrowShootPosition;
+
+        /// <summary>
+        /// Prefab da flecha que o esqueleto irá disparar
+        /// </summary>
+        private GameObject arrowPrefab;
+
         [Header("Raycasting")]
         /// <summary>
         /// Irá verficar se o player está na esquerda
@@ -52,12 +73,21 @@ namespace PirateCave.Controllers.Prefab
 
         void Update()
         {
-            checkWhereIsPlayer();
+            if (!isArcher)
+                checkWhereIsPlayer();
         }
 
         void FixedUpdate()
         {
             move();
+        }
+
+        void OnTriggerEnter2D(Collider2D col)
+        {
+            if (!col.gameObject.CompareTag(Tags.PlayerWeapon))
+                return;
+
+            receiveDamage(3f);
         }
 
         void OnBecameInvisible()
@@ -68,6 +98,11 @@ namespace PirateCave.Controllers.Prefab
         private void move()
         {
             rigidBody.velocity = new Vector2(speed * direction, rigidBody.velocity.y);
+        }
+
+        private void receiveDamage(float damage)
+        {
+            life -= damage;
         }
 
         private void checkWhereIsPlayer()
@@ -101,6 +136,14 @@ namespace PirateCave.Controllers.Prefab
 
             if (groundSkeleton.collider == null)
                 Destroy(gameObject, 1f);
+
+            if (leftPlayer.collider == null && rightPlayer.collider == null)
+                direction = 0;
+        }
+
+        private void shootArrow()
+        {
+            Instantiate(arrowPrefab, arrowShootPosition.transform.position, Quaternion.identity);
         }
     }
 }
