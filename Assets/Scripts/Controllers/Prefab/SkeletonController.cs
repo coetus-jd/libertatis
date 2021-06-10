@@ -84,11 +84,20 @@ namespace PirateCave.Controllers.Prefab
         [SerializeField]
         private SpriteRenderer spriteRenderer;
 
+        /// <summary>
+        /// Sprite a ser utilizado quando o esqueleto morrer
+        /// </summary>
+        [SerializeField]
+        private Sprite dieBones;
+
         [Header("Movement")]
         [SerializeField]
         private float speed;
 
         [Header("Lash")]
+        /// <summary>
+        /// Diz se o esqueleto está atacando ou não
+        /// </summary>
         private bool isAttacking;
 
         /// <summary>
@@ -99,6 +108,12 @@ namespace PirateCave.Controllers.Prefab
 
         void Update()
         {
+            if (life <= 0)
+            {
+                die();
+                return;
+            }
+
             if (!isArcher && !isAttacking)
                 checkWhereIsPlayer();
             
@@ -111,8 +126,15 @@ namespace PirateCave.Controllers.Prefab
             move();
         }
 
+        void OnBecameInvisible()
+        {
+            if (life <= 0)
+                Destroy(gameObject);
+        }
+
         void OnTriggerEnter2D(Collider2D col)
         {
+            Debug.Log(col.gameObject.tag);
             if (!col.gameObject.CompareTag(Tags.PlayerWeapon))
                 return;
 
@@ -214,6 +236,15 @@ namespace PirateCave.Controllers.Prefab
             isAttacking = false;
             animator.SetBool("lash", false);
             lashCollider.GetComponent<Collider2D>().enabled = false;
+        }
+
+        private void die()
+        {
+            animator.SetBool("lash", false);
+            animator.SetBool("walking", false);
+            animator.SetBool("die", true);
+            Destroy(gameObject.GetComponent<CapsuleCollider2D>());
+            // Destroy(gameObject.GetComponent<SkeletonController>());
         }
     }
 }
