@@ -29,6 +29,12 @@ namespace PirateCave.Controllers
         /// </summary>
         private PlayerHistoryController playerHistoryController;
 
+        /// <summary>
+        /// Menu que será exibido quando o jogador pausar o game
+        /// </summary>
+        [SerializeField]
+        private GameObject optionsMenu;
+
         void Start()
         {
             playerHistoryController.verifyIfHavePointsToSave();
@@ -40,6 +46,12 @@ namespace PirateCave.Controllers
                 loggedUi.SetActive(true);
                 trophyButton.SetActive(true);
             }   
+        }
+
+        public void togglePauseGame()
+        {
+            optionsMenu.SetActive(!optionsMenu.activeSelf);
+            Time.timeScale = optionsMenu.activeSelf ? 0f : 1f;
         }
     }
 }
