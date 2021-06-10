@@ -16,5 +16,7 @@ namespace PirateCave.Enums
         public static string CorsairBullet = "Bullet";
 
         public static string CorsairSlash = "CorsairSlash";
+
+        public static string SkeletonLash = "SkeletonLash";
     }
 }

@@ -118,6 +118,11 @@ namespace PirateCave.Controllers
         {
             if (col.gameObject.CompareTag(Tags.CorsairSlash))
                 receiveDamage(10f);
+
+            Debug.Log($"Player: {col.gameObject}");
+
+            if (col.gameObject.CompareTag(Tags.SkeletonLash))
+                receiveDamage(1f);
         }
 
         void OnCollisionEnter2D(Collision2D col)

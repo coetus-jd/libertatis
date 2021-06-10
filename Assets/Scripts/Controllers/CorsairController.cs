@@ -171,7 +171,6 @@ namespace PirateCave.Controllers
             animator.SetBool("hit", true);
         }
 
-
         private void attackPlayer()
         {
             if (player == null || !player.activeSelf)

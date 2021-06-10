@@ -14,6 +14,11 @@ namespace PirateCave.Controllers.Prefab
         [SerializeField]
         private float life = 10f;
 
+        /// <summary>
+        /// A posição do jogador
+        /// </summary>
+        [SerializeField]
+        private GameObject player;
 
         [Header("Archer")]
         /// <summary>
@@ -73,15 +78,31 @@ namespace PirateCave.Controllers.Prefab
         [SerializeField]
         private Animator animator;
 
+        /// <summary>
+        /// O sprite do personagem
+        /// </summary>
+        [SerializeField]
+        private SpriteRenderer spriteRenderer;
+
         [Header("Movement")]
         [SerializeField]
         private float speed;
 
+        [Header("Lash")]
+        private bool isAttacking;
+
+        /// <summary>
+        /// Colisor utilizado pela espada para dar o dano
+        /// </summary>
+        [SerializeField]
+        private GameObject lashCollider;
+
         void Update()
         {
-            if (!isArcher)
+            if (!isArcher && !isAttacking)
                 checkWhereIsPlayer();
             
+            attackPlayer();
             animator.SetBool("walking", direction != 0);
         }
 
@@ -96,11 +117,6 @@ namespace PirateCave.Controllers.Prefab
                 return;
 
             receiveDamage(3f);
-        }
-
-        void OnBecameInvisible()
-        {
-            Destroy(gameObject);
         }
 
         private void move()
@@ -147,11 +163,57 @@ namespace PirateCave.Controllers.Prefab
 
             if (leftPlayer.collider == null && rightPlayer.collider == null)
                 direction = 0;
+            
+            if (direction != 0)
+                spriteRenderer.flipX = (direction > 0);
         }
 
         private void shootArrow()
         {
             Instantiate(arrowPrefab, arrowShootPosition.transform.position, Quaternion.identity);
+        }
+
+        private void attackPlayer()
+        {
+            if (player == null || !player.activeSelf)
+                return;
+
+            float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+
+            if (distanceToPlayer > 2.2f)
+            {
+                stopLash();
+                return;
+            }
+
+            if (!isAttacking)
+                lash();
+        }
+
+        /// <summary>
+        /// Essa função será chamada quando a espada estiver estica na animação de ataque
+        /// </summary>
+        private void lash()
+        {
+            animator.SetBool("lash", true);
+            isAttacking = true;
+            direction = 0;
+            lashCollider.GetComponent<Collider2D>().enabled = true;
+
+            if (rightPlayer.collider != null)
+                lashCollider.transform.Rotate(0, 180f, 0);
+            else
+                lashCollider.transform.Rotate(0, 0, 0);
+        }
+
+        /// <summary>
+        /// Essa função será chamada no final da animação de ataque com a espada
+        /// </summary>
+        private void stopLash()
+        {
+            isAttacking = false;
+            animator.SetBool("lash", false);
+            lashCollider.GetComponent<Collider2D>().enabled = false;
         }
     }
 }
