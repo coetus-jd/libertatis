@@ -1,9 +1,9 @@
 <h5 align="center">
-  <img src="https://ravennaareachamber.com/wp-content/uploads/2017/03/your-company-lsiting.png" width="150px" /><br>
+  <img src="./Docs/Coetus.png" style="margin-right: 20px" width="250px" /><br>  
   <b>Seeking freedom</b> ☠️
 </h5>
 <p align="center">
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-green">
+  <img alt="License" src="https://img.shields.io/badge/License-GPL--3.0-green">
 </p>
 
 ## :open_book: About
@@ -15,7 +15,7 @@
 
 ## :running_man: Installing and Running  
  1. Clone this repository `git clone https://github.com/coetus-jd/unity-pirateCave.git`;
- 2. Open `unity-pirateCave` folder with Unity and be happy .
+ 2. Open `unity-pirateCave` folder with Unity and be happy 😄.
  
 ## :recycle: Contribute
  1. Fork this repository;
