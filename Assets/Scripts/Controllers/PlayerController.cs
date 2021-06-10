@@ -74,12 +74,15 @@ namespace PirateCave.Controllers
         private bool isRunning = false;
 
         private Rigidbody2D rigidBody;
-
+        
+        [Header("Lash")]
         /// <summary>
         /// Collider usado para dar danos nos personagens com a corrente
         /// </summary>
         [SerializeField]
         private BoxCollider2D slashCollider;
+
+        private bool isLashing;
 
         void Start()
         {
@@ -194,7 +197,7 @@ namespace PirateCave.Controllers
 
         private void lash()
         {
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.K) && !isLashing)
                 animator.SetBool("lash", true);
         }
 
@@ -202,12 +205,20 @@ namespace PirateCave.Controllers
         /// Essa função será chamada automaticamente pela animação quando
         /// a corrente estiver totalmente esticada
         /// </summary>
-        private void enableLashCollider() => slashCollider.enabled = true;
+        private void enableLashCollider()
+        {
+            isLashing = true;
+            slashCollider.enabled = true;
+        }
 
         /// <summary>
         /// Essa função será chamada automaticamente ao final da animação de lash
         /// </summary>
-        private void disableLashCollider() => slashCollider.enabled = false;
+        private void disableLashCollider()
+        {
+            isLashing = false;
+            slashCollider.enabled = false;
+        }
 
         #endregion
 

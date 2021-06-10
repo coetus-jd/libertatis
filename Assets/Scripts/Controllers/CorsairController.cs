@@ -119,14 +119,14 @@ namespace PirateCave.Controllers
                 attackPlayer();
         }
 
-        void OnTriggerStay2D(Collider2D col)
+        void OnTriggerEnter2D(Collider2D col)
         {
             Debug.Log(col.gameObject.tag);
 
             if (!col.gameObject.CompareTag(Tags.PlayerWeapon))
                 return;
 
-            receiveDamage(1f);
+            receiveDamage(10f);
         }
 
         /// <summary>
