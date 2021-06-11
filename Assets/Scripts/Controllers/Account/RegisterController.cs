@@ -50,6 +50,12 @@ namespace PirateCave.Controllers.Account
         [SerializeField]
         private Button buttonRegister;
 
+        void Awake()
+        {
+            if (GameController.loggedPlayer != null)
+                new GameController().playScene("Scenes/Account/Update");
+        }
+
         /// <summary>
         /// Registra um novo jogador
         /// </summary>

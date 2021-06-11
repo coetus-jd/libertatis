@@ -14,6 +14,28 @@ namespace PirateCave.Controllers
 
         public GameObject _botaoMenu;
 
+        [Header("Account")]
+        [SerializeField]
+        private GameObject loginButton; 
+
+        [SerializeField]
+        private GameObject registerButton;
+
+        [SerializeField]
+        private GameObject updateButton;
+        
+
+        void Awake()
+        {
+            if (GameController.isPlayerLoggedIn)
+            {
+                loginButton.SetActive(false);
+                registerButton.SetActive(false);
+            }
+            else
+                updateButton.SetActive(false);
+        }
+
         private void Start()
         {
             _botao.onClick = new Button.ButtonClickedEvent();

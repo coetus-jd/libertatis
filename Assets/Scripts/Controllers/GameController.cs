@@ -24,6 +24,14 @@ namespace PirateCave.Controllers
             }
         }
 
+        public static bool isPlayerLoggedIn 
+        {
+            get
+            {
+                return loggedPlayer != null;
+            }
+        }
+
         /// <summary>
         /// O som que irá tocar de background durante o jogo
         /// </summary>
