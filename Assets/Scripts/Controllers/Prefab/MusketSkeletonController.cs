@@ -3,7 +3,14 @@ using UnityEngine;
 namespace PirateCave.Controllers.Prefab
 {
     public class MusketSkeletonController : MonoBehaviour
-    {
+    {   
+        /// <summary>
+        /// Referência para o player
+        /// </summary>
+        [SerializeField]
+        private GameObject player;
+
+        [Header("Bullet")]
         /// <summary>
         /// A posição da qual a bala irá sair
         /// </summary>
@@ -45,7 +52,7 @@ namespace PirateCave.Controllers.Prefab
 
         void Update()
         {
-            if (!isShooting && !isRecharging)
+            if (!isShooting && !isRecharging && player != null)
                 attackPlayer();
         }
 
