@@ -4,6 +4,7 @@ using PirateCave.Enums;
 using PirateCave.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace PirateCave.Controllers
 {
@@ -27,7 +28,7 @@ namespace PirateCave.Controllers
 
         [SerializeField]
         private AudioSource backgroundAudio;
-        
+
         [Header("UI")]
         /// <summary>
         /// Texto da UI aonde será exibido os pontos
@@ -40,35 +41,46 @@ namespace PirateCave.Controllers
         /// </summary>
         public GameObject youLosePanel;
 
+        public GameObject _buttonYouLose;
+
+        /// <summary>
+        /// Painel aonde será exibido a mensagem de que o jogador Ganhou
+        /// </summary>
+        public GameObject youWinPanel;
+
+        public GameObject _buttonWin;
+
         /// <summary>
         /// Menu que será exibido quando o jogador pausar o game
         /// </summary>
         [SerializeField]
         private GameObject pauseMenu;
-        
-        void Start()
+
+        public GameObject _buttonPauseMenu;
+
+        private void Start()
         {
             points = PlayerPrefs.GetInt(PlayerPrefsKeys.PlayerPoints);
             backgroundAudio.Play();
         }
 
-        void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
                 togglePauseGame();
         }
 
-        void FixedUpdate()
+        private void FixedUpdate()
         {
             pointsText.text = points.ToString();
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             PlayerPrefs.SetInt(PlayerPrefsKeys.PointsToSave, points);
         }
 
-        void OnApplicationQuit()
+        private void OnApplicationQuit()
         {
             historyController.saveScore(points);
         }
@@ -82,6 +94,7 @@ namespace PirateCave.Controllers
         {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
             Time.timeScale = pauseMenu.activeSelf ? 0f : 1f;
+            EventSystem.current.SetSelectedGameObject(_buttonPauseMenu);
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using PirateCave.Enums;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace PirateCave.Controllers
 {
@@ -74,7 +75,7 @@ namespace PirateCave.Controllers
         private bool isRunning = false;
 
         private Rigidbody2D rigidBody;
-        
+
         [Header("Lash")]
         /// <summary>
         /// Collider usado para dar danos nos personagens com a corrente
@@ -84,7 +85,7 @@ namespace PirateCave.Controllers
 
         private bool isLashing;
 
-        void Start()
+        private void Start()
         {
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
                 .GetComponent<PhaseController>();
@@ -94,7 +95,7 @@ namespace PirateCave.Controllers
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        void Update()
+        private void Update()
         {
             if (life <= 0)
             {
@@ -113,8 +114,8 @@ namespace PirateCave.Controllers
         // {
         //     die();
         // }
-        
-        void OnTriggerEnter2D(Collider2D col)
+
+        private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.gameObject.CompareTag(Tags.CorsairSlash))
                 receiveDamage(10f);
@@ -125,7 +126,7 @@ namespace PirateCave.Controllers
                 receiveDamage(1f);
         }
 
-        void OnCollisionEnter2D(Collision2D col)
+        private void OnCollisionEnter2D(Collision2D col)
         {
             if (col.gameObject.CompareTag(Tags.CorsairBullet))
             {
@@ -142,6 +143,10 @@ namespace PirateCave.Controllers
         public void die()
         {
             phaseController?.youLosePanel?.SetActive(true);
+            if (phaseController?._buttonYouLose)
+            {
+                EventSystem.current.SetSelectedGameObject(phaseController?._buttonYouLose);
+            }
             animator.SetFloat("walking", 0f);
             animator.SetBool("running", false);
             animator.SetBool("die", true);
@@ -189,7 +194,7 @@ namespace PirateCave.Controllers
                 animator.SetFloat("walking", 0f);
                 animator.SetBool("running", false);
             }
-            
+
             animator.SetBool("jump", isJumping);
         }
 
@@ -225,8 +230,7 @@ namespace PirateCave.Controllers
             slashCollider.enabled = false;
         }
 
-        #endregion
-
+        #endregion Lash attack
 
         // <summary>
         /// Função auxiliar chamada por eventos nos finais das animações

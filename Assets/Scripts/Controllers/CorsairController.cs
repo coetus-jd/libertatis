@@ -1,11 +1,14 @@
 using System.Collections;
 using PirateCave.Enums;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace PirateCave.Controllers
 {
     public class CorsairController : MonoBehaviour
     {
+        private PhaseController phaseController;
+
         [SerializeField]
         private float life = 300f;
 
@@ -52,10 +55,6 @@ namespace PirateCave.Controllers
         [SerializeField]
         private BoxCollider2D slashCollider;
 
-        [Header("UI")]
-        [SerializeField]
-        private GameObject youWinPanel;
-
         /// <summary>
         /// O sprite do personagem
         /// </summary>
@@ -84,7 +83,7 @@ namespace PirateCave.Controllers
         /// </summary>
         private float lifePercentUnit;
 
-        void Start()
+        private void Start()
         {
             lifeBarScale = greenLifeBar.localScale;
             lifePercentUnit = lifeBarScale.x / life;
@@ -94,12 +93,12 @@ namespace PirateCave.Controllers
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        void Update()
+        private void Update()
         {
             // somente pra teste
             if (Input.GetKeyDown(KeyCode.W))
                 slash();
-            
+
             // somente pra teste
             if (Input.GetKeyDown(KeyCode.T))
                 animator.SetBool("shooting", true);
@@ -119,7 +118,7 @@ namespace PirateCave.Controllers
                 attackPlayer();
         }
 
-        void OnTriggerEnter2D(Collider2D col)
+        private void OnTriggerEnter2D(Collider2D col)
         {
             Debug.Log(col.gameObject.tag);
 
@@ -208,7 +207,11 @@ namespace PirateCave.Controllers
         private void defeated()
         {
             animator.SetBool("defeat", true);
-            youWinPanel.SetActive(true);
+            phaseController?.youWinPanel?.SetActive(true);
+            if (phaseController?._buttonWin)
+            {
+                EventSystem.current.SetSelectedGameObject(phaseController?._buttonWin);
+            }
             Destroy(gameObject.GetComponent<CorsairController>());
         }
 
@@ -229,6 +232,6 @@ namespace PirateCave.Controllers
             slashCollider.enabled = false;
         }
 
-        #endregion
+        #endregion Animations
     }
 }

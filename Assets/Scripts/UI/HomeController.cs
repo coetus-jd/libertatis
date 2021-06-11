@@ -1,12 +1,18 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace PirateCave.Controllers
 {
     public class HomeController : MonoBehaviour
     {
+        [Header("Botão para ativar Menu")]
         public Button _botao;
+
+        [Header("Componentes do Menu")]
         public GameObject _menu;
+
+        public GameObject _botaoMenu;
 
         private void Start()
         {
@@ -17,6 +23,7 @@ namespace PirateCave.Controllers
         public void ToggleMenu()
         {
             _menu.SetActive(!_menu.gameObject.activeInHierarchy);
+            EventSystem.current.SetSelectedGameObject(_botaoMenu);
         }
     }
 }
