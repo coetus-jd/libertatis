@@ -483,6 +483,5 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5070094056331393680, guid: 83e67b628c1805e438fa9df4c320b17b,
     type: 3}
   slashCollider: {fileID: 1052323085}
-  youWinPanel: {fileID: 0}
   lifeBarsFather: {fileID: 1599056941}
   greenLifeBar: {fileID: 690377849}

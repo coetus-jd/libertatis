@@ -38,8 +38,16 @@ namespace PirateCave.Controllers
         [SerializeField]
         private GameObject player;
 
+        [Header("Skeleton")]
         [SerializeField]
         private GameObject skeletonPrefab;
+
+        /// <summary>
+        /// Todas as possíveis posições para um esqueleto aparecer quando
+        /// for invocado pelo corsário
+        /// </summary>
+        [SerializeField]
+        private Transform[] skeletonsPositions;
 
         [Header("Bullet")]
         [SerializeField]
@@ -200,8 +208,8 @@ namespace PirateCave.Controllers
         private void invokeSkeletons()
         {
             animator.SetBool("pointing", true);
-            Instantiate(skeletonPrefab, transform.position, Quaternion.identity);
-            Instantiate(skeletonPrefab, transform.position, Quaternion.identity);
+            Instantiate(skeletonPrefab, skeletonsPositions[0].position, Quaternion.identity);
+            Instantiate(skeletonPrefab, skeletonsPositions[1].position, Quaternion.identity);
         }
 
         private void defeated()

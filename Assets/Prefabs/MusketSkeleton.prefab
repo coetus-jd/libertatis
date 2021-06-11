@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4845242692520849656}
   - component: {fileID: 4845242692520849655}
   - component: {fileID: 4845242692520849654}
+  - component: {fileID: 997139110}
   m_Layer: 0
   m_Name: MusketSkeleton
   m_TagString: Untagged
@@ -134,9 +135,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232c5e257b1ca144e9951b742288b4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musketBulletShootPosition: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  animator: {fileID: 0}
+  player: {fileID: 0}
+  musketBulletShootPosition: {fileID: 4845242693384728884}
+  bulletPrefab: {fileID: 5070094056331393680, guid: 83e67b628c1805e438fa9df4c320b17b,
+    type: 3}
+  animator: {fileID: 997139110}
+  shootQuantity: 0
+--- !u!95 &997139110
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4845242692520849659}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4baff51cac4ebc64d9513a72553fba3d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4845242693384728885
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4845242693384728885}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.144, y: 0.245, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4845242692520849658}
