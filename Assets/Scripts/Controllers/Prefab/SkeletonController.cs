@@ -20,23 +20,6 @@ namespace PirateCave.Controllers.Prefab
         [SerializeField]
         private GameObject player;
 
-        [Header("Archer")]
-        /// <summary>
-        /// Diz se o esqueleto do tipo arqueiro ou não
-        /// </summary>
-        [SerializeField]
-        private bool isArcher;
-
-        /// <summary>
-        /// A posição da qual a flecha irá sair
-        /// </summary>
-        private Transform arrowShootPosition;
-
-        /// <summary>
-        /// Prefab da flecha que o esqueleto irá disparar
-        /// </summary>
-        private GameObject arrowPrefab;
-
         [Header("Raycasting")]
         /// <summary>
         /// Irá verficar se o player está na esquerda
@@ -114,7 +97,7 @@ namespace PirateCave.Controllers.Prefab
                 return;
             }
 
-            if (!isArcher && !isAttacking)
+            if (!isAttacking)
                 checkWhereIsPlayer();
             
             attackPlayer();
@@ -134,7 +117,6 @@ namespace PirateCave.Controllers.Prefab
 
         void OnTriggerEnter2D(Collider2D col)
         {
-            Debug.Log(col.gameObject.tag);
             if (!col.gameObject.CompareTag(Tags.PlayerWeapon))
                 return;
 
@@ -189,12 +171,6 @@ namespace PirateCave.Controllers.Prefab
             if (direction != 0)
                 spriteRenderer.flipX = (direction > 0);
         }
-
-        private void shootArrow()
-        {
-            Instantiate(arrowPrefab, arrowShootPosition.transform.position, Quaternion.identity);
-        }
-
         private void attackPlayer()
         {
             if (player == null || !player.activeSelf)
@@ -244,7 +220,6 @@ namespace PirateCave.Controllers.Prefab
             animator.SetBool("walking", false);
             animator.SetBool("die", true);
             Destroy(gameObject.GetComponent<CapsuleCollider2D>());
-            // Destroy(gameObject.GetComponent<SkeletonController>());
         }
     }
 }
