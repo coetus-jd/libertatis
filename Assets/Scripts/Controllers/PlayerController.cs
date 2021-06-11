@@ -82,8 +82,17 @@ namespace PirateCave.Controllers
         /// </summary>
         [SerializeField]
         private BoxCollider2D slashCollider;
-
+        
+        /// <summary>
+        /// Verifica se o player está atacando
+        /// </summary>
         private bool isLashing;
+        
+        /// <summary>
+        /// Guarda o último valor do movimento horizontal para sabermos se ele 
+        /// parou de se mexer quando estava na esquerda ou direita
+        /// </summary>
+        private float lastHorizontalValue;
 
         private void Start()
         {
@@ -105,8 +114,10 @@ namespace PirateCave.Controllers
 
             feetGround = Physics2D.OverlapCircle(Feet.position, 0.1f, groundLayer);
 
-            movePlayer();
+            if (horizontalMovement != 0)
+                lastHorizontalValue = horizontalMovement;
 
+            movePlayer();
             lash();
         }
 
@@ -119,8 +130,6 @@ namespace PirateCave.Controllers
         {
             if (col.gameObject.CompareTag(Tags.CorsairSlash))
                 receiveDamage(10f);
-
-            Debug.Log($"Player: {col.gameObject}");
 
             if (col.gameObject.CompareTag(Tags.SkeletonLash))
                 receiveDamage(1f);
@@ -179,12 +188,16 @@ namespace PirateCave.Controllers
 
             transform.Translate(((Vector3.right * localVelocity) * horizontalMovement) * Time.deltaTime);
         }
-
+        
         private void handleAnimation()
         {
+            // if (horizontalMovement == 0)
+                // transform.Rotate(0, (lastHorizontalValue < 0f ? 180f : 0f), 0f);
+
             if (feetGround)
             {
-                spriteRenderer.flipX = (horizontalMovement < 0f);
+                // spriteRenderer.flipX = (horizontalMovement < 0f);
+                // transform.Rotate(0, (horizontalMovement >= 0f ? 0f : 180f), 0f);
 
                 animator.SetFloat("walking", Mathf.Abs(horizontalMovement));
                 animator.SetBool("running", isRunning);
@@ -208,7 +221,10 @@ namespace PirateCave.Controllers
         private void lash()
         {
             if (Input.GetKeyDown(KeyCode.K) && !isLashing)
+            {
+                isLashing = true;
                 animator.SetBool("lash", true);
+            }
         }
 
         /// <summary>
@@ -217,7 +233,6 @@ namespace PirateCave.Controllers
         /// </summary>
         private void enableLashCollider()
         {
-            isLashing = true;
             slashCollider.enabled = true;
         }
 
@@ -228,6 +243,7 @@ namespace PirateCave.Controllers
         {
             isLashing = false;
             slashCollider.enabled = false;
+            stopTriggerAnimation("lash");
         }
 
         #endregion Lash attack
