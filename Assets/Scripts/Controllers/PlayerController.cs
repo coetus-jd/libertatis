@@ -196,7 +196,7 @@ namespace PirateCave.Controllers
 
             if (feetGround)
             {
-                // spriteRenderer.flipX = (horizontalMovement < 0f);
+                spriteRenderer.flipX = (horizontalMovement < 0f);
                 // transform.Rotate(0, (horizontalMovement >= 0f ? 0f : 180f), 0f);
 
                 animator.SetFloat("walking", Mathf.Abs(horizontalMovement));
