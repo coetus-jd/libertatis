@@ -16,5 +16,26 @@
     },
     "Corsair": {
         "texts": [] 
+    },
+    "Dialog1": {
+        "texts": [
+            "Homem escravo! Você ta preso aqui... posso ajudar sair!",
+            "O que quer?",
+            "Uma joia que parece uma caveira, mas feita de jade... tragá ela para mim e te dou sua liberdade.",
+            "Já estou no fundo do poço, então eu aceito!",
+            "Para te ajudar pegue os meus ganchos e coloque na sua corrente, você vai precisar, a alguns tesouros aqui eles podem contar a história desse lugar, caso esteja interessado."
+        ]
+    },
+    "FinalA": {
+        "texts": [
+            "A Black man, what do you want from me?",
+            "???",
+            "Kan jy my verstaan?(africâner) Kī tusīṁ mainū samajha sakadē hō??(punjabi) Consegue me entender?",
+            "Agora sim.",
+            "O que quer de mim, black man?",
+            "Essa caveira de Jade logo atrás de você!",
+            "Queira me desculpar, mas preciso dela para encontrar o que eu quero, my sailors sendo abatidos por você não está ajudando, então saia enquanto não acabo with your inferior race!",
+            "Então não me dá outra escolha..."
+        ]
     }
 }

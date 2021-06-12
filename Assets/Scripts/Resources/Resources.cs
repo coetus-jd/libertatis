@@ -54,4 +54,13 @@ namespace PirateCave.Resources
 
     [Serializable]
     public class Corsair : ResourceBase {}
+    
+    [Serializable]
+    public class Dialog1 : ResourceBase {}
+
+    [Serializable]
+    public class FinalA : ResourceBase {}
+
+    [Serializable]
+    public class FinalB : ResourceBase {}
 }
