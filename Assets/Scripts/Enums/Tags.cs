@@ -11,6 +11,8 @@ namespace PirateCave.Enums
 
         public static string PlayerWeapon = "PlayerWeapon";
 
+        public static string PlayerHook = "PlayerHook";
+
         public static string ManuscriptPanel = "ManuscriptPanel";
 
         public static string CorsairBullet = "Bullet";

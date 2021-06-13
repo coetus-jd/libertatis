@@ -82,11 +82,22 @@ namespace PirateCave.Controllers
         /// </summary>
         [SerializeField]
         private GameObject slashCollider;
+
+        /// <summary>
+        /// Collider usado para poder se dependurar
+        /// </summary>
+        [SerializeField]
+        private GameObject slashDiagonalCollider;
         
         /// <summary>
         /// Verifica se o player está atacando
         /// </summary>
         private bool isLashing;
+
+        /// <summary>
+        /// Verifica se o player está balançando
+        /// </summary>
+        private bool isSwinging;
         
         /// <summary>
         /// Guarda o último valor do movimento horizontal para sabermos se ele 
@@ -119,6 +130,7 @@ namespace PirateCave.Controllers
 
             movePlayer();
             lash();
+            lashDiagonal();
         }
 
         // void OnBecameInvisible()
@@ -147,6 +159,12 @@ namespace PirateCave.Controllers
         public void receiveDamage(float damage)
         {
             life -= damage;
+        }
+
+        public void activateSwinging()
+        {
+            isSwinging = true;
+            animator.SetBool("swing", true);
         }
 
         public void die()
@@ -223,6 +241,18 @@ namespace PirateCave.Controllers
             }
         }
 
+        private void lashDiagonal()
+        {
+            if (feetGround)
+            {
+                animator.SetBool("swing", false);
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.K) && !feetGround && !isSwinging)
+                enableLashDiagonalCollider();
+        }
+
         /// <summary>
         /// Essa função será chamada automaticamente pela animação quando
         /// a corrente estiver totalmente esticada
@@ -243,8 +273,20 @@ namespace PirateCave.Controllers
         private void disableLashCollider()
         {
             isLashing = false;
-            slashCollider.GetComponent<BoxCollider2D>().enabled = false;
+            slashDiagonalCollider.GetComponent<BoxCollider2D>().enabled = false;
             stopTriggerAnimation("lash");
+        }
+
+        private void enableLashDiagonalCollider()
+        {
+            animator.SetBool("lashDiagonal", true);
+            slashDiagonalCollider.GetComponent<BoxCollider2D>().enabled = true;
+        }
+
+        private void disableLashDiagonalCollider()
+        {
+            slashDiagonalCollider.GetComponent<BoxCollider2D>().enabled = false;
+            stopTriggerAnimation("lashDiagonal");
         }
 
         #endregion Lash attack

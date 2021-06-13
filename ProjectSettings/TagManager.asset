@@ -12,6 +12,7 @@ TagManager:
   - CorsairSlash
   - Skeleton
   - SkeletonLash
+  - PlayerHook
   layers:
   - Default
   - TransparentFX

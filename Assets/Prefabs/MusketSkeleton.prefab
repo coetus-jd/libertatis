@@ -52,7 +52,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4845242692520849658
 Transform:
   m_ObjectHideFlags: 0
@@ -139,7 +139,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &4845242692520849655
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -174,8 +174,8 @@ MonoBehaviour:
     type: 3}
   animator: {fileID: 997139110}
   shootQuantity: 0
-  lifeBarsFather: {fileID: 0}
-  greenLifeBar: {fileID: 0}
+  lifeBarsFather: {fileID: 3910870539549229734}
+  greenLifeBar: {fileID: 3216965586620292825}
 --- !u!95 &997139110
 Animator:
   serializedVersion: 3
