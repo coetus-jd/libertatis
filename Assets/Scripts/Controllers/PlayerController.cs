@@ -216,7 +216,7 @@ namespace PirateCave.Controllers
 
         private void lash()
         {
-            if (Input.GetKeyDown(KeyCode.K) && !isLashing)
+            if (Input.GetKeyDown(KeyCode.K) && !isLashing && feetGround)
             {
                 isLashing = true;
                 animator.SetBool("lash", true);
