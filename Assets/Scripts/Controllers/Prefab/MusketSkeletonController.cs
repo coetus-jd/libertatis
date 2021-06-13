@@ -85,6 +85,12 @@ namespace PirateCave.Controllers.Prefab
 
         void Update()
         {
+            if (life < 0f)
+            {
+                die();
+                return;
+            }
+
             if (!isShooting && !isRecharging && player != null)
                 attackPlayer();
         }
@@ -164,6 +170,15 @@ namespace PirateCave.Controllers.Prefab
             animator.SetBool("recharge", false);
             shootQuantity = 0;
             isRecharging = false;
+        }
+
+        private void die()
+        {
+            lifeBarsFather.SetActive(false);
+            animator.SetBool("shooting", false);
+            animator.SetBool("recharge", false);
+            animator.SetBool("die", true);
+            Destroy(gameObject.GetComponent<CapsuleCollider2D>());
         }
     }
 }
