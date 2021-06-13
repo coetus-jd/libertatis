@@ -1,9 +1,12 @@
+using PirateCave.Enums;
 using UnityEngine;
 
 namespace PirateCave.Controllers.Prefab
 {
     public class MusketSkeletonController : MonoBehaviour
     {   
+        private float life = 7f;
+
         /// <summary>
         /// Referência para o player
         /// </summary>
@@ -42,7 +45,7 @@ namespace PirateCave.Controllers.Prefab
         /// <summary>
         /// Quantidade de tiros que o esqueleto dará até recarregar
         /// </summary>
-        private const int shootQuantityToRecharge = 3;
+        private const int shootQuantityToRecharge = 1;
 
         /// <summary>
         /// Quantidade de tiros que o esqueleto já deu
@@ -50,10 +53,70 @@ namespace PirateCave.Controllers.Prefab
         [SerializeField]
         private int shootQuantity;
 
+        [Header("Life Bar")]
+        /// <summary>
+        /// GameObject que tem tanto a barra de vida verde quanto vermelha
+        /// </summary>
+        [SerializeField]
+        private GameObject lifeBarsFather;
+
+        /// <summary>
+        /// Barra de vida com a cor verde
+        /// </summary>
+        [SerializeField]
+        private Transform greenLifeBar;
+
+        /// <summary>
+        /// Tamanho da barra de vida
+        /// </summary>
+        private Vector3 lifeBarScale;
+
+        /// <summary>
+        /// Guarda o valor de 1% referente a vida cheia do personagem
+        /// </summary>
+        private float lifePercentUnit;
+
+        void Start()
+        {
+            lifeBarScale = greenLifeBar.localScale;
+            lifePercentUnit = lifeBarScale.x / life;
+            lifeBarsFather.SetActive(false);
+        }
+
         void Update()
         {
             if (!isShooting && !isRecharging && player != null)
                 attackPlayer();
+        }
+
+        void OnBecameInvisible()
+        {
+            if (life <= 0)
+                Destroy(gameObject);
+        }
+
+        void OnTriggerEnter2D(Collider2D col)
+        {
+            if (!col.gameObject.CompareTag(Tags.PlayerWeapon))
+                return;
+
+            receiveDamage(3f);
+        }
+
+        /// <summary>
+        /// Atualiza a barra de vida do esqueleto
+        /// </summary>
+        private void updateLifeBar()
+        {
+            lifeBarScale.x = lifePercentUnit * life;
+            greenLifeBar.localScale = lifeBarScale;
+        }
+
+        private void receiveDamage(float damage)
+        {
+            life -= damage;
+            lifeBarsFather.SetActive(true);
+            updateLifeBar();
         }
 
         private void recharge()
@@ -64,7 +127,7 @@ namespace PirateCave.Controllers.Prefab
 
         private void attackPlayer()
         {
-            if (shootQuantity > shootQuantityToRecharge)
+            if (shootQuantity >= shootQuantityToRecharge)
             {
                 recharge();
                 return;

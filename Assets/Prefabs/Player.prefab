@@ -193,7 +193,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   Feet: {fileID: 1212182515}
-  slashCollider: {fileID: 653643154}
+  slashCollider: {fileID: 653643152}
 --- !u!95 &6637404424377639628
 Animator:
   serializedVersion: 3

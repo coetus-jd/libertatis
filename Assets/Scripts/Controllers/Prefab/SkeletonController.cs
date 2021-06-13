@@ -67,12 +67,6 @@ namespace PirateCave.Controllers.Prefab
         [SerializeField]
         private SpriteRenderer spriteRenderer;
 
-        /// <summary>
-        /// Sprite a ser utilizado quando o esqueleto morrer
-        /// </summary>
-        [SerializeField]
-        private Sprite dieBones;
-
         [Header("Movement")]
         [SerializeField]
         private float speed;
@@ -88,6 +82,36 @@ namespace PirateCave.Controllers.Prefab
         /// </summary>
         [SerializeField]
         private GameObject lashCollider;
+
+        [Header("Life Bar")]
+        /// <summary>
+        /// GameObject que tem tanto a barra de vida verde quanto vermelha
+        /// </summary>
+        [SerializeField]
+        private GameObject lifeBarsFather;
+
+        /// <summary>
+        /// Barra de vida com a cor verde
+        /// </summary>
+        [SerializeField]
+        private Transform greenLifeBar;
+
+        /// <summary>
+        /// Tamanho da barra de vida
+        /// </summary>
+        private Vector3 lifeBarScale;
+
+        /// <summary>
+        /// Guarda o valor de 1% referente a vida cheia do personagem
+        /// </summary>
+        private float lifePercentUnit;
+
+        void Start()
+        {
+            lifeBarScale = greenLifeBar.localScale;
+            lifePercentUnit = lifeBarScale.x / life;
+            lifeBarsFather.SetActive(false);
+        }
 
         void Update()
         {
@@ -123,6 +147,15 @@ namespace PirateCave.Controllers.Prefab
             receiveDamage(3f);
         }
 
+        /// <summary>
+        /// Atualiza a barra de vida do esqueleto
+        /// </summary>
+        private void updateLifeBar()
+        {
+            lifeBarScale.x = lifePercentUnit * life;
+            greenLifeBar.localScale = lifeBarScale;
+        }
+
         private void move()
         {
             rigidBody.velocity = new Vector2(speed * direction, rigidBody.velocity.y);
@@ -131,6 +164,8 @@ namespace PirateCave.Controllers.Prefab
         private void receiveDamage(float damage)
         {
             life -= damage;
+            lifeBarsFather.SetActive(true);
+            updateLifeBar();
         }
 
         private void checkWhereIsPlayer()
@@ -216,6 +251,7 @@ namespace PirateCave.Controllers.Prefab
 
         private void die()
         {
+            lifeBarsFather.SetActive(false);
             animator.SetBool("lash", false);
             animator.SetBool("walking", false);
             animator.SetBool("die", true);
