@@ -81,7 +81,7 @@ namespace PirateCave.Controllers
         /// Collider usado para dar danos nos personagens com a corrente
         /// </summary>
         [SerializeField]
-        private BoxCollider2D slashCollider;
+        private GameObject slashCollider;
         
         /// <summary>
         /// Verifica se o player está atacando
@@ -191,13 +191,9 @@ namespace PirateCave.Controllers
         
         private void handleAnimation()
         {
-            // if (horizontalMovement == 0)
-                // transform.Rotate(0, (lastHorizontalValue < 0f ? 180f : 0f), 0f);
-
             if (feetGround)
             {
                 spriteRenderer.flipX = (horizontalMovement < 0f);
-                // transform.Rotate(0, (horizontalMovement >= 0f ? 0f : 180f), 0f);
 
                 animator.SetFloat("walking", Mathf.Abs(horizontalMovement));
                 animator.SetBool("running", isRunning);
@@ -233,7 +229,12 @@ namespace PirateCave.Controllers
         /// </summary>
         private void enableLashCollider()
         {
-            slashCollider.enabled = true;
+            if (horizontalMovement < 0f)
+                slashCollider.transform.Rotate(0f, 180f, 0);
+            else
+                slashCollider.transform.Rotate(0f, 0f, 0);
+
+            slashCollider.GetComponent<BoxCollider2D>().enabled = true;
         }
 
         /// <summary>
@@ -242,7 +243,7 @@ namespace PirateCave.Controllers
         private void disableLashCollider()
         {
             isLashing = false;
-            slashCollider.enabled = false;
+            slashCollider.GetComponent<BoxCollider2D>().enabled = false;
             stopTriggerAnimation("lash");
         }
 
