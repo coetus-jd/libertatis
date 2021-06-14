@@ -23,6 +23,9 @@ namespace PirateCave.Controllers
 
         [SerializeField]
         private GameObject updateButton;
+
+        [SerializeField]
+        private GameObject logoutButton;
         
 
         void Awake()
@@ -33,7 +36,10 @@ namespace PirateCave.Controllers
                 registerButton.SetActive(false);
             }
             else
+            {
                 updateButton.SetActive(false);
+                logoutButton.SetActive(false);
+            }
         }
 
         private void Start()
