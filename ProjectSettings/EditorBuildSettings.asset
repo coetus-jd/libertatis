@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Account/Update.unity
     guid: 6d0a6687b3ccf4340959904e3a5bed81
   - enabled: 1
-    path: Assets/Scenes/Phase.unity
+    path: Assets/Scenes/Stage.unity
     guid: 0a02a21c2fd36ba4a8c09f69448f4f3b
   - enabled: 1
     path: Assets/Scenes/History.unity
