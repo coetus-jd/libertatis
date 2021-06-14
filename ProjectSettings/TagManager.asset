@@ -13,6 +13,7 @@ TagManager:
   - Skeleton
   - SkeletonLash
   - PlayerHook
+  - SkeletonBullet
   layers:
   - Default
   - TransparentFX

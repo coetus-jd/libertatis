@@ -150,6 +150,12 @@ namespace PirateCave.Controllers
                 Destroy(col.gameObject);
                 receiveDamage(10f);
             }
+
+            if (col.gameObject.CompareTag(Tags.SkeletonBullet))
+            {
+                Destroy(col.gameObject);
+                receiveDamage(3f);
+            }
         }
 
         public void receiveDamage(float damage)
