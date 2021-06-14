@@ -24,7 +24,8 @@ namespace PirateCave.Controllers
         /// A velocidade com que o player irá se mover
         /// </summary>
         [Header("Move")]
-        private float velocity = 0.9f;
+        [SerializeField]
+        private float velocity = 4f;
 
         /// <summary>
         /// Velocidade com que o player irá se mover enquanto estiver pendurado
@@ -176,7 +177,7 @@ namespace PirateCave.Controllers
             if (phaseController?._buttonYouLose)
                 EventSystem.current.SetSelectedGameObject(phaseController?._buttonYouLose);
 
-            animator.SetFloat("walking", 0f);
+            animator.SetBool("walk", false);
             animator.SetBool("running", false);
             animator.SetBool("die", true);
             Destroy(gameObject, 1);
@@ -188,8 +189,6 @@ namespace PirateCave.Controllers
 
             feetGround = Physics2D.OverlapCircle(Feet.position, 0.1f, groundLayer);
 
-            if (feetGround && !isJumping)
-                rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, 0f);
 
             isRunning = Input.GetKey(KeyCode.LeftShift);
 
@@ -200,13 +199,10 @@ namespace PirateCave.Controllers
 
         private void handleMovement()
         {
-            if (horizontalMovement == 0)
-                return;
-
-            if (feetGround)
+            if (horizontalMovement != 0)
             {
                 float localVelocity = isRunning ? velocity * 2f : velocity;
-                transform.Translate(new Vector2(localVelocity * Time.deltaTime, 0f));
+                transform.Translate(new Vector2((localVelocity * Time.deltaTime), 0f));
 
                 if (horizontalMovement > 0)
                     transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -228,20 +224,10 @@ namespace PirateCave.Controllers
 
         private void handleAnimation()
         {
-            if (feetGround)
-            {
-                animator.SetFloat("walking", Mathf.Abs(horizontalMovement));
-                // animator.SetBool("Ground", feetGround);
+                animator.SetBool("walk", Mathf.Abs(horizontalMovement) > 0);
+                animator.SetBool("Ground", feetGround);
                 animator.SetBool("running", isRunning && Mathf.Abs(horizontalMovement) > 0);
-
-            }
-            else
-            {
-                animator.SetFloat("walking", 0f);
-                animator.SetBool("running", false);
-            }
-
-            animator.SetBool("jump", isJumping);
+                animator.SetBool("jump", isJumping);
         }
 
         /// <summary>
