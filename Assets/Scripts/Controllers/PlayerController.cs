@@ -26,6 +26,8 @@ namespace PirateCave.Controllers
         [Header("Move")]
         [SerializeField]
         private float velocity = 0.9f;
+        [SerializeField]
+        private Collider2D pCollider;
 
         private float horizontalMovement;
 
@@ -99,11 +101,6 @@ namespace PirateCave.Controllers
         /// </summary>
         private bool isSwinging;
         
-        /// <summary>
-        /// Guarda o último valor do movimento horizontal para sabermos se ele 
-        /// parou de se mexer quando estava na esquerda ou direita
-        /// </summary>
-        private float lastHorizontalValue;
 
         private void Start()
         {
@@ -122,12 +119,6 @@ namespace PirateCave.Controllers
                 die();
                 return;
             }
-
-            feetGround = Physics2D.OverlapCircle(Feet.position, 0.1f, groundLayer);
-
-            if (horizontalMovement != 0)
-                lastHorizontalValue = horizontalMovement;
-
             movePlayer();
             lash();
             lashDiagonal();
@@ -184,11 +175,41 @@ namespace PirateCave.Controllers
         {
             horizontalMovement = Input.GetAxis("Horizontal");
 
+            feetGround = Physics2D.OverlapCircle(Feet.position, 0.1f, groundLayer);
+            if (feetGround && !isJumping)
+            {
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, 0f);
+            }
+
+
             isRunning = Input.GetKey(KeyCode.LeftShift);
+
 
             handleMovement();
             handleAnimation();
             handlePlayerJump();
+        }
+
+        private void handleMovement()
+        {
+            if (horizontalMovement != 0)
+            {
+                float localVelocity = isRunning ? velocity * 2f : velocity;
+                transform.Translate(new Vector2(localVelocity * Time.deltaTime, 0f));
+                if (horizontalMovement > 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
+
+            }
+            
+
+
         }
 
         private void handlePlayerJump()
@@ -200,21 +221,15 @@ namespace PirateCave.Controllers
             }
         }
 
-        private void handleMovement()
-        {
-            float localVelocity = isRunning ? velocity * 2f : velocity;
-
-            transform.Translate(((Vector3.right * localVelocity) * horizontalMovement) * Time.deltaTime);
-        }
         
         private void handleAnimation()
         {
             if (feetGround)
             {
-                spriteRenderer.flipX = (horizontalMovement < 0f);
-
-                animator.SetFloat("walking", Mathf.Abs(horizontalMovement));
-                animator.SetBool("running", isRunning);
+                animator.SetBool("walk", Mathf.Abs(horizontalMovement) > 0);
+                animator.SetBool("Ground", feetGround);
+                animator.SetBool("running", isRunning && Mathf.Abs(horizontalMovement) > 0);
+                
             }
             else
             {
