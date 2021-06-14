@@ -98,6 +98,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catchAudio: {fileID: 8300000, guid: 296835b44e6e20a43b3246943e31fb7a, type: 3}
   animator: {fileID: 1834046468}
+  Calice: {fileID: 2370948632523557878, guid: 57a6956cf925de74b8b00eed515624f7, type: 3}
+  Dobrao: {fileID: 6973553606294383519, guid: 648611cfa11c6d848ba601211fd4a0f7, type: 3}
+  Anel: {fileID: 8741374765032098754, guid: 4f9de39d99d92c444b520fe86648ddb2, type: 3}
+  DimaV: {fileID: 7873539385725850050, guid: 42d3c2fa2bab52b4bb9e77c410686f15, type: 3}
+  DimaA: {fileID: 3124153858883163475, guid: bb05b6de656c2b54399b557c7cf3eea3, type: 3}
+  Coroa: {fileID: 1000592733468242275, guid: 49d93169eab9c67448749439dd6c0660, type: 3}
 --- !u!61 &8812654578503692684
 BoxCollider2D:
   m_ObjectHideFlags: 0

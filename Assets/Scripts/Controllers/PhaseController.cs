@@ -2,6 +2,7 @@ using System;
 using PirateCave.Controllers.Account;
 using PirateCave.Enums;
 using PirateCave.UI;
+using PirateCave.Controllers.Colliders;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,7 +19,7 @@ namespace PirateCave.Controllers
         /// <summary>
         /// Guarda o número de pontos feitos pelo jogador
         /// </summary>
-        private int points;
+        public int points;
 
         /// <summary>
         /// Objeto usado para atualizar os pontos do usuário
@@ -87,7 +88,7 @@ namespace PirateCave.Controllers
 
         public void addPoints(int points)
         {
-            points += points;
+            
         }
 
         public void togglePauseGame()

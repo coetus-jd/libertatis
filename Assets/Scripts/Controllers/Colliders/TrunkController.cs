@@ -1,6 +1,7 @@
 using UnityEngine;
 using PirateCave.Enums;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace PirateCave.Controllers.Colliders
 {
@@ -18,11 +19,32 @@ namespace PirateCave.Controllers.Colliders
         private Animator animator;
 
         /// <summary>
-        /// Pontuação ganha por cada tesouro e atualização de pontos na tela
+        /// Pontuação ganha por cada tesouro e chamando o tesouro.
         /// </summary>
-        private float treasureScore;
-        public Text txtScore;
-        bool openTreasure = false;
+        [Header("Treasures")]
+        [SerializeField]
+        private GameObject Calice;
+        [SerializeField]
+        private GameObject Dobrao;
+        [SerializeField]
+        private GameObject Anel;
+        [SerializeField]
+        private GameObject DimaV;
+        [SerializeField]
+        private GameObject DimaA;
+        [SerializeField]
+        private GameObject Coroa;
+
+        private GameObject tChoose;
+
+        private int treasureScore;
+        private bool openTreasure = false;
+
+        /// <summary>
+        /// Conexão com o outro script
+        /// </summary>
+        private PhaseController pcScript;
+
 
         /// <summary>
         /// Boolean que verifica se o jogador está dentro do collider do manuscrito
@@ -35,6 +57,11 @@ namespace PirateCave.Controllers.Colliders
                 .GetComponent<PhaseController>();
         }
 
+        private void Start()
+        {
+            pcScript = GameObject.Find("PhaseController").GetComponent<PhaseController>();
+        }
+
         void Update()
         {
             if (playerIsIn)
@@ -44,7 +71,6 @@ namespace PirateCave.Controllers.Colliders
                 {
                     animator.SetBool("open", true);
                     getTreasure();
-                    PlayerPrefs.SetFloat("treasureScore", treasureScore);
                     openTreasure = true;
                 }
                     
@@ -53,36 +79,40 @@ namespace PirateCave.Controllers.Colliders
         }
 
         private void getTreasure()
-        {
-            float randomNumber = Random.Range(1f, 50f);
+        {   
+                
+            float randomNumber = Random.Range(1f, 100f);
             
-
-                if (randomNumber <= 20)
+                if (randomNumber <= 50)
                 {
-                    treasureScore = treasureScore + 1;  //Calice
+                    treasureScore = 10;  //Calice
+                    tChoose = Calice;
                 }
-                else if (randomNumber <= 30)
+                else if (randomNumber <= 75)
                 {
-                    treasureScore = treasureScore + 2;  //Dobrão
+                    treasureScore = 20;  //Dobrão
+                    tChoose = Dobrao;
                 }
-                else if (randomNumber <= 38)
+                else if (randomNumber <= 90)
                 {
-                    treasureScore = treasureScore + 3;  //Anel
+                    treasureScore = 50;  //Anel
+                    tChoose = Anel;
                 }
-                else if (randomNumber <= 44)
+                else if (randomNumber <= 95)
                 {
-                    treasureScore = treasureScore + 4;  //Diamante vermelho
+                    treasureScore = 100;  //Diamante vermelho
+                    tChoose = DimaV;
                 }
-                else if (randomNumber <= 48)
+                else if (randomNumber <= 99)
                 {
-                    treasureScore = treasureScore + 5;  //Diamante Azul
+                    treasureScore = 200;  //Diamante Azul
+                    tChoose = DimaA;
                 }
                 else
                 {
-                    treasureScore = treasureScore + 6;  //Coroa
+                    treasureScore = 500;  //Coroa
+                    tChoose = Coroa;
                 }
-
-                txtScore.text = "" + treasureScore;
             
 
         }
@@ -100,6 +130,12 @@ namespace PirateCave.Controllers.Colliders
                 playerIsIn = false;
         }
 
+        private void summonTreasure()
+        {
+            Instantiate(tChoose, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+
+        }
+
         /// <summary>
         /// Esse método vai ser chamado automaticamente ao terminar a animação de abrir do baú
         /// </summary>
@@ -107,7 +143,10 @@ namespace PirateCave.Controllers.Colliders
         {
             AudioSource.PlayClipAtPoint(catchAudio, gameObject.transform.position);
             phaseController?.addPoints(20);
-            Destroy(gameObject);
+            pcScript.points += treasureScore;
+            Destroy(this.gameObject);
+
+
         }
     }
 }
