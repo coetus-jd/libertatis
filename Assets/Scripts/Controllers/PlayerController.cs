@@ -24,7 +24,7 @@ namespace PirateCave.Controllers
         /// A velocidade com que o player irá se mover
         /// </summary>
         [Header("Move")]
-        private float velocity = 0.9f;
+        private float velocity = 1.9f;
 
         /// <summary>
         /// Velocidade com que o player irá se mover enquanto estiver pendurado
@@ -206,7 +206,7 @@ namespace PirateCave.Controllers
             if (feetGround)
             {
                 float localVelocity = isRunning ? velocity * 2f : velocity;
-                transform.Translate(new Vector2(localVelocity * Time.deltaTime, 0f));
+                transform.Translate(new Vector2((localVelocity * Time.deltaTime), 0f));
 
                 if (horizontalMovement > 0)
                     transform.rotation = Quaternion.Euler(0, 0, 0);
