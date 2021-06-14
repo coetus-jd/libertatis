@@ -272,10 +272,10 @@ namespace PirateCave.Controllers
         /// </summary>
         private void enableLashCollider()
         {
-            if (horizontalMovement < 0f)
-                slashCollider.transform.Rotate(0f, 180f, 0);
-            else
-                slashCollider.transform.Rotate(0f, 0f, 0);
+            // if (horizontalMovement < 0f)
+            //     slashCollider.transform.Rotate(0f, 180f, 0);
+            // else
+            //     slashCollider.transform.Rotate(0f, 0f, 0);
 
             slashCollider.GetComponent<BoxCollider2D>().enabled = true;
         }
@@ -286,7 +286,7 @@ namespace PirateCave.Controllers
         private void disableLashCollider()
         {
             isLashing = false;
-            slashDiagonalCollider.GetComponent<BoxCollider2D>().enabled = false;
+            slashCollider.GetComponent<BoxCollider2D>().enabled = false;
             stopTriggerAnimation("lash");
         }
 
