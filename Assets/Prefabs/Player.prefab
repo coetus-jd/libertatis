@@ -159,6 +159,9 @@ GameObject:
   - component: {fileID: 3060171929115193817}
   - component: {fileID: 6637404423758143921}
   - component: {fileID: 3006714224899320391}
+  - component: {fileID: 5193945520408626488}
+  - component: {fileID: 7816501751405862232}
+  - component: {fileID: -5445030401367313667}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -246,6 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
+  velocity: 4
   pCollider: {fileID: 0}
   jumpForce: 40
   groundLayer:
