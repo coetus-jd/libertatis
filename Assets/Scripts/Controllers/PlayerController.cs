@@ -24,8 +24,13 @@ namespace PirateCave.Controllers
         /// A velocidade com que o player irá se mover
         /// </summary>
         [Header("Move")]
-        [SerializeField]
         private float velocity = 0.9f;
+
+        /// <summary>
+        /// Velocidade com que o player irá se mover enquanto estiver pendurado
+        /// </summary>
+        private float swingVelocity = 0.6f;
+
         [SerializeField]
         private Collider2D pCollider;
 
@@ -90,7 +95,7 @@ namespace PirateCave.Controllers
         /// </summary>
         [SerializeField]
         private GameObject slashDiagonalCollider;
-        
+
         /// <summary>
         /// Verifica se o player está atacando
         /// </summary>
@@ -100,7 +105,7 @@ namespace PirateCave.Controllers
         /// Verifica se o player está balançando
         /// </summary>
         private bool isSwinging;
-        
+
 
         private void Start()
         {
@@ -176,6 +181,7 @@ namespace PirateCave.Controllers
             horizontalMovement = Input.GetAxis("Horizontal");
 
             feetGround = Physics2D.OverlapCircle(Feet.position, 0.1f, groundLayer);
+
             if (feetGround && !isJumping)
                 rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0f, 0f);
 
@@ -188,7 +194,10 @@ namespace PirateCave.Controllers
 
         private void handleMovement()
         {
-            if (horizontalMovement != 0)
+            if (horizontalMovement == 0)
+                return;
+
+            if (feetGround)
             {
                 float localVelocity = isRunning ? velocity * 2f : velocity;
                 transform.Translate(new Vector2(localVelocity * Time.deltaTime, 0f));
@@ -198,6 +207,8 @@ namespace PirateCave.Controllers
                 else
                     transform.rotation = Quaternion.Euler(0, 180, 0);
             }
+            // else if (!feetGround && isSwinging)
+            //     GetComponent<Rigidbody2D>().AddForce(transform.right * horizontalMovement * swingVelocity);
         }
 
         private void handlePlayerJump()
@@ -209,7 +220,6 @@ namespace PirateCave.Controllers
             }
         }
 
-        
         private void handleAnimation()
         {
             if (feetGround)
@@ -217,7 +227,7 @@ namespace PirateCave.Controllers
                 animator.SetFloat("walking", Mathf.Abs(horizontalMovement));
                 // animator.SetBool("Ground", feetGround);
                 animator.SetBool("running", isRunning && Mathf.Abs(horizontalMovement) > 0);
-                
+
             }
             else
             {
