@@ -105,6 +105,8 @@ namespace PirateCave.Controllers
         /// </summary>
         private bool isLashing;
 
+        private bool playerStop;
+
         /// <summary>
         /// Verifica se o player está balançando
         /// </summary>
@@ -224,11 +226,22 @@ namespace PirateCave.Controllers
             handlePlayerJump();
         }
 
+        private void stopMoviment()
+        {
+            playerStop = true;
+
+        }
+
+        private void ReMoviment()
+        {
+            playerStop = false;
+        }
+
         private void handleMovement()
         {
-            if (horizontalMovement != 0)
+            if (horizontalMovement != 0 && playerStop == false)
             {
-                float localVelocity = isRunning ? velocity * 2f : velocity;
+                float localVelocity = isRunning ? velocity * 4f : velocity;
                 transform.Translate(new Vector2((localVelocity * Time.deltaTime), 0f));
 
                 if (horizontalMovement > 0)
@@ -242,7 +255,7 @@ namespace PirateCave.Controllers
 
         private void handlePlayerJump()
         {
-            if (feetGround && Input.GetKeyDown(KeyCode.Space))
+            if (feetGround && Input.GetKeyDown(KeyCode.Space) && playerStop == false)
             {
                 rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
                 isJumping = true;
