@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using PirateCave.Enums;
+using PirateCave.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,6 +13,8 @@ namespace PirateCave.Controllers
         /// Localiza o PhaseController
         /// </summary>
         private PhaseController phaseController;
+
+        private ChainRenderer chainRenderer;
 
         /// <summary>
         /// Quantidade de vida do jogador
@@ -111,6 +114,8 @@ namespace PirateCave.Controllers
         {
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
                 .GetComponent<PhaseController>();
+                
+            chainRenderer = GetComponent<ChainRenderer>();
 
             rigidBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
@@ -125,17 +130,18 @@ namespace PirateCave.Controllers
                 return;
             }
 
+            // if (!feetGround && !isJumping && !isSwinging)
+            // {
+            //     die();
+            //     return;
+            // }
+
             movePlayer();
             lash();
             lashDiagonal();
 
             if (Input.GetKeyDown(KeyCode.K) && isSwinging)
                 desactivateSwinging();
-        }
-
-        private void OnBecameInvisible()
-        {
-            die();
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -167,11 +173,14 @@ namespace PirateCave.Controllers
             life -= damage;
         }
 
-        public void activateSwinging()
+        public void activateSwinging(GameObject hookMiddlePosition)
         {
             isSwinging = true;
             animator.SetBool("swing", true);
+            chainRenderer.changeEndPosition(hookMiddlePosition.transform);
+            chainRenderer.toggleLineRenderer();
             GetComponent<Rigidbody2D>().gravityScale = 2;
+            GetComponent<DistanceJoint2D>().enabled = true;
         }
 
         public void desactivateSwinging()
@@ -181,6 +190,7 @@ namespace PirateCave.Controllers
             animator.SetBool("swing", false);
             animator.SetBool("jump", false);
             animator.SetBool("swingFall", true);
+            chainRenderer.toggleLineRenderer();
             GetComponent<Rigidbody2D>().gravityScale = 8;
             GetComponent<DistanceJoint2D>().enabled = false;
         }
@@ -281,11 +291,6 @@ namespace PirateCave.Controllers
         /// </summary>
         private void enableLashCollider()
         {
-            // if (horizontalMovement < 0f)
-            //     slashCollider.transform.Rotate(0f, 180f, 0);
-            // else
-            //     slashCollider.transform.Rotate(0f, 0f, 0);
-
             slashCollider.GetComponent<BoxCollider2D>().enabled = true;
         }
 
