@@ -41,6 +41,9 @@ namespace PirateCave.Resources
     {
         public Manuscript Manuscript;
         public Corsair Corsair;
+        public Dialog1 Dialog1;
+        public FinalA FinalA;
+        public FinalB FinalB;
     }
 
     [Serializable]
