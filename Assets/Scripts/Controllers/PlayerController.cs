@@ -167,6 +167,7 @@ namespace PirateCave.Controllers
         {
             isSwinging = true;
             animator.SetBool("swing", true);
+            // GetComponent<Rigidbody2D>().for;
         }
 
         public void die()
@@ -210,8 +211,8 @@ namespace PirateCave.Controllers
                 else
                     transform.rotation = Quaternion.Euler(0, 180, 0);
             }
-            // else if (!feetGround && isSwinging)
-            //     GetComponent<Rigidbody2D>().AddForce(transform.right * horizontalMovement * swingVelocity);
+            else if (!feetGround && isSwinging)
+                GetComponent<Rigidbody2D>().AddForce(transform.right * horizontalMovement * swingVelocity);
         }
 
         private void handlePlayerJump()

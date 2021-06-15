@@ -2330,36 +2330,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612408022}
   m_CullTransparentMesh: 0
---- !u!1 &693348493 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8913217790937686955, guid: abc1a4f33d41d1c4d8222bf58cd5544f,
-    type: 3}
-  m_PrefabInstance: {fileID: 8913217790869319375}
-  m_PrefabAsset: {fileID: 0}
---- !u!233 &693348494
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 693348493}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 21.75, y: 11.41}
-  m_UseMotor: 0
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
 --- !u!50 &693348497 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 7637899408171998208, guid: abc1a4f33d41d1c4d8222bf58cd5544f,
@@ -29147,7 +29117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1854794612
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29922,6 +29892,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1301948708}
     m_Modifications:
+    - target: {fileID: 3006714224899320391, guid: 27450c76bf0eb3b459bc8bfdf8051590,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006714224899320391, guid: 27450c76bf0eb3b459bc8bfdf8051590,
+        type: 3}
+      propertyPath: m_AutoConfigureDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006714224899320391, guid: 27450c76bf0eb3b459bc8bfdf8051590,
+        type: 3}
+      propertyPath: m_Distance
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006714224899320391, guid: 27450c76bf0eb3b459bc8bfdf8051590,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3006714224899320391, guid: 27450c76bf0eb3b459bc8bfdf8051590,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 21.654243
     - target: {fileID: -5445030401367313667, guid: 27450c76bf0eb3b459bc8bfdf8051590,
         type: 3}
       propertyPath: m_Offset.x
