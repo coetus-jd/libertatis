@@ -50,9 +50,9 @@ namespace PirateCave.UI
         /// <summary>
         /// Mostra ou não a linha
         /// </summary>
-        public void toggleLineRenderer()
+        public void toggleLineRenderer(bool enable = false)
         {
-            lineRenderer.enabled = !lineRenderer.enabled;
+            lineRenderer.enabled = enable;
         }
     }
 }
