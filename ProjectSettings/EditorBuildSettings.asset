@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Account/Update.unity
     guid: 6d0a6687b3ccf4340959904e3a5bed81
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Stage.unity
     guid: 0a02a21c2fd36ba4a8c09f69448f4f3b
   - enabled: 1
@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/Credits.unity
     guid: bde182e8f21bb624790baeb25ad317a0
+  - enabled: 1
+    path: Assets/Scenes/Phase.unity
+    guid: 714c1561b7b408545829cc74b6cf4b2b
   m_configObjects: {}
