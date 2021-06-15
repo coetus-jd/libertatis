@@ -107,7 +107,6 @@ namespace PirateCave.Controllers
         /// </summary>
         private bool isSwinging;
 
-
         private void Start()
         {
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
@@ -125,6 +124,10 @@ namespace PirateCave.Controllers
                 die();
                 return;
             }
+
+            if (Input.GetKeyDown(KeyCode.K) && isSwinging)
+                desactivateSwinging();
+
             movePlayer();
             lash();
             lashDiagonal();
@@ -168,7 +171,15 @@ namespace PirateCave.Controllers
         {
             isSwinging = true;
             animator.SetBool("swing", true);
-            // GetComponent<Rigidbody2D>().for;
+            GetComponent<Rigidbody2D>().gravityScale = 2;
+        }
+
+        public void desactivateSwinging()
+        {
+            isSwinging = false;
+            animator.SetBool("swing", false);
+            GetComponent<Rigidbody2D>().gravityScale = 8;
+            GetComponent<DistanceJoint2D>().enabled = false;
         }
 
         public void die()
