@@ -1766,7 +1766,7 @@ PrefabInstance:
     - target: {fileID: 5684911062800094859, guid: 31a7218e2b83e9b489f8489aa9861203,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: Scenes/Home
+      value: Home
       objectReference: {fileID: 0}
     - target: {fileID: 5684911062800094863, guid: 31a7218e2b83e9b489f8489aa9861203,
         type: 3}
