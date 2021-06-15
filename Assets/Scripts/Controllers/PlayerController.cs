@@ -260,6 +260,17 @@ namespace PirateCave.Controllers
                 rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
                 isJumping = true;
             }
+            else if (!feetGround && rigidBody.velocity.y < 0)
+            {
+                animator.SetBool("Falling", true);
+                isJumping = false;
+            }
+
+            else
+            {
+                animator.SetBool("Falling", false);
+
+            }
         }
 
         private void handleAnimation()
