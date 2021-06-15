@@ -53287,12 +53287,22 @@ PrefabInstance:
     - target: {fileID: 3202422418917046073, guid: 27450c76bf0eb3b459bc8bfdf8051590,
         type: 3}
       propertyPath: m_Offset.x
-      value: 0.010047436
+      value: -0.0031995773
       objectReference: {fileID: 0}
     - target: {fileID: 3202422418917046073, guid: 27450c76bf0eb3b459bc8bfdf8051590,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.3363185
+      value: 0.27670693
+      objectReference: {fileID: 0}
+    - target: {fileID: 6637404423758143921, guid: 27450c76bf0eb3b459bc8bfdf8051590,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6637404423758143921, guid: 27450c76bf0eb3b459bc8bfdf8051590,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6637404424377639629, guid: 27450c76bf0eb3b459bc8bfdf8051590,
         type: 3}
@@ -53302,7 +53312,7 @@ PrefabInstance:
     - target: {fileID: 6637404424377639629, guid: 27450c76bf0eb3b459bc8bfdf8051590,
         type: 3}
       propertyPath: jumpForce
-      value: 40
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 6637404424377639630, guid: 27450c76bf0eb3b459bc8bfdf8051590,
         type: 3}
