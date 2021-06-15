@@ -107,7 +107,6 @@ namespace PirateCave.Controllers
         /// </summary>
         private bool isSwinging;
 
-
         private void Start()
         {
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
@@ -130,7 +129,7 @@ namespace PirateCave.Controllers
             lashDiagonal();
         }
 
-        void OnBecameInvisible()
+        private void OnBecameInvisible()
         {
             die();
         }
@@ -172,7 +171,10 @@ namespace PirateCave.Controllers
 
         public void die()
         {
-            phaseController?.youLosePanel?.SetActive(true);
+            if (phaseController?.youLosePanel)
+            {
+                phaseController?.youLosePanel?.SetActive(true);
+            }
 
             if (phaseController?._buttonYouLose)
                 EventSystem.current.SetSelectedGameObject(phaseController?._buttonYouLose);
@@ -188,7 +190,6 @@ namespace PirateCave.Controllers
             horizontalMovement = Input.GetAxis("Horizontal");
 
             feetGround = Physics2D.OverlapCircle(Feet.position, 0.1f, groundLayer);
-
 
             isRunning = Input.GetKey(KeyCode.LeftShift);
 
@@ -224,10 +225,10 @@ namespace PirateCave.Controllers
 
         private void handleAnimation()
         {
-                animator.SetBool("walk", Mathf.Abs(horizontalMovement) > 0);
-                animator.SetBool("Ground", feetGround);
-                animator.SetBool("running", isRunning && Mathf.Abs(horizontalMovement) > 0);
-                animator.SetBool("jump", isJumping);
+            animator.SetBool("walk", Mathf.Abs(horizontalMovement) > 0);
+            animator.SetBool("Ground", feetGround);
+            animator.SetBool("running", isRunning && Mathf.Abs(horizontalMovement) > 0);
+            animator.SetBool("jump", isJumping);
         }
 
         /// <summary>
