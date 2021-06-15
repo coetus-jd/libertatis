@@ -5,15 +5,9 @@ namespace PirateCave.Controllers.Colliders
 {
     public class HookController : MonoBehaviour
     {
-        [SerializeField]
-        private float throwVelocity;
-
         [Header("Effect")]
         [SerializeField]
         private GameObject player;
-
-        [SerializeField]
-        private Rigidbody2D rigidBody;
 
         private DistanceJoint2D ropeEffect;
 
@@ -28,7 +22,7 @@ namespace PirateCave.Controllers.Colliders
                 return;
 
             ropeEffect.enabled = true;
-            // ropeEffect.connectedBody = GetComponent<Rigidbody2D>();
+            ropeEffect.connectedAnchor = (Vector2) transform.position;
             
             col.gameObject
                 .GetComponentInParent<PlayerController>()
