@@ -1,4 +1,5 @@
 using System.Collections;
+using PirateCave.Controllers;
 using PirateCave.Resources;
 using TMPro;
 using UnityEngine;
@@ -43,6 +44,9 @@ namespace PirateCave.UI
             }
         }
 
+        [SerializeField]
+        private PirateController pirate;
+
         void Start()
         {
             if (secondPersonStarts)
@@ -58,7 +62,10 @@ namespace PirateCave.UI
             currentDialog.SetActive(false);
 
             if (isLastIndex)
+            {
                 finishDialog();
+                pirate.destroyPirate();
+            }
             else
             {
                 nextDialogTextIndex++;
@@ -74,6 +81,12 @@ namespace PirateCave.UI
 
         private void openDialog(bool ignoreLogic = false)
         {
+            if (nextDialogTextIndex == 0)
+                StartCoroutine(pirate.pointing());
+            
+            if (isLastIndex)
+                pirate.rotate();
+
             if (!ignoreLogic)
                 currentDialog = currentDialog == dialogPanel1 ? dialogPanel2 : dialogPanel1;
             

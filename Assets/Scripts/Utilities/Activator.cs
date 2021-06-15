@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using PirateCave.Enums;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace PirateCave.Utilities
         /// Objeto que será ativado ao entrar na área
         /// </summary>
         [SerializeField]
-        private GameObject objectToActivate;
+        private List<GameObject> objectsToActivate;
         
         /// <summary>
         /// Tag necessária que o colisor tenha para ativar a ação
@@ -20,7 +21,15 @@ namespace PirateCave.Utilities
         void OnTriggerEnter2D(Collider2D col)
         {
             if (col.gameObject.CompareTag(tagToCompare))
-                objectToActivate.SetActive(true);
+            {
+                if (objectsToActivate == null || objectsToActivate.Count == 0)
+                    return;
+
+                objectsToActivate.ForEach(gameObject =>
+                {
+                    gameObject.SetActive(true);
+                });
+            }
         }
     }
 }
