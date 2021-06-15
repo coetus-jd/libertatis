@@ -125,12 +125,12 @@ namespace PirateCave.Controllers
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.K) && isSwinging)
-                desactivateSwinging();
-
             movePlayer();
             lash();
             lashDiagonal();
+
+            if (Input.GetKeyDown(KeyCode.K) && isSwinging)
+                desactivateSwinging();
         }
 
         private void OnBecameInvisible()
@@ -177,7 +177,10 @@ namespace PirateCave.Controllers
         public void desactivateSwinging()
         {
             isSwinging = false;
+            isJumping = false;
             animator.SetBool("swing", false);
+            animator.SetBool("jump", false);
+            animator.SetBool("swingFall", true);
             GetComponent<Rigidbody2D>().gravityScale = 8;
             GetComponent<DistanceJoint2D>().enabled = false;
         }
