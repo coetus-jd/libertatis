@@ -103,21 +103,13 @@ namespace PirateCave.Controllers
 
         private void Update()
         {
-            // somente pra teste
-            if (Input.GetKeyDown(KeyCode.W))
-                slash();
-
-            // somente pra teste
-            if (Input.GetKeyDown(KeyCode.T))
-                animator.SetBool("shooting", true);
-
             if (life <= 0)
                 defeated();
 
             if (life == 300f && shouldWalk)
                 handleMovement(true);
 
-            if (life == 240f || life == 180f)
+            if (life == 240f || life == 179f)
                 invokeSkeletons(life);
 
             if (life <= 150f)

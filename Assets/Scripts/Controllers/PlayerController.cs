@@ -351,6 +351,7 @@ namespace PirateCave.Controllers
         /// </summary>
         private void enableLashCollider()
         {
+            isLashing = true;
             slashCollider.GetComponent<BoxCollider2D>().enabled = true;
         }
 

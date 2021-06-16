@@ -36,11 +36,17 @@ namespace PirateCave.UI
         /// </summary>
         private int nextDialogTextIndex;
 
+        private string language = "en-US";
+
         private bool isLastIndex
         {
             get 
             {
-                return nextDialogTextIndex == Resource.Language["pt-BR"].FinalA.texts.Count - 1;
+                return (
+                    language == "pt-BR"
+                    ? nextDialogTextIndex == Resource.Language[language].FinalA.texts.Count - 1
+                    : nextDialogTextIndex == Resource.Language[language].FinalB.texts.Count - 1
+                );
             }
         }
 
@@ -85,8 +91,16 @@ namespace PirateCave.UI
                 currentDialog = currentDialog == dialogPanel1 ? dialogPanel2 : dialogPanel1;
             
             currentDialog.SetActive(true);
+
+            string text = "";
+
+            if (language == "pt-BR")
+                text = Resource.Language[language].FinalA.texts[nextDialogTextIndex];
+            else
+                text = Resource.Language[language].FinalB.texts[nextDialogTextIndex];
+
             currentDialog.GetComponentInChildren<TextMeshProUGUI>()
-                .text = Resource.Language["pt-BR"].FinalA.texts[nextDialogTextIndex];
+                .text = text;
         }
 
         private void finishDialog()
