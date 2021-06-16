@@ -21,19 +21,21 @@ public class Parallax : MonoBehaviour
 
     void FixedUpdate()
     {
-        float temp = (camPlayer.transform.position.x * (1 - speedParallax));
-        float dist = (camPlayer.transform.position.x * speedParallax);
 
-        transform.position = new Vector3(startPos + dist, 0f, 0f);
+            float temp = (camPlayer.transform.position.x * (1 - speedParallax));
+            float dist = (camPlayer.transform.position.x * speedParallax);
 
-        if(temp > startPos + lenght)
-        {
-            startPos += lenght;
-        }
-        else if(temp < startPos - lenght)
-        {
-            startPos -= lenght;
-        }
+            transform.position = new Vector3(startPos + dist, 0f, 0f);
+
+            if (temp > startPos + lenght)
+            {
+                startPos += lenght;
+            }
+            else if (temp < startPos - lenght)
+            {
+                startPos -= lenght;
+            }
+
 
     }
 }
