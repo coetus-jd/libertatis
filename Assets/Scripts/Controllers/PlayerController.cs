@@ -112,6 +112,8 @@ namespace PirateCave.Controllers
         /// </summary>
         private bool isSwinging;
 
+        private GameObject chain;
+
         private void Start()
         {
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
@@ -179,6 +181,7 @@ namespace PirateCave.Controllers
             isSwinging = true;
             animator.SetBool("swing", true);
             chainRenderer.changeEndPosition(hookMiddlePosition.transform);
+            chain = hookMiddlePosition;
             // chainRenderer.toggleLineRenderer(true);
             GetComponent<Rigidbody2D>().gravityScale = 2;
             GetComponent<DistanceJoint2D>().enabled = true;
@@ -192,6 +195,7 @@ namespace PirateCave.Controllers
             animator.SetBool("jump", false);
             animator.SetBool("swingFall", true);
             // chainRenderer.toggleLineRenderer();
+            Destroy(chain);
             GetComponent<Rigidbody2D>().gravityScale = 8;
             GetComponent<DistanceJoint2D>().enabled = false;
         }
