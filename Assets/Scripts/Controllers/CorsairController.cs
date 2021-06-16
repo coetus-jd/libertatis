@@ -91,6 +91,9 @@ namespace PirateCave.Controllers
         /// </summary>
         private float lifePercentUnit;
 
+        [SerializeField]
+        private GameObject jadeSkull;
+
         private void Start()
         {
             lifeBarScale = greenLifeBar.localScale;
@@ -99,6 +102,7 @@ namespace PirateCave.Controllers
 
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
+            jadeSkull.SetActive(true);
         }
 
         private void Update()
