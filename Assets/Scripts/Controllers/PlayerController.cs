@@ -137,7 +137,7 @@ namespace PirateCave.Controllers
             lash();
             lashDiagonal();
 
-            if (Input.GetKeyDown(KeyCode.K) && isSwinging)
+            if (Input.GetKeyDown(KeyCode.Space) && isSwinging)
                 desactivateSwinging();
         }
 
