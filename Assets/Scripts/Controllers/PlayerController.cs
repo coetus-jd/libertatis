@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PirateCave.Controllers.Colliders;
 using PirateCave.Enums;
 using PirateCave.UI;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -23,6 +24,12 @@ namespace PirateCave.Controllers
         [Header("Life")]
         [SerializeField]
         private float life = 100;
+
+        /// <summary>
+        /// Texto da UI aonde será exibido a vida
+        /// </summary>
+        [SerializeField]
+        private TextMeshProUGUI lifeText;
 
         /// <summary>
         /// A velocidade com que o player irá se mover
@@ -127,6 +134,8 @@ namespace PirateCave.Controllers
 
         private void Update()
         {
+            lifeText.text = life.ToString();
+
             if (life <= 0)
             {
                 die();
