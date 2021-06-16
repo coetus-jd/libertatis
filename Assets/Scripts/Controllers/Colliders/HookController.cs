@@ -20,7 +20,7 @@ namespace PirateCave.Controllers.Colliders
         /// <summary>
         /// Distância entre os fragmentos das correntes
         /// </summary>
-        private float distanceBetweenChains = 0.3f;
+        private float distanceBetweenChains = 0.4f;
 
         /// <summary>
         /// Prefab dos fragmentos da corrente
@@ -79,13 +79,15 @@ namespace PirateCave.Controllers.Colliders
 
         public void destroyChain()
         {
-            var objectChains = gameObject.GetComponentsInChildren<Transform>();
-            objectChains = objectChains.Skip(2).ToArray();
+            Debug.Log("Aqui");
+            var objectChains = middle.transform;
 
-            foreach (var objectTransform in objectChains)
-            {
-                Destroy(objectTransform.gameObject);
-            }
+            foreach (Transform child in objectChains)
+                GameObject.Destroy(child.gameObject);
+
+            chainMounted = false;
+            Destroy(middle.GetComponent<HingeJoint2D>());
+            middle.AddComponent<HingeJoint2D>();
         }
 
         private void InstantiateChain()
@@ -114,13 +116,5 @@ namespace PirateCave.Controllers.Colliders
                 .GetComponentInParent<PlayerController>()
                 .activateSwinging(middle);
         }
-
-        // void OnTriggerExit2D(Collider2D col)
-        // {
-        //     if (!col.gameObject.CompareTag(Tags.PlayerHook))
-        //         return;
-
-        //     destroyChain();
-        // }
     }
 }

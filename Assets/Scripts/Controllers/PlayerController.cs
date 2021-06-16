@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PirateCave.Controllers.Colliders;
 using PirateCave.Enums;
 using PirateCave.UI;
 using UnityEngine;
@@ -177,10 +178,12 @@ namespace PirateCave.Controllers
         {
             isSwinging = true;
             animator.SetBool("swing", true);
-            chainRenderer.changeEndPosition(hookMiddlePosition.transform);
+            Debug.Log(hookMiddlePosition);
+            // chainRenderer.changeEndPosition(hookMiddlePosition.transform);
             chain = hookMiddlePosition;
             // chainRenderer.toggleLineRenderer(true);
-            GetComponent<Rigidbody2D>().gravityScale = 2;
+            GetComponent<Rigidbody2D>().gravityScale = 3;
+            GetComponent<DistanceJoint2D>().connectedAnchor = (Vector2)hookMiddlePosition.transform.position;
             GetComponent<DistanceJoint2D>().enabled = true;
         }
 
@@ -189,7 +192,10 @@ namespace PirateCave.Controllers
             isSwinging = false;
             isJumping = false;
             // chainRenderer.toggleLineRenderer();
-            Destroy(chain);
+
+            chain?.GetComponentInParent<HookController>().destroyChain();
+            chain = null;
+ 
             GetComponent<Rigidbody2D>().gravityScale = 5;
             GetComponent<DistanceJoint2D>().enabled = false;
         }
