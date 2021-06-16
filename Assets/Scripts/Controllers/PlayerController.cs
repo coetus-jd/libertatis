@@ -224,6 +224,7 @@ namespace PirateCave.Controllers
 
             isRunning = Input.GetKey(KeyCode.LeftShift);
 
+            handleRotate();
             handleMovement();
             handleAnimation();
             handlePlayerJump();
@@ -247,13 +248,46 @@ namespace PirateCave.Controllers
                 float localVelocity = isRunning ? velocity * 4f : velocity;
                 transform.Translate(new Vector2((localVelocity * Time.deltaTime), 0f));
 
-                if (horizontalMovement > 0)
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
-                else
-                    transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             else if (!feetGround && isSwinging)
                 GetComponent<Rigidbody2D>().AddForce(transform.right * horizontalMovement * swingVelocity);
+        }
+
+        private void handleRotate()
+        {
+
+            if (horizontalMovement > 0 && isRunning == false)
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            else if (horizontalMovement < 0 && isRunning == false)
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+
+            else if (horizontalMovement > 0 && isRunning == true)
+            {
+                if (transform.eulerAngles.y == 180)
+                {
+                    animator.SetBool("rotate", true);
+                }
+            }
+            else if (horizontalMovement < 0 && isRunning == true)
+            {
+                if (transform.eulerAngles.y == 0)
+                {
+                    animator.SetBool("rotate", true);
+                }
+            }
+
+        }
+
+        private void fimRotate()
+        {
+            if (horizontalMovement > 0)
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            else
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+
+            animator.SetBool("rotate", false);
         }
 
         private void handlePlayerJump()
