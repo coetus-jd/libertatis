@@ -12,7 +12,7 @@ namespace PirateCave.Controllers.Prefab
         private int direction;
 
         [SerializeField]
-        private float life = 10f;
+        private float life = 6f;
 
         /// <summary>
         /// A posição do jogador

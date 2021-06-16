@@ -20,7 +20,7 @@ namespace PirateCave.Controllers
         /// <summary>
         /// Indica se o corsário deve andar ou não
         /// </summary>
-        private bool shouldWalk = true;
+        public bool shouldWalk;
 
         /// <summary>
         /// Indica se o corsário deve atacar ou não
@@ -103,24 +103,17 @@ namespace PirateCave.Controllers
 
         private void Update()
         {
-            // somente pra teste
-            if (Input.GetKeyDown(KeyCode.W))
-                slash();
-
-            // somente pra teste
-            if (Input.GetKeyDown(KeyCode.T))
-                animator.SetBool("shooting", true);
-
-            // somente pra teste
-            if (Input.GetKeyDown(KeyCode.J))
-                invokeSkeletons();
-
             if (life <= 0)
                 defeated();
 
-            // somente pra teste
-            if (life == 300 && shouldWalk)
+            if (life == 300f && shouldWalk)
                 handleMovement(true);
+
+            if (life == 240f || life == 179f)
+                invokeSkeletons(life);
+
+            if (life <= 150f)
+                shouldAttack = true;
 
             if (shouldAttack)
                 attackPlayer();
@@ -128,8 +121,6 @@ namespace PirateCave.Controllers
 
         private void OnTriggerEnter2D(Collider2D col)
         {
-            Debug.Log(col.gameObject.tag);
-
             if (!col.gameObject.CompareTag(Tags.PlayerWeapon))
                 return;
 
@@ -205,8 +196,9 @@ namespace PirateCave.Controllers
             slashCollider.enabled = true;
         }
 
-        private void invokeSkeletons()
+        private void invokeSkeletons(float corsairLife)
         {
+            life = corsairLife - 1;
             animator.SetBool("pointing", true);
             Instantiate(skeletonPrefab, skeletonsPositions[0].position, Quaternion.identity);
             Instantiate(skeletonPrefab, skeletonsPositions[1].position, Quaternion.identity);

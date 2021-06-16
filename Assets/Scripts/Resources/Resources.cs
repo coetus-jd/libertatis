@@ -18,7 +18,7 @@ namespace PirateCave.Resources
                 if (_Language != null && _Language.Count > 0)
                     return _Language;
 
-                string path = Path.Combine(Application.dataPath, "Scripts/Resources");
+                string path = Path.Combine(Application.streamingAssetsPath, "Resources");
 
                 _Language = new Dictionary<string, AllResources>()
                 {

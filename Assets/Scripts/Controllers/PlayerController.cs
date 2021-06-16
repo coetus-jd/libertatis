@@ -112,6 +112,8 @@ namespace PirateCave.Controllers
         /// </summary>
         private bool isSwinging;
 
+        private GameObject chain;
+
         private void Start()
         {
             phaseController = GameObject.FindGameObjectWithTag(Tags.PhaseController)
@@ -131,12 +133,6 @@ namespace PirateCave.Controllers
                 die();
                 return;
             }
-
-            // if (!feetGround && !isJumping && !isSwinging)
-            // {
-            //     die();
-            //     return;
-            // }
 
             movePlayer();
             lash();
@@ -160,7 +156,7 @@ namespace PirateCave.Controllers
             if (col.gameObject.CompareTag(Tags.CorsairBullet))
             {
                 Destroy(col.gameObject);
-                receiveDamage(10f);
+                receiveDamage(5f);
             }
 
             if (col.gameObject.CompareTag(Tags.SkeletonBullet))
@@ -168,6 +164,11 @@ namespace PirateCave.Controllers
                 Destroy(col.gameObject);
                 receiveDamage(3f);
             }
+        }
+
+        void OnBecameInvisible()
+        {
+            die();
         }
 
         public void receiveDamage(float damage)
@@ -180,7 +181,8 @@ namespace PirateCave.Controllers
             isSwinging = true;
             animator.SetBool("swing", true);
             chainRenderer.changeEndPosition(hookMiddlePosition.transform);
-            chainRenderer.toggleLineRenderer(true);
+            chain = hookMiddlePosition;
+            // chainRenderer.toggleLineRenderer(true);
             GetComponent<Rigidbody2D>().gravityScale = 2;
             GetComponent<DistanceJoint2D>().enabled = true;
         }
@@ -192,7 +194,8 @@ namespace PirateCave.Controllers
             animator.SetBool("swing", false);
             animator.SetBool("jump", false);
             animator.SetBool("swingFall", true);
-            chainRenderer.toggleLineRenderer();
+            // chainRenderer.toggleLineRenderer();
+            Destroy(chain);
             GetComponent<Rigidbody2D>().gravityScale = 8;
             GetComponent<DistanceJoint2D>().enabled = false;
         }
@@ -205,7 +208,7 @@ namespace PirateCave.Controllers
             }
 
             if (phaseController?._buttonYouLose)
-                EventSystem.current.SetSelectedGameObject(phaseController?._buttonYouLose);
+                EventSystem.current?.SetSelectedGameObject(phaseController?._buttonYouLose);
 
             animator.SetBool("walk", false);
             animator.SetBool("running", false);
@@ -221,6 +224,7 @@ namespace PirateCave.Controllers
 
             isRunning = Input.GetKey(KeyCode.LeftShift);
 
+            handleRotate();
             handleMovement();
             handleAnimation();
             handlePlayerJump();
@@ -229,7 +233,6 @@ namespace PirateCave.Controllers
         private void stopMoviment()
         {
             playerStop = true;
-
         }
 
         private void ReMoviment()
@@ -244,13 +247,46 @@ namespace PirateCave.Controllers
                 float localVelocity = isRunning ? velocity * 4f : velocity;
                 transform.Translate(new Vector2((localVelocity * Time.deltaTime), 0f));
 
-                if (horizontalMovement > 0)
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
-                else
-                    transform.rotation = Quaternion.Euler(0, 180, 0);
             }
             else if (!feetGround && isSwinging)
                 GetComponent<Rigidbody2D>().AddForce(transform.right * horizontalMovement * swingVelocity);
+        }
+
+        private void handleRotate()
+        {
+
+            if (horizontalMovement > 0 && isRunning == false)
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            else if (horizontalMovement < 0 && isRunning == false)
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+
+            else if (horizontalMovement > 0 && isRunning == true)
+            {
+                if (transform.eulerAngles.y == 180)
+                {
+                    animator.SetBool("rotate", true);
+                }
+            }
+            else if (horizontalMovement < 0 && isRunning == true)
+            {
+                if (transform.eulerAngles.y == 0)
+                {
+                    animator.SetBool("rotate", true);
+                }
+            }
+
+        }
+
+        private void fimRotate()
+        {
+            if (horizontalMovement > 0)
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            else
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+
+            animator.SetBool("rotate", false);
         }
 
         private void handlePlayerJump()
@@ -315,6 +351,7 @@ namespace PirateCave.Controllers
         /// </summary>
         private void enableLashCollider()
         {
+            isLashing = true;
             slashCollider.GetComponent<BoxCollider2D>().enabled = true;
         }
 
