@@ -23,7 +23,7 @@ namespace PirateCave.Controllers
         /// </summary>
         [Header("Life")]
         [SerializeField]
-        private float life = 100;
+        private float life = 150;
 
         /// <summary>
         /// Texto da UI aonde será exibido a vida

@@ -10,7 +10,7 @@ namespace PirateCave.Controllers
         private PhaseController phaseController;
 
         [SerializeField]
-        private float life = 300f;
+        private float life = 260f;
 
         /// <summary>
         /// Velocidade com que o corsário irá se mover
@@ -109,10 +109,10 @@ namespace PirateCave.Controllers
                 return;
             }
 
-            if (life == 300f && shouldWalk)
+            if (life == 260f && shouldWalk)
                 handleMovement(true);
 
-            if (life == 240f || life == 179f)
+            if (life == 200f || life == 139f)
                 invokeSkeletons(life);
 
             if (life <= 150f)
@@ -220,7 +220,8 @@ namespace PirateCave.Controllers
             //     EventSystem.current.SetSelectedGameObject(phaseController?._buttonWin);
             // }
 
-            // Destroy(gameObject.GetComponent<BoxCollider2D>());
+            Destroy(gameObject.GetComponent<Rigidbody2D>());
+            Destroy(gameObject.GetComponent<BoxCollider2D>());
         }
 
         #region Animations
