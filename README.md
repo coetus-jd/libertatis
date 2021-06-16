@@ -8,6 +8,8 @@
 
 ## :open_book: About
 
+This project is a simple 2D platform game where you control a slave in search of freedom. The game takes place in a cave where there are skeletons with muskets and swords that will try to kill you before you reach Corsair's territory. 
+
 ## 👀 Overview
 
 > Check here the project's API: [Pirate Cave API](https://github.com/pferreirafabricio/php-pirateCave)
@@ -21,6 +23,15 @@
  1. Clone this repository `git clone https://github.com/coetus-jd/unity-pirateCave.git`;
  2. Open `unity-pirateCave` folder with Unity and be happy 😄.
  
+## :handshake: Contributors
+ - [Alberto Luigi Venciguerra](https://www.instagram.com/alvenciguerra/) - Graphic Design
+ - [Bruno Ganade Alves ](https://github.com/Ganade) - UI/UX, SFX, OST
+ - [Fabrício Pinto Ferreira](https://github.com/pferreirafabricio) - Coding and testing
+ - [Gabriel Henrique Mantovani De Oliveira]() - Screenplay
+ - [João Frederico Kraft Cuppi](https://github.com/JoaoFKraft) - UI/UX
+ - [Jonatas Freire](https://github.com/jonatasFreireDevi) - UI/UX
+ - [Leonardo Rezende Nakashima](https://github.com/waterwhirl) - Coding and testing
+
 ## :recycle: Contribute
  1. Fork this repository;
  2. Create a branch with your feature: ```git checkout -b my-feature```
