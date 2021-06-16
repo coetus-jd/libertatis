@@ -24,13 +24,13 @@ This project is a simple 2D platform game where you control a slave in search of
  2. Open `unity-pirateCave` folder with Unity and be happy 😄.
  
 ## :handshake: Contributors
- - [Alberto Luigi Venciguerra](https://www.instagram.com/alvenciguerra/)
- - [Bruno Ganade Alves ](https://github.com/Ganade)
- - [Fabrício Pinto Ferreira](https://github.com/pferreirafabricio)
- - [Gabriel Henrique Mantovani De Oliveira]()
- - [João Frederico Kraft Cuppi](https://github.com/JoaoFKraft)
- - [Jonatas Freire](https://github.com/jonatasFreireDevi)
- - [Leonardo Rezende Nakashima](https://github.com/waterwhirl)
+ - [Alberto Luigi Venciguerra](https://www.instagram.com/alvenciguerra/) - Graphic Design
+ - [Bruno Ganade Alves ](https://github.com/Ganade) - UI/UX, SFX, OST
+ - [Fabrício Pinto Ferreira](https://github.com/pferreirafabricio) - Coding and testing
+ - [Gabriel Henrique Mantovani De Oliveira]() - Screenplay
+ - [João Frederico Kraft Cuppi](https://github.com/JoaoFKraft) - UI/UX
+ - [Jonatas Freire](https://github.com/jonatasFreireDevi) - UI/UX
+ - [Leonardo Rezende Nakashima](https://github.com/waterwhirl) - Coding and testing
 
 ## :recycle: Contribute
  1. Fork this repository;
