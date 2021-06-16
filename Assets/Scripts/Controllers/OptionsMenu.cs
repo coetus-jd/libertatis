@@ -39,9 +39,13 @@ public class OptionsMenu : MonoBehaviour
         Screen.fullScreen = isFullScreen;
     }
 
-    public void SetVolume(float volume)
+    public void SetVolumeMusic(float music)
     {
-        m_AudioMixer.SetFloat("volume", volume);
+        m_AudioMixer.SetFloat("music", music);
+    }
+    public void SetVolumeEffects(float effects)
+    {
+        m_AudioMixer.SetFloat("effects", effects);
     }
 
     public void SetQuality(int qualityIndex)
