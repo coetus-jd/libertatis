@@ -156,7 +156,7 @@ namespace PirateCave.Controllers
             if (col.gameObject.CompareTag(Tags.CorsairBullet))
             {
                 Destroy(col.gameObject);
-                receiveDamage(10f);
+                receiveDamage(5f);
             }
 
             if (col.gameObject.CompareTag(Tags.SkeletonBullet))
@@ -208,7 +208,7 @@ namespace PirateCave.Controllers
             }
 
             if (phaseController?._buttonYouLose)
-                EventSystem.current.SetSelectedGameObject(phaseController?._buttonYouLose);
+                EventSystem.current?.SetSelectedGameObject(phaseController?._buttonYouLose);
 
             animator.SetBool("walk", false);
             animator.SetBool("running", false);
@@ -233,7 +233,6 @@ namespace PirateCave.Controllers
         private void stopMoviment()
         {
             playerStop = true;
-
         }
 
         private void ReMoviment()

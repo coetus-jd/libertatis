@@ -361,7 +361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7590395140420005773
 Transform:
   m_ObjectHideFlags: 0
@@ -538,6 +538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 300
+  shouldWalk: 0
   player: {fileID: 0}
   skeletonPrefab: {fileID: 1672912249036166064, guid: 9a9251ac64b42084c8faa18a8610e4c6,
     type: 3}
