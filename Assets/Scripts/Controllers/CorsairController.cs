@@ -104,7 +104,10 @@ namespace PirateCave.Controllers
         private void Update()
         {
             if (life <= 0)
+            {
                 defeated();
+                return;
+            }
 
             if (life == 300f && shouldWalk)
                 handleMovement(true);
@@ -207,12 +210,17 @@ namespace PirateCave.Controllers
         private void defeated()
         {
             animator.SetBool("defeat", true);
-            phaseController?.youWinPanel?.SetActive(true);
-            if (phaseController?._buttonWin)
-            {
-                EventSystem.current.SetSelectedGameObject(phaseController?._buttonWin);
-            }
-            Destroy(gameObject.GetComponent<CorsairController>());
+            animator.SetBool("shooting", false);
+            animator.SetBool("slash", false);
+            animator.SetBool("pointing", false);
+
+            // phaseController?.youWinPanel?.SetActive(true);
+            // if (phaseController?._buttonWin)
+            // {
+            //     EventSystem.current.SetSelectedGameObject(phaseController?._buttonWin);
+            // }
+
+            // Destroy(gameObject.GetComponent<BoxCollider2D>());
         }
 
         #region Animations

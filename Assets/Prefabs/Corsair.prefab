@@ -352,9 +352,9 @@ GameObject:
   - component: {fileID: 7590395140420005773}
   - component: {fileID: 7590395140420005772}
   - component: {fileID: 541330139}
-  - component: {fileID: 541330140}
   - component: {fileID: 541330141}
   - component: {fileID: 541330142}
+  - component: {fileID: 24852706}
   m_Layer: 9
   m_Name: Corsair
   m_TagString: Corsair
@@ -445,67 +445,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!60 &541330140
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7590395140420005774}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1.28, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.14, y: -0.19}
-      - {x: 0.19999999, y: 0.02}
-      - {x: 0.19999999, y: 0.089999996}
-      - {x: 0.17999999, y: 0.22999999}
-      - {x: 0.13, y: 0.32999998}
-      - {x: 0.19, y: 0.41}
-      - {x: 0.049999997, y: 0.52}
-      - {x: -0.01, y: 0.53}
-      - {x: -0.08, y: 0.53}
-      - {x: -0.19999999, y: 0.42999998}
-      - {x: -0.13, y: 0.29}
-      - {x: -0.21, y: 0.22999999}
-      - {x: -0.21, y: 0}
-      - {x: -0.14999999, y: -0.04}
-      - {x: -0.17, y: -0.19999999}
-      - {x: -0.14999999, y: -0.29}
-      - {x: -0.14204687, y: -0.574588}
-      - {x: -0.12950566, y: -0.57696444}
-      - {x: -0.038860094, y: -0.57442325}
-      - {x: 0.07729409, y: -0.57696444}
-      - {x: 0.112211585, y: -0.55696446}
-      - {x: 0.13, y: -0.32999998}
-    - - {x: 0.04, y: -0.41}
-      - {x: 0, y: -0.35999998}
-      - {x: -0.02, y: -0.51}
-      - {x: -0.02, y: -0.56}
-    - - {x: -0.01, y: -0.24}
-      - {x: -0.01, y: -0.29}
-      - {x: 0, y: -0.29}
 --- !u!95 &541330141
 Animator:
   serializedVersion: 3
@@ -551,3 +497,29 @@ MonoBehaviour:
   slashCollider: {fileID: 1052323085}
   lifeBarsFather: {fileID: 1599056941}
   greenLifeBar: {fileID: 690377849}
+--- !u!61 &24852706
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7590395140420005774}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06982422, y: -0.043284416}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.70751953, y: 1.0697613}
+  m_EdgeRadius: 0

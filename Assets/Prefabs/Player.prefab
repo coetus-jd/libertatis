@@ -3589,6 +3589,7 @@ MonoBehaviour:
   Feet: {fileID: 1212182515}
   slashCollider: {fileID: 653643152}
   slashDiagonalCollider: {fileID: 1699143409}
+  isLashing: 0
 --- !u!95 &6637404424377639628
 Animator:
   serializedVersion: 3

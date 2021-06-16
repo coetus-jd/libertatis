@@ -101,6 +101,7 @@ namespace PirateCave.Controllers
         /// <summary>
         /// Verifica se o player está atacando
         /// </summary>
+        [SerializeField]
         private bool isLashing;
 
         private bool playerStop;
@@ -143,7 +144,7 @@ namespace PirateCave.Controllers
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.gameObject.CompareTag(Tags.CorsairSlash))
-                receiveDamage(10f);
+                receiveDamage(3f);
 
             if (col.gameObject.CompareTag(Tags.SkeletonLash))
                 receiveDamage(1f);
@@ -154,13 +155,13 @@ namespace PirateCave.Controllers
             if (col.gameObject.CompareTag(Tags.CorsairBullet))
             {
                 Destroy(col.gameObject);
-                receiveDamage(5f);
+                receiveDamage(4f);
             }
 
             if (col.gameObject.CompareTag(Tags.SkeletonBullet))
             {
                 Destroy(col.gameObject);
-                receiveDamage(3f);
+                receiveDamage(2f);
             }
         }
 
@@ -325,7 +326,7 @@ namespace PirateCave.Controllers
 
         private void lash()
         {
-            if (Input.GetKeyDown(KeyCode.K) && !isLashing && feetGround)
+            if (!isLashing && Input.GetKeyDown(KeyCode.K) && feetGround)
             {
                 isLashing = true;
                 animator.SetBool("lash", true);
@@ -355,7 +356,6 @@ namespace PirateCave.Controllers
         /// </summary>
         private void enableLashCollider()
         {
-            isLashing = true;
             slashCollider.GetComponent<BoxCollider2D>().enabled = true;
         }
 
@@ -364,9 +364,9 @@ namespace PirateCave.Controllers
         /// </summary>
         private void disableLashCollider()
         {
-            isLashing = false;
             slashCollider.GetComponent<BoxCollider2D>().enabled = false;
             stopTriggerAnimation("lash");
+            isLashing = false;
         }
 
         private void enableLashDiagonalCollider()
