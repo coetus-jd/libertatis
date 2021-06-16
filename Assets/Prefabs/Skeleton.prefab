@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 0
-  life: 10
+  life: 6
   player: {fileID: 0}
   playerLayer:
     serializedVersion: 2

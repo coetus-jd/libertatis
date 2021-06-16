@@ -5,7 +5,7 @@ namespace PirateCave.Controllers.Prefab
 {
     public class MusketSkeletonController : MonoBehaviour
     {   
-        private float life = 7f;
+        private float life = 6f;
 
         /// <summary>
         /// Referência para o player
