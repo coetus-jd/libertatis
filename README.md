@@ -21,6 +21,15 @@
  1. Clone this repository `git clone https://github.com/coetus-jd/unity-pirateCave.git`;
  2. Open `unity-pirateCave` folder with Unity and be happy 😄.
  
+## :handshake: Contributors
+ - [Alberto Luigi Venciguerra](https://www.instagram.com/alvenciguerra/)
+ - [Bruno Ganade Alves ](https://github.com/Ganade)
+ - [Fabrício Pinto Ferreira](https://github.com/pferreirafabricio)
+ - [Gabriel Henrique Mantovani De Oliveira]()
+ - [João Frederico Kraft Cuppi](https://github.com/JoaoFKraft)
+ - [Jonatas Freire](https://github.com/jonatasFreireDevi)
+ - [Leonardo Rezende Nakashima](https://github.com/waterwhirl)
+
 ## :recycle: Contribute
  1. Fork this repository;
  2. Create a branch with your feature: ```git checkout -b my-feature```
