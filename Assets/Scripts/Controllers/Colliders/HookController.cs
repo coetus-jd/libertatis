@@ -79,13 +79,14 @@ namespace PirateCave.Controllers.Colliders
 
         public void destroyChain()
         {
-            Debug.Log("Aqui");
             var objectChains = middle.transform;
 
             foreach (Transform child in objectChains)
                 GameObject.Destroy(child.gameObject);
 
             chainMounted = false;
+            playerSwing = false;
+            lastChainInstantiated = middle;
             Destroy(middle.GetComponent<HingeJoint2D>());
             middle.AddComponent<HingeJoint2D>();
         }

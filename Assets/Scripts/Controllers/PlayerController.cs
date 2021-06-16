@@ -178,11 +178,10 @@ namespace PirateCave.Controllers
         {
             isSwinging = true;
             animator.SetBool("swing", true);
-            Debug.Log(hookMiddlePosition);
             // chainRenderer.changeEndPosition(hookMiddlePosition.transform);
             chain = hookMiddlePosition;
             // chainRenderer.toggleLineRenderer(true);
-            GetComponent<Rigidbody2D>().gravityScale = 3;
+            GetComponent<Rigidbody2D>().gravityScale = 2;
             GetComponent<DistanceJoint2D>().connectedAnchor = (Vector2)hookMiddlePosition.transform.position;
             GetComponent<DistanceJoint2D>().enabled = true;
         }
