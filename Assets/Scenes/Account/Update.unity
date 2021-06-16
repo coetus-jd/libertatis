@@ -229,7 +229,7 @@ MonoBehaviour:
   error: {fileID: 21300000, guid: a174486fd73a2b245adfb739a9a34355, type: 3}
   inputNick: {fileID: 1170873088}
   inputName: {fileID: 894841250}
-  buttonUpdate: {fileID: 0}
+  buttonUpdate: {fileID: 142404848}
 --- !u!4 &13032034
 Transform:
   m_ObjectHideFlags: 0
@@ -2264,11 +2264,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 810649774}
+      objectReference: {fileID: 13032033}
     - target: {fileID: 3016667657726181189, guid: ba1607884fe19c74c8fa43678796de70,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: update
+      objectReference: {fileID: 0}
+    - target: {fileID: 3016667657726181189, guid: ba1607884fe19c74c8fa43678796de70,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3016667657726181194, guid: ba1607884fe19c74c8fa43678796de70,
         type: 3}
