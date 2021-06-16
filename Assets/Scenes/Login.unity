@@ -2037,6 +2037,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sound & SFX
       objectReference: {fileID: 0}
+    - target: {fileID: 8739267879990101310, guid: 952f1ccb3ad27a840aaafa6631f55792,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -9189409501612001671, guid: 70f320f308ad2e9428d75663b97c7137,
+        type: 2}
+    - target: {fileID: 8739267880796723345, guid: 952f1ccb3ad27a840aaafa6631f55792,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -9189409501612001671, guid: 70f320f308ad2e9428d75663b97c7137,
+        type: 2}
+    - target: {fileID: 8739267880899691703, guid: 952f1ccb3ad27a840aaafa6631f55792,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -9189409501612001671, guid: 70f320f308ad2e9428d75663b97c7137,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 952f1ccb3ad27a840aaafa6631f55792, type: 3}
 --- !u!82 &1950430399 stripped
