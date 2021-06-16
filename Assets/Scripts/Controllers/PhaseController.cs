@@ -42,6 +42,8 @@ namespace PirateCave.Controllers
         /// </summary>
         public GameObject youLosePanel;
 
+        public GameObject finalArt;
+
         public GameObject _buttonYouLose;
 
         /// <summary>

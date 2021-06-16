@@ -101,13 +101,14 @@ namespace PirateCave.UI
 
         private void finishDialog()
         {
-            phaseController?.youWinPanel?.SetActive(true);
-            if (phaseController?._buttonWin)
-            {
-                EventSystem.current.SetSelectedGameObject(phaseController?._buttonWin);
-            }
+            // phaseController?.youWinPanel?.SetActive(true);
+            // phaseController?.finalArt?.SetActive(true);
+            // if (phaseController?._buttonWin)
+            // {
+            //     EventSystem.current.SetSelectedGameObject(phaseController?._buttonWin);
+            // }
 
-            Time.timeScale = 0f;
+            // Time.timeScale = 0f;
         }
     }
 }
