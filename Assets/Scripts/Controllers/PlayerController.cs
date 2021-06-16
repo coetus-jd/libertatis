@@ -35,9 +35,6 @@ namespace PirateCave.Controllers
         /// </summary>
         private float swingVelocity = 0.6f;
 
-        [SerializeField]
-        private Collider2D pCollider;
-
         private float horizontalMovement;
 
         /// <summary>
@@ -191,12 +188,9 @@ namespace PirateCave.Controllers
         {
             isSwinging = false;
             isJumping = false;
-            animator.SetBool("swing", false);
-            animator.SetBool("jump", false);
-            animator.SetBool("swingFall", true);
             // chainRenderer.toggleLineRenderer();
             Destroy(chain);
-            GetComponent<Rigidbody2D>().gravityScale = 8;
+            GetComponent<Rigidbody2D>().gravityScale = 5;
             GetComponent<DistanceJoint2D>().enabled = false;
         }
 
@@ -330,6 +324,11 @@ namespace PirateCave.Controllers
             {
                 isLashing = true;
                 animator.SetBool("lash", true);
+            }
+            else if (isJumping == true)
+            {
+                isLashing = false;
+                animator.SetBool("lash", false);
             }
         }
 
