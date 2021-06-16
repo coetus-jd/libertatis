@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using PirateCave.Controllers.Colliders;
 using PirateCave.Enums;
 using PirateCave.UI;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -23,6 +24,12 @@ namespace PirateCave.Controllers
         [Header("Life")]
         [SerializeField]
         private float life = 100;
+
+        /// <summary>
+        /// Texto da UI aonde será exibido a vida
+        /// </summary>
+        [SerializeField]
+        private TextMeshProUGUI lifeText;
 
         /// <summary>
         /// A velocidade com que o player irá se mover
@@ -127,6 +134,8 @@ namespace PirateCave.Controllers
 
         private void Update()
         {
+            lifeText.text = life.ToString();
+
             if (life <= 0)
             {
                 die();
@@ -179,6 +188,7 @@ namespace PirateCave.Controllers
         {
             isSwinging = true;
             animator.SetBool("swing", true);
+            animator.SetBool("lashDiagonal", false);
             // chainRenderer.changeEndPosition(hookMiddlePosition.transform);
             chain = hookMiddlePosition;
             // chainRenderer.toggleLineRenderer(true);
@@ -331,12 +341,13 @@ namespace PirateCave.Controllers
                 isLashing = true;
                 animator.SetBool("lash", true);
             }
-            else if (isJumping == true)
-            {
-                isLashing = false;
-                animator.SetBool("lash", false);
-            }
+            else
+            
+            animator.SetBool("lash", false);
+            isLashing = false;
+
         }
+            
 
         private void lashDiagonal()
         {
@@ -363,10 +374,10 @@ namespace PirateCave.Controllers
         /// Essa função será chamada automaticamente ao final da animação de lash
         /// </summary>
         private void disableLashCollider()
-        {
+        {   
+
             slashCollider.GetComponent<BoxCollider2D>().enabled = false;
-            stopTriggerAnimation("lash");
-            isLashing = false;
+            
         }
 
         private void enableLashDiagonalCollider()

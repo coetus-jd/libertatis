@@ -3581,6 +3581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
+  lifeText: {fileID: 0}
   velocity: 3
   jumpForce: 20
   groundLayer:
