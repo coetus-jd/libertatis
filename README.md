@@ -8,6 +8,8 @@
 
 ## :open_book: About
 
+This project is a simple 2D platform game where you control a slave in search of freedom. The game takes place in a cave where there are skeletons with muskets and swords that will try to kill you before you reach Corsair's territory. 
+
 ## 👀 Overview
 
 > Check here the project's API: [Pirate Cave API](https://github.com/pferreirafabricio/php-pirateCave)
