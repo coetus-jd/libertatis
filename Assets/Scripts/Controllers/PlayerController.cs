@@ -217,7 +217,7 @@ namespace PirateCave.Controllers
         {
             horizontalMovement = Input.GetAxis("Horizontal");
 
-            feetGround = Physics2D.OverlapCircle(Feet.position, 0.1f, groundLayer);
+            feetGround = Physics2D.OverlapCircle(Feet.position, 0.4f, groundLayer);
 
             isRunning = Input.GetKey(KeyCode.LeftShift);
 

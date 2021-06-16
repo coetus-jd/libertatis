@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   musketBulletShootPosition: {fileID: 4845242693384728884}
-  bulletPrefab: {fileID: 5070094056331393680, guid: 83e67b628c1805e438fa9df4c320b17b,
+  bulletPrefab: {fileID: 5070094056331393680, guid: 5ad1acaf636cdab4f8ffd78f02e3f5ff,
     type: 3}
   animator: {fileID: 997139110}
   shootQuantity: 0

@@ -33,6 +33,12 @@ namespace PirateCave.UI
         {
             lineRenderer.positionCount = pointsToDraw.Count;
             lineRenderer.SetPositions(pointsToDraw.Select(p => p.position).ToArray());
+
+            if (pointsToDraw.Count == 2)
+            {
+                float distance = Vector2.Distance(pointsToDraw[0].transform.position, pointsToDraw[1].transform.position);
+                lineRenderer.material.mainTextureScale = new Vector2 (distance *1, 1);
+            }
         }
 
         /// <summary>
