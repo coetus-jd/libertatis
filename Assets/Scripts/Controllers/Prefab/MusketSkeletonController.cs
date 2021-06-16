@@ -85,7 +85,7 @@ namespace PirateCave.Controllers.Prefab
 
         void Update()
         {
-            if (life < 0f)
+            if (life <= 0f)
             {
                 die();
                 return;
