@@ -493,7 +493,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -183.99994, y: 164}
+  m_AnchoredPosition: {x: 1, y: 164}
   m_SizeDelta: {x: -843.403, y: -559.08496}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &667728798
@@ -1702,7 +1702,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 224, y: 164}
+  m_AnchoredPosition: {x: 391, y: 164}
   m_SizeDelta: {x: -843.403, y: -559.08496}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2011746024
@@ -2424,8 +2424,9 @@ GameObject:
   - component: {fileID: 3006714224899320391}
   - component: {fileID: 3202422418917046073}
   - component: {fileID: 6281187571532701949}
-  - component: {fileID: 6637404423758143922}
   - component: {fileID: 6526817439313396922}
+  - component: {fileID: 6637404423758143922}
+  - component: {fileID: 3038785956668022740}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -2515,7 +2516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
-  velocity: 3
+  velocity: 4
   pCollider: {fileID: 0}
   jumpForce: 18
   groundLayer:
@@ -2625,6 +2626,21 @@ MonoBehaviour:
   pointsToDraw:
   - {fileID: 916015746}
   - {fileID: 0}
+--- !u!114 &6526817439313396922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6637404424377639664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba08d35b656429b4ca7c22b63468e5cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startRenderer: {fileID: 916015745}
+  pointsToDraw:
+  - {fileID: 0}
 --- !u!120 &6637404423758143922
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -2722,7 +2738,7 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &6526817439313396922
+--- !u!114 &3038785956668022740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
