@@ -132,12 +132,6 @@ namespace PirateCave.Controllers
                 return;
             }
 
-            // if (!feetGround && !isJumping && !isSwinging)
-            // {
-            //     die();
-            //     return;
-            // }
-
             movePlayer();
             lash();
             lashDiagonal();
@@ -170,6 +164,11 @@ namespace PirateCave.Controllers
             }
         }
 
+        void OnBecameInvisible()
+        {
+            die();
+        }
+
         public void receiveDamage(float damage)
         {
             life -= damage;
@@ -180,7 +179,7 @@ namespace PirateCave.Controllers
             isSwinging = true;
             animator.SetBool("swing", true);
             chainRenderer.changeEndPosition(hookMiddlePosition.transform);
-            chainRenderer.toggleLineRenderer(true);
+            // chainRenderer.toggleLineRenderer(true);
             GetComponent<Rigidbody2D>().gravityScale = 2;
             GetComponent<DistanceJoint2D>().enabled = true;
         }
@@ -192,7 +191,7 @@ namespace PirateCave.Controllers
             animator.SetBool("swing", false);
             animator.SetBool("jump", false);
             animator.SetBool("swingFall", true);
-            chainRenderer.toggleLineRenderer();
+            // chainRenderer.toggleLineRenderer();
             GetComponent<Rigidbody2D>().gravityScale = 8;
             GetComponent<DistanceJoint2D>().enabled = false;
         }
