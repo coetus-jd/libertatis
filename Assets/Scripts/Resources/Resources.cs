@@ -44,6 +44,7 @@ namespace PirateCave.Resources
         public Dialog1 Dialog1;
         public FinalA FinalA;
         public FinalB FinalB;
+        public FinalDialog FinalDialog;
     }
 
     [Serializable]
@@ -66,4 +67,7 @@ namespace PirateCave.Resources
 
     [Serializable]
     public class FinalB : ResourceBase {}
+
+    [Serializable]
+    public class FinalDialog : ResourceBase {}
 }

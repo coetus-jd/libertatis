@@ -37,5 +37,16 @@
             "Queira me desculpar, mas preciso dela para encontrar o que eu quero, my sailors sendo abatidos por você não está ajudando, então saia enquanto não acabo with your inferior race!",
             "Então não me dá outra escolha..."
         ]
+    },
+    "FinalDialog": {
+        "texts": [
+            "Sua joia… espero que tudo que passei valha a pena.",
+            "Sabia que teria êxito…",
+            "Não esqueça sua parte no acordo!",
+            "Claro… Como estou feliz, irei te dar um bônus, no porto há um amigo meu que pode te levar a onde quiser.",
+            "Agradeço a ajuda… ",
+            "Já sabe onde vai?",
+            "Um amigo meu disse que queria ir ver umas cerejeiras rosa, acho que vou realizar o sonho dele, como forma de agradecimento."
+        ]
     }
 }
