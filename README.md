@@ -12,6 +12,13 @@ This project is a simple 2D platform game where you control a slave in search of
 
 ## 👀 Overview
 
+<p align="center">
+  <img src="./Docs/Screenshots/PressStart].png" width="1000px" height="auto"/>
+  <img src="./Docs/Screenshots/Home.png" width="1000px" height="auto"/>
+  <img src="./Docs/Screenshots/Options.png" width="1000px" height="auto"/>
+  <img src="./Docs/Screenshots/Register.png" width="1000px" height="auto"/>
+</p>
+
 > Check here the project's API: [Pirate Cave API](https://github.com/pferreirafabricio/php-pirateCave)
 
 ## :bricks: This project was built with: 
@@ -24,11 +31,11 @@ This project is a simple 2D platform game where you control a slave in search of
  2. Open `unity-pirateCave` folder with Unity and be happy 😄.
  
 ## :handshake: Contributors
- - [Alberto Luigi Venciguerra](https://www.instagram.com/alvenciguerra/) - Graphic Design
+ - [Alberto Luigi Venciguerra](https://www.instagram.com/alvenciguerra/) - Graphic Design, Level Design
  - [Bruno Ganade Alves ](https://github.com/Ganade) - UI/UX, SFX, OST
  - [Fabrício Pinto Ferreira](https://github.com/pferreirafabricio) - Coding and testing
  - [Gabriel Henrique Mantovani De Oliveira]() - Screenplay
- - [João Frederico Kraft Cuppi](https://github.com/JoaoFKraft) - UI/UX
+ - [João Frederico Kraft Cuppi](https://github.com/JoaoFKraft) - UI/UX, Level Design
  - [Jonatas Freire](https://github.com/jonatasFreireDevi) - UI/UX
  - [Leonardo Rezende Nakashima](https://github.com/waterwhirl) - Coding and testing
 
