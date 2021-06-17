@@ -13,10 +13,10 @@ This project is a simple 2D platform game where you control a slave in search of
 ## 👀 Overview
 
 <p align="center">
-  <img src="./Docs/Screenshots/PressStart].png" width="1000px" height="auto"/>
-  <img src="./Docs/Screenshots/Home.png" width="1000px" height="auto"/>
-  <img src="./Docs/Screenshots/Options.png" width="1000px" height="auto"/>
-  <img src="./Docs/Screenshots/Register.png" width="1000px" height="auto"/>
+  <img src="./Docs/Screenshots/PressStart].png" width="1000px" height="auto"/> <br/><br/>
+  <img src="./Docs/Screenshots/Home.png" width="1000px" height="auto"/> <br/><br/>
+  <img src="./Docs/Screenshots/Options.png" width="1000px" height="auto"/> <br/><br/>
+  <img src="./Docs/Screenshots/Register.png" width="1000px" height="auto"/> <br/><br/>
 </p>
 
 > Check here the project's API: [Pirate Cave API](https://github.com/pferreirafabricio/php-pirateCave)
