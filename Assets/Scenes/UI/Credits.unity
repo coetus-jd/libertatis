@@ -588,7 +588,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Gabriel Mantovani
+  m_text: "Jo\xE3o Kraft\nAlberto Venciguerra"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ec59498c3d559b047bfb1582adc0ff2d, type: 2}
   m_sharedMaterial: {fileID: 8184801171426892207, guid: ec59498c3d559b047bfb1582adc0ff2d,
@@ -1580,7 +1580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1274280452}
   m_Layer: 5
-  m_Name: Level Designer
+  m_Name: Screenplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1604,7 +1604,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 0, y: 10.8}
   m_SizeDelta: {x: 180, y: 70}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &1366620611
@@ -2536,7 +2536,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Screenplay
+  m_text: Level Design
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e990c027fd154a4eb720fdf0fb5ec64, type: 2}
   m_sharedMaterial: {fileID: 153487935007392839, guid: 9e990c027fd154a4eb720fdf0fb5ec64,
@@ -2693,7 +2693,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2039125847}
   m_Layer: 5
-  m_Name: Screenwriter
+  m_Name: Level Design
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2717,7 +2717,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -20}
+  m_AnchoredPosition: {x: 0, y: -9.3}
   m_SizeDelta: {x: 250, y: 70}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &2077171448
