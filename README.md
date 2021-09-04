@@ -8,7 +8,9 @@
 
 ## :open_book: About
 
-This project is a simple 2D platform game where you control a slave in search of freedom. The game takes place in a cave where there are skeletons with muskets and swords that will try to kill you before you reach Corsair's territory. 
+This project is a simple 2D platform game where you control a slave in search of freedom. The game takes place in a cave where there are skeletons with muskets and swords that will try to kill you before you reach Corsair's territory.
+
+> Play on [Itch.io](https://pferreirafabricio.itch.io/libertatis)
 
 ## 👀 Overview
 
