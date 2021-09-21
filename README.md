@@ -14,6 +14,8 @@ This project is a simple 2D platform game where you control a slave in search of
 
 ## 👀 Overview
 
+https://user-images.githubusercontent.com/42717522/134168449-81d6662c-acc7-49ae-afb2-0f574ef2922d.mp4
+
 <p align="center">
   <img src="./Docs/Screenshots/PressStart].png" width="1000px" height="auto"/> <br/><br/>
   <img src="./Docs/Screenshots/Home.png" width="1000px" height="auto"/> <br/><br/>
