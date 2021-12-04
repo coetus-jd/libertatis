@@ -1,5 +1,8 @@
 <h5 align="center">
-  <img src="./Docs/Coetus.png" style="margin-right: 20px" width="250px" /><br>  
+  <img src="./Docs/Coetus.png" width="250px" />
+  &nbsp;&nbsp;&nbsp; 
+  <img src="./Docs/Libertatis.png" width="250px" />
+  <br>  
   <b>Seeking freedom</b> ☠️
 </h5>
 <p align="center">
