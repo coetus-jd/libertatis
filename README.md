@@ -6,7 +6,7 @@
   <b>Seeking freedom</b> ☠️
 </h5>
 <p align="center">
-  <img alt="License" src="https://img.shields.io/badge/License-GPL--3.0-green">
+  <img alt="License" src="https://img.shields.io/badge/License-GPL--3.0-green?style=for-the-badge&labelColor=1C1E26&color=B9641B">
 </p>
 
 ## :open_book: About
@@ -34,8 +34,8 @@ https://user-images.githubusercontent.com/42717522/134168449-81d6662c-acc7-49ae-
 - [Blender](https://www.blender.org/)
 
 ## :running_man: Installing and Running  
- 1. Clone this repository `git clone https://github.com/coetus-jd/unity-pirateCave.git`;
- 2. Open `unity-pirateCave` folder with Unity and be happy 😄.
+ 1. Clone this repository `git clone https://github.com/coetus-jd/unity-pirateCave.git`
+ 2. Open `unity-pirateCave` folder with Unity and be happy 😄
  
 ## :handshake: Contributors
  - [Alberto Luigi Venciguerra](https://www.instagram.com/alvenciguerra/) - Graphic Design, Level Design
@@ -47,7 +47,7 @@ https://user-images.githubusercontent.com/42717522/134168449-81d6662c-acc7-49ae-
  - [Leonardo Rezende Nakashima](https://github.com/waterwhirl) - Coding and testing
 
 ## :recycle: Contribute
- 1. Fork this repository;
+ 1. Fork this repository
  2. Create a branch with your feature: ```git checkout -b my-feature```
  3. Commit your changes: ```git commit -m 'feat: My new feature'```
  4. Push your branch: ```git push origin my-feature```
